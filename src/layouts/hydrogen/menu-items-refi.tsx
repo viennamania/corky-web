@@ -49,62 +49,56 @@ import {
 export const menuItems = [
 
   {
-    name: 'User',
+    name: '회원 관리',
     href: '#',
     icon: <PiUserFill />,
     dropdownItems: [
       {
-        name: 'Active Users',
+        name: '활성회원',
         href: routes.user.index,
       },
       {
-        name: 'Inactive Users',
+        name: '탈퇴회원',
         href: routes.user.withdrew,
       },
     ],
   },
 
   {
-    name: 'Merchant',
+    name: '저작권 관리',
     href: '#',
     icon: <PiStorefront />,
     dropdownItems: [
       {
-        name: 'Active Merchants',
+        name: '등록된 저작권 목록',
         href: routes.shop.index,
       },
       {
-        name: 'Applied Merchants',
+        name: '저작권 등록신청',
         href: routes.shop.waiting,
       },
     ],
   },
 
   {
-    name: 'Item',
+    name: '저작물 침해관리',
     href: '#',
     icon: <PiMagicWandFill />,
     dropdownItems: [
       {
-        name: 'Item List',
+        name: '신고된 저작물 목록',
         href: routes.product.index,
       },
-      /*
-      {
-        name: '상품정보',
-        href: routes.product.details(DUMMY_ID),
-      },
-      */
-
       
       {
-        name: 'Item Category',
+        name: 'IP관리',
         href: routes.product.category,
       },
     
     ],
   },
 
+  /*
   {
     name: 'Order',
     href: '#',
@@ -117,28 +111,32 @@ export const menuItems = [
 
     ],
   },
+  */
 
   {
-    name: 'Settlement',
+    name: '정산',
     href: '#',
     icon: <PiCreditCardFill />,
     dropdownItems: [
+      /*
       {
         name: 'Dashboard',
         href: routes.settlement.dashboard,
       },
+      */
       {
-        name: 'Settlement Waiting',
+        name: '정산신청',
         href: routes.settlement.waiting,
       },
       {
-        name: 'Settlement Completed',
+        name: '정산완료',
         href: routes.settlement.completed,
       },
 
     ],
   },
 
+  /*
   {
     name: 'Promotion',
     href: '#',
@@ -189,14 +187,15 @@ export const menuItems = [
 
     ],
   },
+  */
 
   {
-    name: 'Operation',
+    name: '운영관리',
     href: '#',
     icon: <PiGear />,
     dropdownItems: [
       {
-        name: 'Notice',
+        name: '알림',
         href: routes.operation.notice,
       },
       {
@@ -204,7 +203,7 @@ export const menuItems = [
         href: routes.operation.faq,
       },
       {
-        name: 'FAQ Category',
+        name: 'FAQ 분류',
         href: routes.operation.faqcategory,
       },
       {
@@ -213,16 +212,16 @@ export const menuItems = [
       },
       {
         // 신고 관리 영어로
-        name: 'Report',
+        name: '신고',
         href: routes.underconstruction.index,
       },
       {
-        name: 'Popup',
+        name: '팝업',
         href: routes.underconstruction.index,
       },
 
       {
-        name: 'Terms',
+        name: '이용자약관',
         href: routes.setup.terms,
       },
 

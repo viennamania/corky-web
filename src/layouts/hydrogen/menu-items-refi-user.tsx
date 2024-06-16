@@ -50,12 +50,12 @@ export const menuItems = [
 
 
   {
-    name: 'Product',
+    name: '저작권 관리',
     href: '#',
     icon: <PiMagicWandFill />,
     dropdownItems: [
       {
-        name: 'Product List',
+        name: '저작권 목록',
         href: routes.product.index,
       },
       /*
@@ -75,6 +75,7 @@ export const menuItems = [
     ],
   },
 
+  /*
   {
     name: 'Order',
     href: '#',
@@ -87,10 +88,11 @@ export const menuItems = [
 
     ],
   },
+  */
 
-  /*
+  
   {
-    name: '정산',
+    name: '정산관리',
     href: '#',
     icon: <PiCreditCardFill />,
     dropdownItems: [
@@ -109,7 +111,7 @@ export const menuItems = [
 
     ],
   },
-  */
+  
 
 
 

@@ -323,17 +323,16 @@ export default function Dashboard() {
       
 
 
-      {/* title
-      Crypto Payment Gateway
-      */}
-
+  
       <div className=" mt-10 xl:mt-28 flex flex-col items-center justify-center gap-5 xl:gap-10">
 
-        <div className="text-xl   xl:text-5xl font-bold text-gray-900">Crypto Payment Gateway</div>
+        <div className="text-xl   xl:text-5xl font-bold text-gray-900">Corky</div>
 
-        <div className="text-base xl:text-2xl font-bold text-gray-900">Pay with your favorite cryptocurrency</div>
+        <div className="text-base xl:text-2xl font-bold text-gray-900">당신의 안무 저작권을 무료로 등록하세요.</div>
 
+        {/*
         <UnderlineShape />
+        */}
 
       </div>
 
@@ -478,9 +477,10 @@ export default function Dashboard() {
               href={routes.signIn}
               className="w-full flex items-center justify-center gap-2 px-4 py-2 text-base font-medium text-white bg-primary rounded-md hover:bg-primary-dark"
             >
-              Admin Sign In
+              관리자 로그인
             </Link>
 
+            {/*
             <Link
               href={routes.signInShop}
               className=" w-full flex items-center justify-center gap-2 px-4 py-2 text-base font-medium text-white bg-primary rounded-md hover:bg-primary-dark"
@@ -496,12 +496,13 @@ export default function Dashboard() {
             >
               Merchant Apply
             </Link>
+            */}
 
             <Link
               href={routes.signInUser}
               className=" w-full flex items-center justify-center gap-2 px-4 py-2 text-base font-medium text-white bg-primary rounded-md hover:bg-primary-dark"
             >
-              User Sign In
+              사용자 로그인
             </Link>
           
           </div>
