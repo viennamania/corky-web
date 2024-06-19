@@ -28,7 +28,7 @@ import AvatarUpload from '@/components/ui/file-upload/avatar-upload';
 import Image from 'next/image';
 
 
-import BasicTableWidget from '@/components/lefimall/basic-table-widget';
+import BasicTableWidget from '@/components/corky/basic-table-widget';
 
 import { data } from '@/data/lefimall/board/comment-data';
 
@@ -54,7 +54,7 @@ import SaveAll from '@/app/shared-corky/save-popover-large';
 import { Textarea } from '@/components/ui/textarea';
 
 
-import Uploader from '@/components/lefimall/upload/uploader'
+import Uploader from '@/components/corky/upload/uploader'
 
 import { Modal } from '@/components/ui/modal';
 import { Button } from '@/components/ui/button';
@@ -144,7 +144,7 @@ export default function InfoView({
     const fetchData = async () => {
       setLoading(true);
   
-      const res = await fetch(`/api/lefimall/product/getOne?_id=${id}`);
+      const res = await fetch(`/api/corky/product/getOne?_id=${id}`);
   
       const data  = await res.json() as any;
   

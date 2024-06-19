@@ -10,7 +10,7 @@ import { getColumnsUser } from '@/app/shared-corky/order/user-columns';
 
 
 
-import OrderTableWidget from '@/components/lefimall/order-table-widget';
+import OrderTableWidget from '@/components/corky/order-table-widget';
 
 
 import TableLayout from './table-layout';
@@ -160,7 +160,7 @@ export default function SearchTablePage() {
 
       setLoadingUserData(true);
 
-      const res = await fetch(`/api/lefimall/user/getUserByEmail?_email=${session?.user?.email}`);
+      const res = await fetch(`/api/corky/user/getUserByEmail?_email=${session?.user?.email}`);
       const json = await res?.json();
 
       
@@ -197,7 +197,7 @@ export default function SearchTablePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('/api/lefimall/board');
+      const res = await fetch('/api/corky/board');
 
       const posts  = await res.json() as any;
 

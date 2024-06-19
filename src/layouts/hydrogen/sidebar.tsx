@@ -11,9 +11,9 @@ import SimpleBar from '@/components/ui/simplebar';
 
 import { menuItems } from './menu-items-refi';
 
-import { menuItems as menuItemsShop } from './menu-items-refi-shop';
+import { menuItems as menuItemsShop } from './menu-items-corky-shop';
 
-import { menuItems as menuItemsUser } from './menu-items-refi-user';
+import { menuItems as menuItemsUser } from './menu-items-corky-user';
 
 //import Logo from '@/components/logo';
 
@@ -58,7 +58,7 @@ export default function Sidebar({ className }: { className?: string }) {
 
       setLoadingUserData(true);
 
-      const res = await fetch(`/api/lefimall/user/getUserByEmail?_email=${session?.user?.email}`);
+      const res = await fetch(`/api/corky/user/getUserByEmail?_email=${session?.user?.email}`);
       const json = await res?.json();
 
       

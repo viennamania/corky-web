@@ -223,6 +223,27 @@ export const routes = {
     
   },
 
+
+  certificate: {
+    index: '/certificate',
+    create: '/certificate/create',
+    comment: '/certificate/comment',
+    details: (id: string) => `/certificate/${id}`,
+    edit: (id: string) => `/certificate/${id}/edit`,
+    tag: '/certificate/tag',
+    tagDetails: (id: string) => `/certificate/tag/${id}`,
+    tagEdit: (id: string) => `/certificate/tag/${id}/edit`,
+    tagCreate: '/certificate/tag/create',
+
+    category: '/certificate/category',
+    categoryDetails: (id: string) => `/certificate/category/${id}`,
+    categoryEdit: (id: string) => `/certificate/category/${id}/edit`,
+    categoryCreate: '/certificate/category/create',
+  },
+
+
+
+
   order: {
     index: '/order',
     comment: '/order/comment',

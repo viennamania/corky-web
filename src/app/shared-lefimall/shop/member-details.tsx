@@ -37,18 +37,18 @@ import Box from '@mui/material/Box';
 
 
 
-import PointTableWidget from '@/components/lefimall/point-table-widget';
+import PointTableWidget from '@/components/corky/point-table-widget';
 
 /////////////mport { pointData } from '@/data/lefimall/user/point-data';
 
 import { getColumns as pointGetColumns } from '@/app/shared-corky/user/point-columns';
 
-import CouponTableWidget from '@/components/lefimall/coupon-table-widget';
+import CouponTableWidget from '@/components/corky/coupon-table-widget';
 
 import { getColumns as couponGetColumns } from '@/app/shared-corky/user/coupon-columns';
 
 
-import CompletedTableWidget from '@/components/lefimall/settlement/completed-table-widget';
+import CompletedTableWidget from '@/components/corky/settlement/completed-table-widget';
 
 //import { getColumns as settlementGetColumns } from '@/app/shared-corky/user/settlement-columns';
 import { getColumns as completedGetColumns } from '@/app/shared-corky/settlement/completed-columns';
@@ -263,7 +263,7 @@ export default function ProfileDetails({
   const fetchData = async () => {
     setLoading(true);
 
-    const res = await fetch(`/api/lefimall/shop/getOne?_id=${id}`);
+    const res = await fetch(`/api/corky/shop/getOne?_id=${id}`);
 
     const data  = await res.json() as any;
 
@@ -300,7 +300,7 @@ export default function ProfileDetails({
   const saveShopName = async (id: string, name: string) => {
 
     try {
-      const res = await fetch(`/api/lefimall/shop/updateName?_id=${id}&_name=${name}`);
+      const res = await fetch(`/api/corky/shop/updateName?_id=${id}&_name=${name}`);
       const data = await res.json();
       //setShopName(name);
       fetchData();
@@ -319,7 +319,7 @@ export default function ProfileDetails({
 
   const saveContactName = async (id: string, value: string) => {
     try {
-      const res = await fetch(`/api/lefimall/shop/updateContactName?_id=${id}&_value=${value}`);
+      const res = await fetch(`/api/corky/shop/updateContactName?_id=${id}&_value=${value}`);
       const data = await res.json();
 ;
       fetchData();
@@ -335,7 +335,7 @@ export default function ProfileDetails({
 
   const saveContactPhone = async (id: string, value: string) => {
     try {
-      const res = await fetch(`/api/lefimall/shop/updateContactPhone?_id=${id}&_value=${value}`);
+      const res = await fetch(`/api/corky/shop/updateContactPhone?_id=${id}&_value=${value}`);
       const data = await res.json();
 
       fetchData();
@@ -351,7 +351,7 @@ export default function ProfileDetails({
 
   const saveContactEmail = async (id: string, value: string) => {
     try {
-      const res = await fetch(`/api/lefimall/shop/updateContactEmail?_id=${id}&_value=${value}`);
+      const res = await fetch(`/api/corky/shop/updateContactEmail?_id=${id}&_value=${value}`);
       const data = await res.json();
 
       fetchData();
@@ -367,7 +367,7 @@ export default function ProfileDetails({
 
   const saveIntroduction = async (id: string, value: string) => {
     try {
-      const res = await fetch(`/api/lefimall/shop/updateIntroduction?_id=${id}&_value=${value}`);
+      const res = await fetch(`/api/corky/shop/updateIntroduction?_id=${id}&_value=${value}`);
       const data = await res.json();
 
       fetchData();
@@ -407,7 +407,7 @@ export default function ProfileDetails({
   const saveAll = async () => {
 
     try {
-      const res = await fetch(`/api/lefimall/shop/updateBasic?_id=${id}&_shopName=${shopName}&_contactName=${contactName}&_contactPhone=${contactPhone}&_contactEmail=${contactEmail}&_introduction=${introduction}`);
+      const res = await fetch(`/api/corky/shop/updateBasic?_id=${id}&_shopName=${shopName}&_contactName=${contactName}&_contactPhone=${contactPhone}&_contactEmail=${contactEmail}&_introduction=${introduction}`);
       const data = await res.json();
 
       fetchData();

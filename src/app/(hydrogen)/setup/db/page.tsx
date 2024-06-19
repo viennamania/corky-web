@@ -15,7 +15,7 @@ import { getColumns } from '@/app/shared-corky/feed/calorie-db-columns';
 
 
 
-import DatabaseTableWidget from '@/components/lefimall/database-table-widget';
+import DatabaseTableWidget from '@/components/corky/database-table-widget';
 
 
 import TableLayout from '../table-layout';

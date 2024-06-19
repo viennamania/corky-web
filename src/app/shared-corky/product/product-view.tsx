@@ -32,7 +32,7 @@ import AvatarUpload from '@/components/ui/file-upload/avatar-upload';
 import Image from 'next/image';
 
 
-import BasicTableWidget from '@/components/lefimall/basic-table-widget';
+import BasicTableWidget from '@/components/corky/basic-table-widget';
 
 import { data } from '@/data/lefimall/board/comment-data';
 
@@ -58,12 +58,12 @@ import SaveAll from '@/app/shared-corky/save-popover-large';
 import { Textarea } from '@/components/ui/textarea';
 
 
-import Uploader from '@/components/lefimall/upload/uploader'
+import Uploader from '@/components/corky/upload/uploader'
 
 import { Modal } from '@/components/ui/modal';
 import { Button } from '@/components/ui/button';
 
-import FormFooter from '@/components/lefimall/form-footer';
+import FormFooter from '@/components/corky/form-footer';
 
 
 const SelectBox = dynamic(() => import('@/components/ui/select'), {
@@ -121,7 +121,7 @@ export default function InfoView({
   const fetchData = async () => {
     setLoading(true);
 
-    const res = await fetch(`/api/lefimall/product/getOne?_id=${id}`);
+    const res = await fetch(`/api/corky/product/getOne?_id=${id}`);
 
     const data  = await res.json() as any;
 
@@ -151,7 +151,7 @@ export default function InfoView({
 
     try {
 
-      const res = await fetch(`/api/lefimall/product/updateBasic?_id=${id}`
+      const res = await fetch(`/api/corky/product/updateBasic?_id=${id}`
       + `&_name=${data?.name}`
       + `&_companyName=${data?.companyName}`
       + `&_shopId=${data?.shopId}`
@@ -232,7 +232,7 @@ export default function InfoView({
 
     };
 
-    const res = await fetch(`/api/lefimall/product/update`, {
+    const res = await fetch(`/api/corky/product/update`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

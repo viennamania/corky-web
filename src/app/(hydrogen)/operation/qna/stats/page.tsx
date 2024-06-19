@@ -8,7 +8,7 @@ import { data } from '@/data/lefimall/feed/stats-data';
 
 import { getColumns } from '@/app/shared-corky/feed/stats-columns';
 
-import StatsTableWidget from '@/components/lefimall/stats-table-widget';
+import StatsTableWidget from '@/components/corky/stats-table-widget';
 
 
 import TableLayout from '../table-layout';

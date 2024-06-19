@@ -15,7 +15,7 @@ import { getColumns } from '@/app/shared-corky/point/columns';
 
 
 
-import PointTableWidget from '@/components/lefimall/point-table-widget';
+import PointTableWidget from '@/components/corky/point-table-widget';
 
 
 import TableLayout from './table-layout';

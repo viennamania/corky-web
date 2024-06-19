@@ -28,7 +28,7 @@ import AvatarUpload from '@/components/ui/file-upload/avatar-upload';
 import Image from 'next/image';
 
 
-import BasicTableWidget from '@/components/lefimall/basic-table-widget';
+import BasicTableWidget from '@/components/corky/basic-table-widget';
 
 import { data } from '@/data/lefimall/board/comment-data';
 

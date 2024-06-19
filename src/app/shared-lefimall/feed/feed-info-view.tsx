@@ -31,7 +31,7 @@ import Image from 'next/image';
 //import { data } from '@/data/lefimall/feed/data';
 
 
-import BasicTableWidget from '@/components/lefimall/basic-table-widget';
+import BasicTableWidget from '@/components/corky/basic-table-widget';
 
 import { data as calorieData } from '@/data/lefimall/feed/calorie-data';
 

@@ -7,7 +7,7 @@ import { routes } from '@/config/routes';
 import { getColumns } from '@/app/shared-corky/user/member-columns';
 
 
-import UserTableWidget from '@/components/lefimall/user-table-widget';
+import UserTableWidget from '@/components/corky/user-table-widget';
 
 
 import TableLayout from '../table-layout';

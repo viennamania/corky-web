@@ -32,7 +32,7 @@ import AvatarUpload from '@/components/ui/file-upload/avatar-upload';
 import Image from 'next/image';
 
 
-import BasicTableWidget from '@/components/lefimall/basic-table-widget';
+import BasicTableWidget from '@/components/corky/basic-table-widget';
 
 import { data } from '@/data/lefimall/board/comment-data';
 
@@ -58,16 +58,16 @@ import SaveAll from '@/app/shared-corky/save-popover-large';
 import { Textarea } from '@/components/ui/textarea';
 
 
-///import Uploader from '@/components/lefimall/upload/uploader'
+///import Uploader from '@/components/corky/upload/uploader'
 
-import Uploader from '@/components/lefimall/upload/uploaderVercel1';
+import Uploader from '@/components/corky/upload/uploaderVercel1';
 
 
 
 import { Modal } from '@/components/ui/modal';
 import { Button } from '@/components/ui/button';
 
-import FormFooter from '@/components/lefimall/form-footer';
+import FormFooter from '@/components/corky/form-footer';
 
 import { useSession, signOut } from 'next-auth/react';
 
@@ -132,7 +132,7 @@ export default function InfoView({
 
       setLoadingUserData(true);
 
-      const res = await fetch(`/api/lefimall/user/getUserByEmail?_email=${session?.user?.email}`);
+      const res = await fetch(`/api/corky/user/getUserByEmail?_email=${session?.user?.email}`);
       const json = await res?.json();
 
       
@@ -180,7 +180,7 @@ export default function InfoView({
   const fetchData = async () => {
     setLoading(true);
 
-    const res = await fetch(`/api/lefimall/product/getOne?_id=${id}`);
+    const res = await fetch(`/api/corky/product/getOne?_id=${id}`);
 
     const data  = await res.json() as any;
 
@@ -273,7 +273,7 @@ export default function InfoView({
     console.log('params', params);
 
 
-    const res = await fetch(`/api/lefimall/product/create`, {
+    const res = await fetch(`/api/corky/product/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ import { getColumns } from '@/app/shared-corky/coupon/columns';
 
 
 
-import CouponTableWidget from '@/components/lefimall/coupon-table-widget';
+import CouponTableWidget from '@/components/corky/coupon-table-widget';
 
 
 import TableLayout from './table-layout';

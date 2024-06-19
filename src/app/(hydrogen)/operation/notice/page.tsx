@@ -8,7 +8,7 @@ import { getColumns } from '@/app/shared-corky/notice/columns';
 
 
 
-import NoticeTableWidget from '@/components/lefimall/notice-table-widget';
+import NoticeTableWidget from '@/components/corky/notice-table-widget';
 
 
 import TableLayout from './table-layout';

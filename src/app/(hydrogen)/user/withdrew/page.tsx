@@ -8,7 +8,7 @@ import { withdrewData } from '@/data/lefimall/user/withdrew-data';
 
 import { getColumns } from '@/app/shared-corky/user/withdrew-columns';
 
-import WithdrewTableWidget from '@/components/lefimall/withdrew-table-widget';
+import WithdrewTableWidget from '@/components/corky/withdrew-table-widget';
 
 
 import TableLayout from '../table-layout';

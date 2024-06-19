@@ -11,7 +11,7 @@ import { getColumns } from '@/app/shared-corky/board/columns';
 
 
 
-import BoardTableWidget from '@/components/lefimall/board-table-widget';
+import BoardTableWidget from '@/components/corky/board-table-widget';
 
 
 import TableLayout from './table-layout';
@@ -123,7 +123,7 @@ export default function SearchTablePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('/api/lefimall/board');
+      const res = await fetch('/api/corky/board');
 
       const posts  = await res.json() as any;
 

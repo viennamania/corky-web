@@ -37,18 +37,18 @@ import Box from '@mui/material/Box';
 
 
 
-import PointTableWidget from '@/components/lefimall/point-table-widget';
+import PointTableWidget from '@/components/corky/point-table-widget';
 
 /////////////mport { pointData } from '@/data/lefimall/user/point-data';
 
 import { getColumns as pointGetColumns } from '@/app/shared-corky/user/point-columns';
 
-import CouponTableWidget from '@/components/lefimall/coupon-table-widget';
+import CouponTableWidget from '@/components/corky/coupon-table-widget';
 
 import { getColumns as couponGetColumns } from '@/app/shared-corky/user/coupon-columns';
 
 
-import OrderTableWidget from '@/components/lefimall/order-table-widget';
+import OrderTableWidget from '@/components/corky/order-table-widget';
 
 import { getColumns as orderGetColumns } from '@/app/shared-corky/user/order-columns';
 
@@ -66,7 +66,7 @@ import DateCell from '@/components/ui/date-cell';
 
 
 
-import BasicTableWidget from '@/components/lefimall/basic-table-widget';
+import BasicTableWidget from '@/components/corky/basic-table-widget';
 
 import {
   data as surveyData,
@@ -232,7 +232,7 @@ export default function ProfileDetails({
     const fetchData = async () => {
       setLoading(true);
 
-      const res = await fetch(`/api/lefimall/user/getUser?_id=${id}`);
+      const res = await fetch(`/api/corky/user/getUser?_id=${id}`);
 
       const data  = await res.json() as any;
 

@@ -30,7 +30,7 @@ export function useTable<T extends AnyObject>(
   const fetchData = async () => {
     setLoading(true);
 
-    const res = await fetch('/api/lefimall/point');
+    const res = await fetch('/api/corky/point');
 
     const posts  = await res.json() as any;
 

@@ -179,7 +179,7 @@ export default function ProfileMenu({
 
       setLoadingUserData(true);
 
-      const res = await fetch(`/api/lefimall/user/getUserByEmail?_email=${session?.user?.email}`);
+      const res = await fetch(`/api/corky/user/getUserByEmail?_email=${session?.user?.email}`);
       const json = await res?.json();
 
       

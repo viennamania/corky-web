@@ -15,7 +15,7 @@ import { getColumns } from '@/app/shared-corky/survey/columns';
 
 
 
-import SurveyTableWidget from '@/components/lefimall/survey-table-widget';
+import SurveyTableWidget from '@/components/corky/survey-table-widget';
 
 
 import TableLayout from './table-layout';

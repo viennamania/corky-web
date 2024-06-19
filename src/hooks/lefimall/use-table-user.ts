@@ -27,7 +27,7 @@ export function useTable<T extends AnyObject>(
   const [totalCount, setTotalCount] = useState(0);
 
   const fetchTotalCount = async () => {
-    const res = await fetch(`/api/lefimall/user/getUserCount`);
+    const res = await fetch(`/api/corky/user/getUserCount`);
 
     const posts  = await res.json() as any;
 
@@ -44,7 +44,7 @@ export function useTable<T extends AnyObject>(
 
     console.log('fetchData currentPage : ' + currentPage);
 
-    const res = await fetch(`/api/lefimall/user/getAllUsers?_limit=20&_page=${currentPage}`);
+    const res = await fetch(`/api/corky/user/getAllUsers?_limit=20&_page=${currentPage}`);
 
 
     const posts  = await res.json() as any;

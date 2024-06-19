@@ -29,7 +29,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 
-import PointTableWidget from '@/components/lefimall/point-table-widget';
+import PointTableWidget from '@/components/corky/point-table-widget';
 
 import { pointData } from '@/data/lefimall/user/point-data';
 
@@ -56,7 +56,7 @@ import { Form } from '@/components/ui/form';
 
 import { Checkbox } from '@/components/ui/checkbox';
 
-import FormFooter from '@/components/lefimall/form-footer';
+import FormFooter from '@/components/corky/form-footer';
 
 
 

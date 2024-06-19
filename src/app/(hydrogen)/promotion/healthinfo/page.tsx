@@ -6,7 +6,7 @@ import { data } from '@/data/lefimall/healthinfo/data';
 
 import { getColumns } from '@/app/shared-corky/healthinfo/columns';
 
-import HealthinfoTableWidget from '@/components/lefimall/healthinfo-table-widget';
+import HealthinfoTableWidget from '@/components/corky/healthinfo-table-widget';
 
 
 import TableLayout from './table-layout';

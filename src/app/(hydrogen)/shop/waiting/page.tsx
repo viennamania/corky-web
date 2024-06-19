@@ -6,7 +6,7 @@ import { memberData } from '@/data/lefimall/shop/waiting-data';
 import { getColumns } from '@/app/shared-corky/shop/waiting-columns';
 
 
-import WaitingTableWidget from '@/components/lefimall/waiting-table-widget';
+import WaitingTableWidget from '@/components/corky/waiting-table-widget';
 
 
 import TableLayout from '../table-layout';

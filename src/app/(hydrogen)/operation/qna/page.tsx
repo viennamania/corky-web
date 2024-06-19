@@ -15,7 +15,7 @@ import { getColumns, getWidgetColumns } from '@/app/shared-corky/qna/columns';
 
 
 
-import QnaTableWidget from '@/components/lefimall/qna-table-widget';
+import QnaTableWidget from '@/components/corky/qna-table-widget';
 
 import ShipmentTable from '@/app/shared-corky/feed/feed-table/shipment-table';
 

@@ -8,7 +8,7 @@ import { getColumns } from '@/app/shared-corky/banner/columns';
 
 
 
-import BannerTableWidget from '@/components/lefimall/banner-table-widget';
+import BannerTableWidget from '@/components/corky/banner-table-widget';
 
 
 import TableLayout from './table-layout';

@@ -37,18 +37,18 @@ import Box from '@mui/material/Box';
 
 
 
-import PointTableWidget from '@/components/lefimall/point-table-widget';
+import PointTableWidget from '@/components/corky/point-table-widget';
 
 /////////////mport { pointData } from '@/data/lefimall/user/point-data';
 
 import { getColumns as pointGetColumns } from '@/app/shared-corky/user/point-columns';
 
-import CouponTableWidget from '@/components/lefimall/coupon-table-widget';
+import CouponTableWidget from '@/components/corky/coupon-table-widget';
 
 import { getColumns as couponGetColumns } from '@/app/shared-corky/user/coupon-columns';
 
 
-import CompletedTableWidget from '@/components/lefimall/settlement/completed-table-widget';
+import CompletedTableWidget from '@/components/corky/settlement/completed-table-widget';
 
 //import { getColumns as settlementGetColumns } from '@/app/shared-corky/user/settlement-columns';
 import { getColumns as completedGetColumns } from '@/app/shared-corky/settlement/completed-columns';
@@ -94,7 +94,7 @@ import BasicInfo from '@/app/shared-corky/shop/member-details-basic';
 import BusinessInfo from '@/app/shared-corky/shop/member-details-business';
 
 
-import Uploader from '@/components/lefimall/upload/uploader'
+import Uploader from '@/components/corky/upload/uploader'
 
 
 
@@ -258,7 +258,7 @@ export default function SettlementDetails({
   const fetchData = async () => {
     setLoading(true);
 
-    const res = await fetch(`/api/lefimall/shop/getOne?_id=${id}`);
+    const res = await fetch(`/api/corky/shop/getOne?_id=${id}`);
 
     const data  = await res.json() as any;
 
@@ -298,7 +298,7 @@ export default function SettlementDetails({
   const saveShopName = async (id: string, name: string) => {
 
     try {
-      const res = await fetch(`/api/lefimall/shop/updateName?_id=${id}&_name=${name}`);
+      const res = await fetch(`/api/corky/shop/updateName?_id=${id}&_name=${name}`);
       const data = await res.json();
       //setShopName(name);
       fetchData();
@@ -344,7 +344,7 @@ export default function SettlementDetails({
 
     try {
 
-      const res = await fetch(`/api/lefimall/shop/updateSettlement?_id=${id}`
+      const res = await fetch(`/api/corky/shop/updateSettlement?_id=${id}`
       + `&_settlementBank=${settlementBank}`
       + `&_settlementAccount=${settlementAccount}`
       + `&_settlementAccountHolder=${settlementAccountHolder}`

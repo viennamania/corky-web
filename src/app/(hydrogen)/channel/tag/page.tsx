@@ -8,7 +8,7 @@ import { data } from '@/data/lefimall/board/tag-data';
 
 import { getColumns } from '@/app/shared-corky/channel/tag-columns';
 
-import BasicTableWidget from '@/components/lefimall/tag-table-widget';
+import BasicTableWidget from '@/components/corky/tag-table-widget';
 
 
 import TableLayout from './table-layout';

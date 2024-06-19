@@ -37,18 +37,18 @@ import Box from '@mui/material/Box';
 
 
 
-import PointTableWidget from '@/components/lefimall/point-table-widget';
+import PointTableWidget from '@/components/corky/point-table-widget';
 
 /////////////mport { pointData } from '@/data/lefimall/user/point-data';
 
 import { getColumns as pointGetColumns } from '@/app/shared-corky/user/point-columns';
 
-import CouponTableWidget from '@/components/lefimall/coupon-table-widget';
+import CouponTableWidget from '@/components/corky/coupon-table-widget';
 
 import { getColumns as couponGetColumns } from '@/app/shared-corky/user/coupon-columns';
 
 
-import CompletedTableWidget from '@/components/lefimall/settlement/completed-table-widget';
+import CompletedTableWidget from '@/components/corky/settlement/completed-table-widget';
 
 //import { getColumns as settlementGetColumns } from '@/app/shared-corky/user/settlement-columns';
 import { getColumns as completedGetColumns } from '@/app/shared-corky/settlement/completed-columns';
@@ -94,11 +94,11 @@ import { Textarea } from '@/components/ui/textarea';
 import Spinner from '@/components/ui/spinner';
 
 
-///import Uploader  from '@/components/lefimall/upload/uploader'
+///import Uploader  from '@/components/corky/upload/uploader'
 
 // dynamic import Uploader component
 import dynamic from 'next/dynamic';
-const Uploader1 = dynamic(() => import('@/components/lefimall/upload/uploader'), {
+const Uploader1 = dynamic(() => import('@/components/corky/upload/uploader'), {
   ssr: false,
   loading: () => (
     <div className="grid h-10 place-content-center">
@@ -107,7 +107,7 @@ const Uploader1 = dynamic(() => import('@/components/lefimall/upload/uploader'),
   ),
 });
 
-const Uploader2 = dynamic(() => import('@/components/lefimall/upload/uploader'), {
+const Uploader2 = dynamic(() => import('@/components/corky/upload/uploader'), {
   ssr: false,
   loading: () => (
     <div className="grid h-10 place-content-center">
@@ -292,7 +292,7 @@ export default function BusinessDetails({
   const fetchData = async () => {
     setLoading(true);
 
-    const res = await fetch(`/api/lefimall/shop/getOne?_id=${id}`);
+    const res = await fetch(`/api/corky/shop/getOne?_id=${id}`);
 
     const data  = await res.json() as any;
 
@@ -341,7 +341,7 @@ export default function BusinessDetails({
   const saveShopName = async (id: string, name: string) => {
 
     try {
-      const res = await fetch(`/api/lefimall/shop/updateName?_id=${id}&_name=${name}`);
+      const res = await fetch(`/api/corky/shop/updateName?_id=${id}&_name=${name}`);
       const data = await res.json();
       //setShopName(name);
       fetchData();
@@ -387,7 +387,7 @@ export default function BusinessDetails({
 
     try {
 
-      const res = await fetch(`/api/lefimall/shop/updateBusiness?_id=${id}`
+      const res = await fetch(`/api/corky/shop/updateBusiness?_id=${id}`
       + `&_businessName=${businessName}&_businessType=${businessType}&_businessCategory=${businessCategory}`
       + `&_representativeName=${representativeName}`
       + `&_businessRegistrationNumber=${businessRegistrationNumber}&_businessRegistrationAddress=${businessRegistrationAddress}&_businessRegistrationImage=${businessRegistrationImage}`

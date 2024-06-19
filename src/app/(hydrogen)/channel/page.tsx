@@ -11,7 +11,7 @@ import { getColumns } from '@/app/shared-corky/channel/columns';
 
 
 
-import ChannelTableWidget from '@/components/lefimall/channel-table-widget';
+import ChannelTableWidget from '@/components/corky/channel-table-widget';
 
 
 import TableLayout from './table-layout';
@@ -134,7 +134,7 @@ export default function SearchTablePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('/api/lefimall/board');
+      const res = await fetch('/api/corky/board');
 
       const posts  = await res.json() as any;
 

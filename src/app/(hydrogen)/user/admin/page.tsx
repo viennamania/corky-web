@@ -8,7 +8,7 @@ import { adminData } from '@/data/lefimall/user/admin-data';
 
 import { getColumns } from '@/app/shared-corky/user/admin-columns';
 
-import AdminTableWidget from '@/components/lefimall/admin-table-widget';
+import AdminTableWidget from '@/components/corky/admin-table-widget';
 
 
 import TableLayout from './table-layout';

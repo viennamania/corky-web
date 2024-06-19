@@ -15,7 +15,7 @@ import { Input } from '@/components/ui/input';
 import Spinner from '@/components/ui/spinner';
 import FormGroup from '@/app/shared-corky/form-group';
 
-import FormFooter from '@/components/lefimall/form-footer';
+import FormFooter from '@/components/corky/form-footer';
 
 
 
@@ -113,7 +113,7 @@ export default function InfoCreate() {
 
       setLoadingUserData(true);
 
-      const res = await fetch(`/api/lefimall/user/getUserByEmail?_email=${session?.user?.email}`);
+      const res = await fetch(`/api/corky/user/getUserByEmail?_email=${session?.user?.email}`);
       const json = await res?.json();
 
       
@@ -174,7 +174,7 @@ export default function InfoCreate() {
       userAvatar: userData?.avatar,
     };
 
-    const res = await fetch('/api/lefimall/banner/create', {
+    const res = await fetch('/api/corky/banner/create', {
       body: JSON.stringify(params),
       headers: {
         'Content-Type': 'application/json',
@@ -212,7 +212,7 @@ export default function InfoCreate() {
 
     setProductData({});
 
-    const res = await fetch(`/api/lefimall/product/getOne?_id=${value}`);
+    const res = await fetch(`/api/corky/product/getOne?_id=${value}`);
     const json = await res?.json();
 
     const data = json as any;

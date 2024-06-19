@@ -15,7 +15,7 @@ import { getColumns } from '@/app/shared-corky/settlement/waiting-columns';
 
 
 
-import WaitingTableWidget from '@/components/lefimall/settlement/waiting-table-widget';
+import WaitingTableWidget from '@/components/corky/settlement/waiting-table-widget';
 
 
 import TableLayout from '../table-layout';

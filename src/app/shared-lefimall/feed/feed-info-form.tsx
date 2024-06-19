@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input';
 import Spinner from '@/components/ui/spinner';
 import FormGroup from '@/app/shared-corky/form-group';
 
-import FormFooter from '@/components/lefimall/form-footer';
+import FormFooter from '@/components/corky/form-footer';
 
 
 import {
@@ -28,7 +28,7 @@ import AvatarUpload from '@/components/ui/file-upload/avatar-upload';
 import Image from 'next/image';
 
 
-import BasicTableWidget from '@/components/lefimall/basic-table-widget';
+import BasicTableWidget from '@/components/corky/basic-table-widget';
 
 import { data as calorieData } from '@/data/lefimall/feed/calorie-data';
 

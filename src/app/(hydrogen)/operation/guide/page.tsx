@@ -8,7 +8,7 @@ import { getColumns } from '@/app/shared-corky/guide/columns';
 
 
 
-import GuideTableWidget from '@/components/lefimall/guide-table-widget';
+import GuideTableWidget from '@/components/corky/guide-table-widget';
 
 
 import TableLayout from './table-layout';

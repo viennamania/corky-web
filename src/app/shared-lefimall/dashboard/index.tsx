@@ -122,7 +122,7 @@ export default function Dashboard() {
 
       setLoadingUserData(true);
 
-      const res = await fetch(`/api/lefimall/user/getUserByEmail?_email=${session?.user?.email}`);
+      const res = await fetch(`/api/corky/user/getUserByEmail?_email=${session?.user?.email}`);
       const json = await res?.json();
 
       
@@ -156,7 +156,7 @@ export default function Dashboard() {
 
       setLoading(true);
 
-      const res = await fetch(`/api/lefimall/banner/getAllForUser`);
+      const res = await fetch(`/api/corky/banner/getAllForUser`);
       const json = await res?.json();
 
       const data = json as any;

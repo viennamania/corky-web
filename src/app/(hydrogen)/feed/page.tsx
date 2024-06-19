@@ -15,7 +15,7 @@ import { getColumns, getWidgetColumns } from '@/app/shared-corky/feed/columns';
 
 
 
-import FeedTableWidget from '@/components/lefimall/feed-table-widget';
+import FeedTableWidget from '@/components/corky/feed-table-widget';
 
 import ShipmentTable from '@/app/shared-corky/feed/feed-table/shipment-table';
 

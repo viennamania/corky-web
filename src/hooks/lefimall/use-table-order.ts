@@ -46,7 +46,7 @@ export function useTable<T extends AnyObject>(
 
       setLoadingUserData(true);
 
-      const res = await fetch(`/api/lefimall/user/getUserByEmail?_email=${session?.user?.email}`);
+      const res = await fetch(`/api/corky/user/getUserByEmail?_email=${session?.user?.email}`);
       const json = await res?.json();
 
       
@@ -98,7 +98,7 @@ export function useTable<T extends AnyObject>(
 
     if (userData?.email === 'admin@unove.space') {
 
-      const res = await fetch(`/api/lefimall/order/getAll?_limit=10&_page=1&_sort=createdAt&_order=desc&_q=${searchTerm}`);
+      const res = await fetch(`/api/corky/order/getAll?_limit=10&_page=1&_sort=createdAt&_order=desc&_q=${searchTerm}`);
 
       const posts  = await res.json() as any;
       
@@ -110,7 +110,7 @@ export function useTable<T extends AnyObject>(
     } else if (userData?.shopId) {
 
   
-      const res = await fetch(`/api/lefimall/order/getAllByShopId?_limit=10&_page=1&_sort=createdAt&_order=desc&_q=${searchTerm}&_shopId=${userData?.shopId}`);
+      const res = await fetch(`/api/corky/order/getAllByShopId?_limit=10&_page=1&_sort=createdAt&_order=desc&_q=${searchTerm}&_shopId=${userData?.shopId}`);
 
       const posts  = await res.json() as any;
       
@@ -120,7 +120,7 @@ export function useTable<T extends AnyObject>(
 
     } else {
 
-      const res = await fetch(`/api/lefimall/order/getAllByUserId?_limit=10&_page=1&_sort=createdAt&_order=desc&_q=${searchTerm}&_userId=${userData?.id}`);
+      const res = await fetch(`/api/corky/order/getAllByUserId?_limit=10&_page=1&_sort=createdAt&_order=desc&_q=${searchTerm}&_userId=${userData?.id}`);
 
       const posts  = await res.json() as any;
       

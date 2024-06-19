@@ -15,7 +15,7 @@ import { getColumns } from '@/app/shared-corky/settlement/completed-columns';
 
 
 
-import CompletedTableWidget from '@/components/lefimall/settlement/completed-table-widget';
+import CompletedTableWidget from '@/components/corky/settlement/completed-table-widget';
 
 
 import TableLayout from '../table-layout';

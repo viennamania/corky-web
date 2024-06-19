@@ -129,7 +129,7 @@ export default function Dashboard() {
 
       setLoadingUserData(true);
 
-      const res = await fetch(`/api/lefimall/user/getUserByEmail?_email=${session?.user?.email}`);
+      const res = await fetch(`/api/corky/user/getUserByEmail?_email=${session?.user?.email}`);
       const json = await res?.json();
 
       
@@ -163,7 +163,7 @@ export default function Dashboard() {
 
       setLoading(true);
 
-      const res = await fetch(`/api/lefimall/banner/getAllForUser`);
+      const res = await fetch(`/api/corky/banner/getAllForUser`);
       const json = await res?.json();
 
       const data = json as any;
@@ -359,9 +359,12 @@ export default function Dashboard() {
 
                   </div>
 
-                  <div className="text-base font-bold text-gray-900">
+
+                  <Link
+                    href={routes.user.myPage}
+                    className="text-base font-bold text-gray-900">
                     나의 정보
-                  </div>
+                  </Link>
 
                 </Link>
 
@@ -382,9 +385,12 @@ export default function Dashboard() {
 
                   </div>
 
-                  <div className="text-base font-bold text-gray-900">
+                  <Link
+                    href={routes.certificate.index}
+                    className="text-base font-bold text-gray-900"
+                  >
                     나의 저작권
-                  </div>
+                  </Link>
 
                 </Link>
 
@@ -662,7 +668,7 @@ export default function Dashboard() {
               href={routes.signInUser}
               className=" w-full flex items-center justify-center gap-2 px-4 py-2 text-base font-medium text-white bg-primary rounded-md hover:bg-primary-dark"
             >
-              사용자 로그인
+              창작자 로그인
             </Link>
 
             <Link

@@ -28,7 +28,7 @@ import Box from '@mui/material/Box';
 
 
 
-import PointTableWidget from '@/components/lefimall/point-table-widget';
+import PointTableWidget from '@/components/corky/point-table-widget';
 
 import { pointData } from '@/data/lefimall/user/point-data';
 

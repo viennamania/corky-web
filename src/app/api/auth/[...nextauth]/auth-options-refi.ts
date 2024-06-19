@@ -95,7 +95,7 @@ export const authOptions: NextAuthOptions = {
         try {
 
           /*
-          const res = await fetch(`/api/lefimall/shop/checkOne?_id=${credentials?.id}&_password=${credentials?.password}`);
+          const res = await fetch(`/api/corky/shop/checkOne?_id=${credentials?.id}&_password=${credentials?.password}`);
 
           const data  = await res.json() as any;
 

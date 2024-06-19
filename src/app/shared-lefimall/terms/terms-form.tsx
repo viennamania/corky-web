@@ -36,7 +36,7 @@ import Box from '@mui/material/Box';
 
 
 
-import PointTableWidget from '@/components/lefimall/point-table-widget';
+import PointTableWidget from '@/components/corky/point-table-widget';
 
 import { pointData } from '@/data/lefimall/user/point-data';
 
@@ -56,7 +56,7 @@ import DateCell from '@/components/ui/date-cell';
 
 
 
-import BasicTableWidget from '@/components/lefimall/basic-table-widget';
+import BasicTableWidget from '@/components/corky/basic-table-widget';
 
 import {
   data as surveyData,

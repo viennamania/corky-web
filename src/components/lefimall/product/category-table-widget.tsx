@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
-import WidgetCard from '@/components/lefimall/widget-card';
+import WidgetCard from '@/components/corky/widget-card';
 import { PiMagnifyingGlassBold } from 'react-icons/pi';
 import { useTable } from '@/hooks/use-table';
 import { useColumn } from '@/hooks/use-column';

@@ -16,7 +16,7 @@ import Spinner from '@/components/ui/spinner';
 import FormGroup from '@/app/shared-corky/form-group';
 
 
-import FormFooter from '@/components/lefimall/form-footer';
+import FormFooter from '@/components/corky/form-footer';
 
 
 

@@ -3,7 +3,7 @@ import { routes } from '@/config/routes';
 import { data } from '@/data/lefimall/faq/data';
 import { getColumns } from '@/app/shared-corky/faq/columns';
 
-import FaqTableWidget from '@/components/lefimall/faq-table-widget';
+import FaqTableWidget from '@/components/corky/faq-table-widget';
 
 
 import TableLayout from './table-layout';

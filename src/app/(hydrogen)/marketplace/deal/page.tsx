@@ -11,7 +11,7 @@ import { getColumns } from '@/app/shared-corky/deal/columns';
 
 
 
-import DealTableWidget from '@/components/lefimall/deal-table-widget';
+import DealTableWidget from '@/components/corky/deal-table-widget';
 
 
 import TableLayout from './table-layout';
@@ -133,7 +133,7 @@ export default function SearchTablePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('/api/lefimall/board');
+      const res = await fetch('/api/corky/board');
 
       const posts  = await res.json() as any;
 

@@ -20,7 +20,7 @@ import Plane from '@/components/icons/plane';
 import UserInfo from '@/components/icons/user-info';
 
 
-import MetricCard from '@/components/lefimall/metric-card';
+import MetricCard from '@/components/corky/metric-card';
 
 import TagIcon from '@/components/icons/tag';
 import TagIcon2 from '@/components/icons/tag-2';

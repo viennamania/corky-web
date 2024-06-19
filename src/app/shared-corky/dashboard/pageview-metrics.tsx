@@ -1,6 +1,6 @@
 'use client';
 
-import WidgetCard from '@/components/lefimall/widget-card';
+import WidgetCard from '@/components/corky/widget-card';
 import {
   LineChart,
   Line,

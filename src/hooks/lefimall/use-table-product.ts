@@ -53,7 +53,7 @@ export function useTable<T extends AnyObject>(
       setLoadingUserData(true);
 
       try {
-        const res = await fetch(`/api/lefimall/user/getUserByEmail?_email=${session?.user?.email}`);
+        const res = await fetch(`/api/corky/user/getUserByEmail?_email=${session?.user?.email}`);
         const json = await res?.json();
 
         const data = json as any;
@@ -128,10 +128,10 @@ export function useTable<T extends AnyObject>(
 
     if (userData?.shopId) {
 
-      ////const res = await fetch(`/api/lefimall/product/getAllByShopId?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_shopId=${userData?.shopId}`);
+      ////const res = await fetch(`/api/corky/product/getAllByShopId?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_shopId=${userData?.shopId}`);
 
 
-      const res = await fetch(`/api/lefimall/product/getAll?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_shopId=${userData?.shopId}`);
+      const res = await fetch(`/api/corky/product/getAll?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_shopId=${userData?.shopId}`);
 
 
       const posts  = await res.json() as any;
@@ -145,7 +145,7 @@ export function useTable<T extends AnyObject>(
 
     } else {
 
-      const res = await fetch(`/api/lefimall/product/getAll?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_shopId=${shopId}`);
+      const res = await fetch(`/api/corky/product/getAll?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_shopId=${shopId}`);
 
       const posts  = await res.json() as any;
       

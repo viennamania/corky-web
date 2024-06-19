@@ -3,7 +3,7 @@ import { routes } from '@/config/routes';
 import { getColumns } from '@/app/shared-corky/shop/member-columns';
 
 
-import ShopTableWidget from '@/components/lefimall/shop-table-widget';
+import ShopTableWidget from '@/components/corky/shop-table-widget';
 
 
 import TableLayout from '../table-layout';
