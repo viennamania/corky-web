@@ -7,6 +7,13 @@ import ExportButton from '@/app/shared/export-button';
 import { Button } from '@/components/ui/button';
 import { PiDownloadSimpleBold } from 'react-icons/pi';
 
+import { useRouter } from 'next/navigation';
+
+import { routes } from '@/config/routes';
+
+import { IoCreateOutline } from 'react-icons/io5';
+
+
 type TableLayoutProps = {
   //data: unknown[];
   //header: string;
@@ -20,6 +27,10 @@ export default function TableLayout({
   children,
   ...props
 }: React.PropsWithChildren<TableLayoutProps>) {
+
+  const { push } = useRouter();
+
+
   return (
     <>
       <PageHeader {...props}>
@@ -41,6 +52,32 @@ export default function TableLayout({
           </div>
         
         )}
+
+
+       
+        <Button
+          size="lg"
+          variant="solid"
+          color="primary"
+          //size="small"
+          //leftIcon={<PiDownloadSimpleBold />}
+          onClick={() => {
+            //push(routes.user.member);
+            //setOpen(true);
+            // route to /product/create
+            //push(routes.product.create);
+
+            //window.location.href = '/certificate/create';
+
+            push(routes.certificate.create);
+
+          }}
+
+        >
+          <IoCreateOutline className="w-6 h-6 mr-2" />
+          저작권 등록신청
+        </Button>
+        
 
         
       </PageHeader>

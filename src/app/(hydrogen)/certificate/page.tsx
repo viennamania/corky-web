@@ -284,7 +284,8 @@ export default function SearchTablePage() {
       //header="Order ID,Name,Email,Avatar,Items,Price,Status,Created At,Updated At"
     >
 
-  
+
+      {/*}
       <div className="flex items-center justify-end gap-5 mb-5">
         <Button
           size="lg"
@@ -306,9 +307,10 @@ export default function SearchTablePage() {
 
         >
           <IoCreateOutline className="w-6 h-6 mr-2" />
-          저적권 등록신청
+          저작권 등록신청
         </Button>
       </div>
+      */}
 
     
 

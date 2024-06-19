@@ -46,7 +46,7 @@ const pageHeader = {
       name: '저작권 목록',
     },
     {
-      name: '저자작권 등록',
+      name: '저작권 등록신청',
     }
   ],
 };
@@ -62,18 +62,19 @@ export default function Page() {
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
 
-      <div className="flex items-center space-x-4">
 
-        <button
-          type="button"
-          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+        <Button
+
+          size="lg"
+          variant="solid"
+          color="primary"
           onClick={() => window.history.back()}
         >
-          <PiList className="me-2 h-4 w-4" />
-          List
-        </button>
+          <PiList className="me-2 h-5 w-5" aria-hidden="true" />
+          목록
+        </Button>
 
-      </div>
+      
 
       </PageHeader>
 

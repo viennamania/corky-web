@@ -347,7 +347,7 @@ export default function Dashboard() {
                   ">
 
                 <Link
-                  href='/'
+                  href={routes.user.myPage}
                   className="flex flex-col  items-center justify-center gap-5"
                 >
 
@@ -360,11 +360,9 @@ export default function Dashboard() {
                   </div>
 
 
-                  <Link
-                    href={routes.user.myPage}
-                    className="text-base font-bold text-gray-900">
+                  <div className="text-base font-bold text-gray-900">
                     나의 정보
-                  </Link>
+                  </div>
 
                 </Link>
 
@@ -375,7 +373,7 @@ export default function Dashboard() {
                   ">
 
                 <Link
-                  href='/'
+                  href={routes.certificate.index}
                   className="flex flex-col  items-center justify-center gap-5"
                 >
 
@@ -385,12 +383,9 @@ export default function Dashboard() {
 
                   </div>
 
-                  <Link
-                    href={routes.certificate.index}
-                    className="text-base font-bold text-gray-900"
-                  >
+                  <div className="text-base font-bold text-gray-900">
                     나의 저작권
-                  </Link>
+                  </div>
 
                 </Link>
 
@@ -522,6 +517,8 @@ export default function Dashboard() {
             height={500}
             className="object-contain w-full h-full pl-10 pr-10 xl:pl-56 xl:pr-56 "
           />
+
+          {/* list of banner images */}
 
         </div>
 

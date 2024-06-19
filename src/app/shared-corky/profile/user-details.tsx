@@ -263,9 +263,12 @@ export default function ProfileDetails({
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
               <Tab label="기본정보" {...a11yProps(0)} />
               <Tab label="포인트" {...a11yProps(1)} />
+
+              {/*
               <Tab label="쿠폰" {...a11yProps(2)} />
               <Tab label="주문" {...a11yProps(3)} />
               <Tab label="활동정보" {...a11yProps(4)} />
+              */}
             </Tabs>
           </Box>
 

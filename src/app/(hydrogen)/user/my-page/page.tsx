@@ -37,14 +37,14 @@ export const metadata = {
 
 
 const pageHeader = {
-  title: 'My Page',
+  title: '나의 정보',
   breadcrumb: [
     {
       href: "/",
-      name: 'Home',
+      name: '홈',
     },
     {
-      name: 'My Page',
+      name: '나의 정보',
     },
   ],
 };
