@@ -36,9 +36,6 @@ export default function HydrogenLayout({
                 {children}
               </div>
 
-              <div className="fixed bottom-0 left-0 z-50 w-full h-28 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-50">
-                <Footer />
-              </div>
 
             </div>
 

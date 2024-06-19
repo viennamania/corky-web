@@ -7,12 +7,12 @@ import { routes } from '@/config/routes';
 
 
 
-import { getColumns } from '@/app/shared-corky/product/columns';
+import { getColumns } from '@/app/shared-corky/certificate/columns';
 
 
-import { getColumnsShop } from '@/app/shared-corky/product/shop-columns';
+import { getColumnsShop } from '@/app/shared-corky/certificate/shop-columns';
 
-import { getColumnsUser } from '@/app/shared-corky/product/user-columns';
+import { getColumnsUser } from '@/app/shared-corky/certificate/user-columns';
 
 
 
@@ -285,32 +285,7 @@ export default function SearchTablePage() {
     >
 
 
-      {/*}
-      <div className="flex items-center justify-end gap-5 mb-5">
-        <Button
-          size="lg"
-          variant="solid"
-          color="primary"
-          //size="small"
-          //leftIcon={<PiDownloadSimpleBold />}
-          onClick={() => {
-            //push(routes.user.member);
-            //setOpen(true);
-            // route to /product/create
-            //push(routes.product.create);
 
-            //window.location.href = '/certificate/create';
-
-            push(routes.certificate.create);
-
-          }}
-
-        >
-          <IoCreateOutline className="w-6 h-6 mr-2" />
-          저작권 등록신청
-        </Button>
-      </div>
-      */}
 
     
 

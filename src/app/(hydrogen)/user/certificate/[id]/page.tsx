@@ -20,7 +20,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 
-import CreateInfo from '@/app/shared-corky/certificate/certificate-create';
+import InfoView from '@/app/shared-corky/product/user-product-view';
 
 
 /*
@@ -31,22 +31,18 @@ export const metadata = {
 
 
 const pageHeader = {
-  title: '저작권 관리',
+  title: '상품정보',
   breadcrumb: [
     {
       href: "/",
-      name: '홈',
+      name: 'Home',
     },
     {
-      href: routes.certificate.index,
-      name: '저작권',
+      href: routes.product.index,
+      name: '상품',
     },
     {
-      href: routes.certificate.index,
-      name: '저작권 목록',
-    },
-    {
-      name: '저작권 등록신청',
+      name: '상품정보',
     }
   ],
 };
@@ -54,7 +50,16 @@ const pageHeader = {
 
 
 
-export default function Page() {
+export default function Page({
+  params,
+}: {
+  params: any;
+}) {
+
+  const id =  params?.id;
+
+
+  const { push } = useRouter();
 
 
   return (
@@ -63,24 +68,12 @@ export default function Page() {
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
 
 
-        <Button
-
-          size="lg"
-          variant="solid"
-          color="primary"
-          onClick={() => window.history.back()}
-        >
-          <PiList className="me-2 h-5 w-5" aria-hidden="true" />
-          목록
-        </Button>
-
-      
 
       </PageHeader>
 
       <div className="@container">
         
-        <CreateInfo/>
+        <InfoView id={id} />
         
 
       </div>

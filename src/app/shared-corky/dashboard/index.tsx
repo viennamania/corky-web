@@ -45,6 +45,9 @@ import { useState, useEffect } from 'react';
 
 import { HiOutlineUser, HiOutlineDocumentText,  HiOutlineCurrencyDollar, HiOutlineQuestionMarkCircle, HiOutlineChatAlt2, HiOutlineBell } from 'react-icons/hi';
 
+// icons for grid of 2x1
+// 창작자 로그인, 관리자 로그인
+import { HiOutlineUserCircle, HiOutlineKey } from 'react-icons/hi';
 
 
 import { A11y, Scrollbar, Pagination } from "swiper/modules";
@@ -658,7 +661,64 @@ export default function Dashboard() {
         { !loadingUserData && userData?.email === '' && (
 
           <div className='mt-10 flex flex-col items-center justify-center '>
-          
+
+          {/* 창작자 로그인, 관리자 로그인 */}
+          {/* grid of 2x1 */}
+          <div className="grid grid-cols-2 gap-5">
+
+            <div className="flex flex-col items-center justify-center gap-5 border border-gray-200 rounded-lg p-5 
+                hover:border-primary hover:shadow-lg transition-shadow duration-200 ease-in-out
+                ">
+
+              <Link
+                href={routes.signInUser}
+                className="flex flex-col  items-center justify-center gap-5"
+              >
+                  
+                  <div className="relative w-full ">
+                    
+                    <HiOutlineUserCircle size={80} color="gray" />
+
+                  </div>
+
+                  <div className="text-base font-bold text-gray-900">
+                    창작자 로그인
+
+                  </div>
+
+              </Link>
+
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-5 border border-gray-200 rounded-lg p-5 
+                hover:border-primary hover:shadow-lg transition-shadow duration-200 ease-in-out
+                ">
+
+              <Link
+                href={routes.signIn}
+                className="flex flex-col  items-center justify-center gap-5"
+              >
+                  
+                  <div className="relative w-full ">
+                    
+                    <HiOutlineKey size={80} color="gray" />
+
+                  </div>
+
+                  <div className="text-base font-bold text-gray-900">
+                    관리자 로그인
+
+                  </div>
+
+              </Link>
+
+            </div>
+
+          </div>
+
+
+
+          {/*
           <div className=" w-40 flex flex-col gap-4 items-center justify-center mb-4 ">
           
             <Link
@@ -675,7 +735,7 @@ export default function Dashboard() {
               관리자 로그인
             </Link>
 
-            {/*
+            
             <Link
               href={routes.signInShop}
               className=" w-full flex items-center justify-center gap-2 px-4 py-2 text-base font-medium text-white bg-primary rounded-md hover:bg-primary-dark"
@@ -691,11 +751,12 @@ export default function Dashboard() {
             >
               Merchant Apply
             </Link>
-            */}
+            
 
 
           
           </div>
+          */}
 
           </div>
         

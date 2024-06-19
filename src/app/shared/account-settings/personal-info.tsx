@@ -217,11 +217,13 @@ export default function PersonalInfoView() {
                 </div>
               </FormGroup>
             </div>
+            
             <FormFooter
               // isLoading={isLoading}
               altBtnText="Cancel"
               submitBtnText="Save"
             />
+
           </>
         );
       }}

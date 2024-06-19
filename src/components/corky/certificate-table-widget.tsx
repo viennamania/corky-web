@@ -49,7 +49,7 @@ import UserProfile from '@/app/shared-corky/feed/user-profile';
 import ShopProfile from '@/app/shared-corky/shop/shop-profile';
 
 
-import { useTable } from '@/hooks/lefimall/use-table-product';
+import { useTable } from '@/hooks/corky/use-table-certificate';
 
 
 import Select, { SelectBoxProps, SelectOption } from '@/components/ui/select';

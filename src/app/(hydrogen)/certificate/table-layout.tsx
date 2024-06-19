@@ -83,6 +83,9 @@ export default function TableLayout({
       </PageHeader>
 
       {children}
+
+      <div className='h-40'></div> 
+
     </>
   );
 }
