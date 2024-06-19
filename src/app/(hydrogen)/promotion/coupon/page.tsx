@@ -4,7 +4,7 @@ import { routes } from '@/config/routes';
 import { data } from '@/data/lefimall/coupon/data';
 
 
-import { getColumns } from '@/app/shared-lefimall/coupon/columns';
+import { getColumns } from '@/app/shared-corky/coupon/columns';
 
 
 

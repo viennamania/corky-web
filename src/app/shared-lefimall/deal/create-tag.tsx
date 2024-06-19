@@ -13,7 +13,7 @@ import { PhoneNumber } from '@/components/ui/phone-input';
 import { Input } from '@/components/ui/input';
 
 import Spinner from '@/components/ui/spinner';
-import FormGroup from '@/app/shared-lefimall/form-group';
+import FormGroup from '@/app/shared-corky/form-group';
 
 import FormFooter from '@/components/lefimall/form-footer';
 

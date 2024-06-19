@@ -2,11 +2,11 @@
 
 import { routes } from '@/config/routes';
 
-import { getColumns } from '@/app/shared-lefimall/order/columns';
+import { getColumns } from '@/app/shared-corky/order/columns';
 
-import { getColumnsShop } from '@/app/shared-lefimall/order/shop-columns';
+import { getColumnsShop } from '@/app/shared-corky/order/shop-columns';
 
-import { getColumnsUser } from '@/app/shared-lefimall/order/user-columns';
+import { getColumnsUser } from '@/app/shared-corky/order/user-columns';
 
 
 

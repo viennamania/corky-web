@@ -104,7 +104,7 @@ function DropdownMenu(
           href={routes.user.myPage}
           className="group my-0.5 flex items-center rounded-md px-2.5 py-2 hover:bg-gray-100 focus:outline-none hover:dark:bg-gray-50/50"
         >
-          My Page
+          나의 정보
         </Link>
       </div>
       )}
@@ -126,7 +126,7 @@ function DropdownMenu(
 
           }}
         >
-          Sign Out
+          로그아웃
         </Button>
       </div>
 

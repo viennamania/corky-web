@@ -2,7 +2,7 @@ import { routes } from '@/config/routes';
 import PageHeader from '@/app/shared/page-header';
 
 
-import InfoCreate from '@/app/shared-lefimall/channel/create-category';
+import InfoCreate from '@/app/shared-corky/channel/create-category';
 
 
 import ImportButton from '@/app/shared/import-button';

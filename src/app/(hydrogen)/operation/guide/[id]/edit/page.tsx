@@ -2,7 +2,7 @@
 
 import { routes } from '@/config/routes';
 
-import GuideForm from '@/app/shared-lefimall/guide/guide-form';
+import GuideForm from '@/app/shared-corky/guide/guide-form';
 
 import PageHeader from '@/app/shared/page-header';
 import ProfileSettingsNav from '@/app/shared/account-settings/navigation';

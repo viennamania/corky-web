@@ -4,7 +4,7 @@ import { routes } from '@/config/routes';
 import { data } from '@/data/lefimall/guide/data';
 
 
-import { getColumns } from '@/app/shared-lefimall/guide/columns';
+import { getColumns } from '@/app/shared-corky/guide/columns';
 
 
 

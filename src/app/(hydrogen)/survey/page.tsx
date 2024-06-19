@@ -5,13 +5,13 @@ import { routes } from '@/config/routes';
 import { data } from '@/data/lefimall/survey/data';
 
 
-import { getColumns } from '@/app/shared-lefimall/survey/columns';
+import { getColumns } from '@/app/shared-corky/survey/columns';
 
 
 
 //import { memberData } from '@/data/lefimall/user/member-data';
 
-///import { getColumns } from '@/app/shared-lefimall/user/member-columns';
+///import { getColumns } from '@/app/shared-corky/user/member-columns';
 
 
 

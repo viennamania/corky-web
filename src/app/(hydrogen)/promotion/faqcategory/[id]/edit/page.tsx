@@ -2,7 +2,7 @@
 
 import { routes } from '@/config/routes';
 
-import CategoryForm from '@/app/shared-lefimall/faq/category-form';
+import CategoryForm from '@/app/shared-corky/faq/category-form';
 
 import PageHeader from '@/app/shared/page-header';
 import ProfileSettingsNav from '@/app/shared/account-settings/navigation';

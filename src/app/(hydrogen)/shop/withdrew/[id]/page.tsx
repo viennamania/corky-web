@@ -1,7 +1,7 @@
 'use client';
 
-import ProfileHeader from '@/app/shared-lefimall/profile/profile-header';
-import ProfileDetails from '@/app/shared-lefimall/profile/withdrew-details';
+import ProfileHeader from '@/app/shared-corky/profile/profile-header';
+import ProfileDetails from '@/app/shared-corky/profile/withdrew-details';
 
 import { metaObject } from '@/config/site.config';
 
@@ -9,8 +9,8 @@ import { routes } from '@/config/routes';
 import { Button } from '@/components/ui/button';
 import PageHeader from '@/app/shared/page-header';
 
-import DeletePopover from '@/app/shared-lefimall/delete-popover-large';
-import RecoveryPopover from '@/app/shared-lefimall/recovery-popover-large';
+import DeletePopover from '@/app/shared-corky/delete-popover-large';
+import RecoveryPopover from '@/app/shared-corky/recovery-popover-large';
 
 import { useRouter } from 'next/navigation';
 import { PiList } from 'react-icons/pi';

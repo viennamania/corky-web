@@ -1,5 +1,5 @@
 
-import Dashboard from '@/app/shared-lefimall/dashboard';
+import Dashboard from '@/app/shared-corky/dashboard';
 
 
 import { metaObject } from '@/config/site.config';

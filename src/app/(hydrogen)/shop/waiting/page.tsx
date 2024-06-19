@@ -3,7 +3,7 @@ import { routes } from '@/config/routes';
 
 import { memberData } from '@/data/lefimall/shop/waiting-data';
 
-import { getColumns } from '@/app/shared-lefimall/shop/waiting-columns';
+import { getColumns } from '@/app/shared-corky/shop/waiting-columns';
 
 
 import WaitingTableWidget from '@/components/lefimall/waiting-table-widget';

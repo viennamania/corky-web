@@ -42,9 +42,9 @@ import {
   type DrawerPlacements,
 } from '@/app/shared/drawer-views/use-drawer';
 
-import UserProfile from '@/app/shared-lefimall/feed/user-profile';
+import UserProfile from '@/app/shared-corky/feed/user-profile';
 
-import ShopProfile from '@/app/shared-lefimall/shop/shop-profile';
+import ShopProfile from '@/app/shared-corky/shop/shop-profile';
 
 
 import { useTable } from '@/hooks/lefimall/use-table-product';

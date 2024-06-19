@@ -1,6 +1,6 @@
 import AuthWrapperFour from '@/app/shared/auth-layout/auth-wrapper-four';
 
-import AuthWrapperRefi from '@/app/shared-lefimall/auth-layout/auth-wrapper-refi';
+import AuthWrapper from '@/app/shared-corky/auth-layout/auth-wrapper-corky';
 
 
 import SignUpForm from './sign-up-form';
@@ -22,7 +22,7 @@ export default function SignUpPage() {
   
   return (
     
-    <AuthWrapperRefi
+    <AuthWrapper
       title="입점문의"
       isSocialLoginActive={false}
     >
@@ -40,7 +40,7 @@ export default function SignUpPage() {
 
       </div>
 
-    </AuthWrapperRefi>
+    </AuthWrapper>
 
   );
   

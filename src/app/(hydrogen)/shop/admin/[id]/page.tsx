@@ -2,7 +2,7 @@
 
 import { routes } from '@/config/routes';
 
-import AdminDetails from '@/app/shared-lefimall/profile/admin-details';
+import AdminDetails from '@/app/shared-corky/profile/admin-details';
 
 import PageHeader from '@/app/shared/page-header';
 import ProfileSettingsNav from '@/app/shared/account-settings/navigation';
@@ -13,7 +13,7 @@ import { PiDownloadSimpleBold, PiList, PiRecordLight, PiPen, } from 'react-icons
 
 import { useRouter } from 'next/navigation';
 
-import DeletePopover from '@/app/shared-lefimall/delete-popover-large';
+import DeletePopover from '@/app/shared-corky/delete-popover-large';
 
 
 import { useState } from 'react';

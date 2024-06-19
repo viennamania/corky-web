@@ -3,7 +3,7 @@
 import { routes } from '@/config/routes';
 
 
-import AdminEdit from '@/app/shared-lefimall/profile/admin-edit';
+import AdminEdit from '@/app/shared-corky/profile/admin-edit';
 
 
 import PageHeader from '@/app/shared/page-header';

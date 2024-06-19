@@ -13,7 +13,7 @@ import TableAvatar from '@/components/ui/avatar-card';
 
 import DateCell from '@/components/ui/date-cell';
 
-import DeletePopover from '@/app/shared-lefimall/delete-popover';
+import DeletePopover from '@/app/shared-corky/delete-popover';
 import { Button } from 'rizzui';
 
 import { Router } from 'next/router';

@@ -51,15 +51,15 @@ export default function SignUpForm() {
             <Input
               type="email"
               size={isMedium ? 'lg' : 'xl'}
-              label="Email"
-              placeholder="Enter your email"
+              label="이메일"
+              placeholder="이메일을 입력해주세요"
               className="[&>label>span]:font-medium"
               {...register('email')}
               error={errors.email?.message}
             />
             <Password
-              label="Password"
-              placeholder="Enter your password"
+              label="비밀번호"
+              placeholder="비밀번호를 입력해주세요"
               size={isMedium ? 'lg' : 'xl'}
               {...register('password')}
               className="[&>label>span]:font-medium"
@@ -73,20 +73,25 @@ export default function SignUpForm() {
                 className="[&>label.items-center]:items-start [&>label>div.leading-none]:mt-0.5 [&>label>div.leading-none]:sm:mt-0 [&>label>span]:font-medium"
                 label={
                   <Text as="span" className="ps-1 text-gray-500">
-                    By signing up you have agreed to our{' '}
+                   
+
+                    회원가입을 하시면 당사의{' '}
+
                     <Link
                       href="/"
                       className="font-semibold text-gray-700 transition-colors hover:text-primary"
                     >
-                      Terms
+                      이용약관
                     </Link>{' '}
                     &{' '}
                     <Link
                       href="/"
                       className="font-semibold text-gray-700 transition-colors hover:text-primary"
                     >
-                      Privacy Policy
+                      개인정보처리방침
                     </Link>
+
+                    {' '}에 동의하게 됩니다.
                   </Text>
                 }
               />
@@ -97,7 +102,7 @@ export default function SignUpForm() {
               type="submit"
               size={isMedium ? 'lg' : 'xl'}
             >
-              Sign Up
+              회원가입
             </Button>
 
           </div>
@@ -107,13 +112,13 @@ export default function SignUpForm() {
       
       <Text className="mt-6 text-center text-[15px] leading-loose text-gray-500 md:mt-7 lg:mt-9 lg:text-base">
 
-        Do you have an account?{' '}
+        이미 계정이 있으신가요?{' '}
 
         <Link
           href={routes.signInUser}
           className="font-semibold text-gray-700 transition-colors hover:text-primary"
         >
-          Sign In
+          로그인하기
         </Link>
       </Text>
       

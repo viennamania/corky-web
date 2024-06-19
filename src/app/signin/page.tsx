@@ -11,7 +11,7 @@ import AuthWrapperThree from '@/app/shared/auth-layout/auth-wrapper-three';
 import AuthWrapperFour from '@/app/shared/auth-layout/auth-wrapper-four';
 import AuthWrapperFive from '../shared/auth-layout/auth-wrapper-five';
 
-import AuthWrapperRefi from '@/app/shared-lefimall/auth-layout/auth-wrapper-refi';
+import AuthWrapper from '@/app/shared-corky/auth-layout/auth-wrapper-corky';
 
 
 import Image from 'next/image';
@@ -45,7 +45,7 @@ export default function SignIn() {
   if (session) {
     return (
 
-      <AuthWrapperRefi
+      <AuthWrapper
         title={
           <div className='fle flex-col gap-3'>
             
@@ -99,7 +99,7 @@ export default function SignIn() {
 
           
 
-      </AuthWrapperRefi>
+      </AuthWrapper>
 
 
 
@@ -111,7 +111,7 @@ export default function SignIn() {
 
   
     
-    <AuthWrapperRefi
+    <AuthWrapper
       title={
         <>
           {/*
@@ -157,7 +157,7 @@ export default function SignIn() {
 
 
     
-    </AuthWrapperRefi>
+    </AuthWrapper>
     
 
   

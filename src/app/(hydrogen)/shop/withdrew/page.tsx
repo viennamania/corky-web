@@ -6,7 +6,7 @@ import { withdrewData } from '@/data/lefimall/user/withdrew-data';
 
 ///import { getColumns } from '@/app/shared/ecommerce/order/order-list/columns';
 
-import { getColumns } from '@/app/shared-lefimall/user/withdrew-columns';
+import { getColumns } from '@/app/shared-corky/user/withdrew-columns';
 
 import WithdrewTableWidget from '@/components/lefimall/withdrew-table-widget';
 

@@ -3,7 +3,7 @@ import PageHeader from '@/app/shared/page-header';
 
 import ImportButton from '@/app/shared/import-button';
 import { metaObject } from '@/config/site.config';
-import CreateGuide from '@/app/shared-lefimall/guide/guide-create';
+import CreateGuide from '@/app/shared-corky/guide/guide-create';
 
 
 

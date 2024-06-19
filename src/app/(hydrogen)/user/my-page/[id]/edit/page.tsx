@@ -1,5 +1,5 @@
-import ProfileHeader from '@/app/shared-lefimall/profile/profile-header';
-import ProfileDetails from '@/app/shared-lefimall/profile/user-details';
+import ProfileHeader from '@/app/shared-corky/profile/profile-header';
+import ProfileDetails from '@/app/shared-corky/profile/user-details';
 import { metaObject } from '@/config/site.config';
 
 import { routes } from '@/config/routes';

@@ -31,7 +31,7 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
 
-import ProfileDetails from '@/app/shared-lefimall/shop/member-details';
+import ProfileDetails from '@/app/shared-corky/shop/member-details';
 
 import UnderlineShape from '@/components/shape/underline';
 

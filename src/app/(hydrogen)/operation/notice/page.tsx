@@ -4,7 +4,7 @@ import { routes } from '@/config/routes';
 import { data } from '@/data/lefimall/notice/data';
 
 
-import { getColumns } from '@/app/shared-lefimall/notice/columns';
+import { getColumns } from '@/app/shared-corky/notice/columns';
 
 
 

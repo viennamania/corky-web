@@ -20,7 +20,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 
-import InfoView from '@/app/shared-lefimall/product/product-view';
+import InfoView from '@/app/shared-corky/product/product-view';
 
 
 /*

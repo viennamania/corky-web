@@ -5,19 +5,19 @@ import { routes } from '@/config/routes';
 import { data } from '@/data/lefimall/feed/data';
 
 
-import { getColumns, getWidgetColumns } from '@/app/shared-lefimall/qna/columns';
+import { getColumns, getWidgetColumns } from '@/app/shared-corky/qna/columns';
 
 
 
 //import { memberData } from '@/data/lefimall/user/member-data';
 
-///import { getColumns } from '@/app/shared-lefimall/user/member-columns';
+///import { getColumns } from '@/app/shared-corky/user/member-columns';
 
 
 
 import QnaTableWidget from '@/components/lefimall/qna-table-widget';
 
-import ShipmentTable from '@/app/shared-lefimall/feed/feed-table/shipment-table';
+import ShipmentTable from '@/app/shared-corky/feed/feed-table/shipment-table';
 
 
 import TableLayout from './table-layout';

@@ -1,16 +1,16 @@
 'use client';
 
 
-import ProfileDetails from '@/app/shared-lefimall/shop/member-apply';
+import ProfileDetails from '@/app/shared-corky/shop/member-apply';
 
 import { metaObject } from '@/config/site.config';
 
 import { routes } from '@/config/routes';
 import { Button } from '@/components/ui/button';
 
-import PageHeader from '@/app/shared-lefimall/page-header';
+import PageHeader from '@/app/shared-corky/page-header';
 
-import DeletePopover from '@/app/shared-lefimall/delete-popover-large';
+import DeletePopover from '@/app/shared-corky/delete-popover-large';
 
 import { useRouter } from 'next/navigation';
 

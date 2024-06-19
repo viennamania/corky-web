@@ -13,7 +13,7 @@ import { PiDownloadSimpleBold, PiList, PiRecordLight, PiPen, } from 'react-icons
 
 import { useRouter } from 'next/navigation';
 
-import DeletePopover from '@/app/shared-lefimall/delete-popover-large';
+import DeletePopover from '@/app/shared-corky/delete-popover-large';
 
 
 import { useState, useEffect } from 'react';
@@ -24,7 +24,7 @@ import { Title, Text } from '@/components/ui/text';
 
 import { data } from '@/data/lefimall/coupon/data';
 
-import InfoView from '@/app/shared-lefimall/coupon/info-view';
+import InfoView from '@/app/shared-corky/coupon/info-view';
 
 
 /*

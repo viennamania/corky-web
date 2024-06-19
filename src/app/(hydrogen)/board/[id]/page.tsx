@@ -2,7 +2,7 @@
 
 import { routes } from '@/config/routes';
 
-import InfoView from '@/app/shared-lefimall/board/board-view';
+import InfoView from '@/app/shared-corky/board/board-view';
 
 import PageHeader from '@/app/shared/page-header';
 import ProfileSettingsNav from '@/app/shared/account-settings/navigation';

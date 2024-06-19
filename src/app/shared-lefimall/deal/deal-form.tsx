@@ -11,7 +11,7 @@ import { Form } from '@/components/ui/form';
 import { Text } from '@/components/ui/text';
 import { Input } from '@/components/ui/input';
 import Spinner from '@/components/ui/spinner';
-import FormGroup from '@/app/shared-lefimall/form-group';
+import FormGroup from '@/app/shared-corky/form-group';
 
 import {
   defaultValues,
@@ -32,7 +32,7 @@ import BasicTableWidget from '@/components/lefimall/basic-table-widget';
 
 import { data } from '@/data/lefimall/board/comment-data';
 
-import { getColumns } from '@/app/shared-lefimall/board/comment-columns';
+import { getColumns } from '@/app/shared-corky/board/comment-columns';
 
 //import { RadioGroup } from 'rizzui';
 import { RadioGroup } from '@/components/ui/radio-group';

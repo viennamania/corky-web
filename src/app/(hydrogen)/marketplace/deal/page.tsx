@@ -7,7 +7,7 @@ import { routes } from '@/config/routes';
 
 
 
-import { getColumns } from '@/app/shared-lefimall/deal/columns';
+import { getColumns } from '@/app/shared-corky/deal/columns';
 
 
 

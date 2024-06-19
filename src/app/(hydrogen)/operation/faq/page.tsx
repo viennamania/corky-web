@@ -1,7 +1,7 @@
 import { routes } from '@/config/routes';
 
 import { data } from '@/data/lefimall/faq/data';
-import { getColumns } from '@/app/shared-lefimall/faq/columns';
+import { getColumns } from '@/app/shared-corky/faq/columns';
 
 import FaqTableWidget from '@/components/lefimall/faq-table-widget';
 

@@ -1,6 +1,6 @@
 import { routes } from '@/config/routes';
 
-import { getColumns } from '@/app/shared-lefimall/shop/member-columns';
+import { getColumns } from '@/app/shared-corky/shop/member-columns';
 
 
 import ShopTableWidget from '@/components/lefimall/shop-table-widget';

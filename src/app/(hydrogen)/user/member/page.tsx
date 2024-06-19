@@ -4,7 +4,7 @@ import { routes } from '@/config/routes';
 ///////import { memberData } from '@/data/lefimall/user/member-data';
 
 
-import { getColumns } from '@/app/shared-lefimall/user/member-columns';
+import { getColumns } from '@/app/shared-corky/user/member-columns';
 
 
 import UserTableWidget from '@/components/lefimall/user-table-widget';

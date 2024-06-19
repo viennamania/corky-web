@@ -6,7 +6,7 @@ import { data } from '@/data/lefimall/faq/category-data';
 
 ///import { getColumns } from '@/app/shared/ecommerce/order/order-list/columns';
 
-import { getColumns } from '@/app/shared-lefimall/faq/category-columns';
+import { getColumns } from '@/app/shared-corky/faq/category-columns';
 
 import BasicTableWidget from '@/components/lefimall/tag-table-widget';
 

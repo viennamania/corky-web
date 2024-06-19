@@ -6,7 +6,7 @@ import { data } from '@/data/lefimall/survey/stats-data';
 
 ///import { getColumns } from '@/app/shared/ecommerce/order/order-list/columns';
 
-import { getColumns } from '@/app/shared-lefimall/survey/stats-columns';
+import { getColumns } from '@/app/shared-corky/survey/stats-columns';
 
 import StatsTableWidget from '@/components/lefimall/stats-table-widget';
 

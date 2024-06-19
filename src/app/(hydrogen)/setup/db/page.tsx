@@ -6,12 +6,12 @@ import { routes } from '@/config/routes';
 
 import { data as calorieData } from '@/data/lefimall/feed/calorie-db-data';
 
-import { getColumns } from '@/app/shared-lefimall/feed/calorie-db-columns';
+import { getColumns } from '@/app/shared-corky/feed/calorie-db-columns';
 
 
 //import { memberData } from '@/data/lefimall/user/member-data';
 
-///import { getColumns } from '@/app/shared-lefimall/user/member-columns';
+///import { getColumns } from '@/app/shared-corky/user/member-columns';
 
 
 

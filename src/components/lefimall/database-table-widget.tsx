@@ -59,7 +59,7 @@ const FilterElement = dynamic(
 ///import TableFooter from '@/app/shared/table-footer';
 
 
-const TableFooter = dynamic(() => import('@/app/shared-lefimall/table-footer'), {
+const TableFooter = dynamic(() => import('@/app/shared-corky/table-footer'), {
   ssr: false,
 });
 

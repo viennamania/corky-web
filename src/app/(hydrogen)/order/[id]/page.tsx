@@ -19,7 +19,7 @@ import { useState, useEffect } from 'react';
 
 import Image from 'next/image';
 
-import Details from '@/app/shared-lefimall/order/order-view';
+import Details from '@/app/shared-corky/order/order-view';
 
 
 

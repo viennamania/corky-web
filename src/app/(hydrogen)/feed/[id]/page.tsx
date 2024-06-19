@@ -2,7 +2,7 @@
 
 import { routes } from '@/config/routes';
 
-import InfoView from '@/app/shared-lefimall/feed/feed-info-view';
+import InfoView from '@/app/shared-corky/feed/feed-info-view';
 
 import PageHeader from '@/app/shared/page-header';
 import ProfileSettingsNav from '@/app/shared/account-settings/navigation';
@@ -16,7 +16,7 @@ import { useRouter, } from 'next/navigation';
 
 import { useEffect, useState } from 'react';
 
-import DeletePopover from '@/app/shared-lefimall/delete-popover-large';
+import DeletePopover from '@/app/shared-corky/delete-popover-large';
 
 
 

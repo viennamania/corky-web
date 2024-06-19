@@ -1,6 +1,6 @@
 //import FileDashboard from '@/app/shared/file/dashboard';
 
-import Dashboard from '@/app/shared-lefimall/dashboard';
+import Dashboard from '@/app/shared-corky/dashboard';
 
 import { metaObject } from '@/config/site.config';
 

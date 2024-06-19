@@ -44,7 +44,7 @@ import {
 } from '@/app/shared/drawer-views/use-drawer';
 
 
-import UserProfile from '@/app/shared-lefimall/feed/user-profile';
+import UserProfile from '@/app/shared-corky/feed/user-profile';
 
 
 import { RadioGroup } from '@/components/ui/radio-group';

@@ -1,6 +1,6 @@
 import AuthWrapperFour from '@/app/shared/auth-layout/auth-wrapper-four';
 
-import AuthWrapperRefi from '@/app/shared-lefimall/auth-layout/auth-wrapper-refi';
+import AuthWrapper from '@/app/shared-corky/auth-layout/auth-wrapper-corky';
 
 
 import SignUpForm from './sign-up-form';
@@ -21,8 +21,8 @@ export default function SignUpPage() {
   
   return (
     
-    <AuthWrapperRefi
-      title="Sign Up"
+    <AuthWrapper
+      title="회원가입"
       isSocialLoginActive={false}
     >
 
@@ -50,12 +50,12 @@ export default function SignUpPage() {
             href={routes.home}
             className="font-semibold text-gray-700 transition-colors hover:text-blue"
           >
-            Go to Home
+            홈으로
           </Link>
 
       </div>
 
-    </AuthWrapperRefi>
+    </AuthWrapper>
 
   );
   

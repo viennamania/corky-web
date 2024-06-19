@@ -6,12 +6,12 @@ import { routes } from '@/config/routes';
 
 import { data  } from '@/data/lefimall/settlement/data';
 
-import { getColumns } from '@/app/shared-lefimall/settlement/waiting-columns';
+import { getColumns } from '@/app/shared-corky/settlement/waiting-columns';
 
 
 //import { memberData } from '@/data/lefimall/user/member-data';
 
-///import { getColumns } from '@/app/shared-lefimall/user/member-columns';
+///import { getColumns } from '@/app/shared-corky/user/member-columns';
 
 
 

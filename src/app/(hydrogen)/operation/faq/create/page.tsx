@@ -4,7 +4,7 @@ import PageHeader from '@/app/shared/page-header';
 
 //import CreateOrder from '@/app/shared/ecommerce/order/create-order';
 
-import InfoCreate from '@/app/shared-lefimall/faq/info-create';
+import InfoCreate from '@/app/shared-corky/faq/info-create';
 
 
 import ImportButton from '@/app/shared/import-button';

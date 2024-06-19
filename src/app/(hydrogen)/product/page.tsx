@@ -7,12 +7,12 @@ import { routes } from '@/config/routes';
 
 
 
-import { getColumns } from '@/app/shared-lefimall/product/columns';
+import { getColumns } from '@/app/shared-corky/product/columns';
 
 
-import { getColumnsShop } from '@/app/shared-lefimall/product/shop-columns';
+import { getColumnsShop } from '@/app/shared-corky/product/shop-columns';
 
-import { getColumnsUser } from '@/app/shared-lefimall/product/user-columns';
+import { getColumnsUser } from '@/app/shared-corky/product/user-columns';
 
 
 

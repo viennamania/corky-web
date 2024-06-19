@@ -8,7 +8,7 @@ import { data } from '@/data/lefimall/board/tag-data';
 
 ///import { getColumns } from '@/app/shared/ecommerce/order/order-list/columns';
 
-import { getColumns } from '@/app/shared-lefimall/board/tag-columns';
+import { getColumns } from '@/app/shared-corky/board/tag-columns';
 
 import BasicTableWidget from '@/components/lefimall/tag-table-widget';
 

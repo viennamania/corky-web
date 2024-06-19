@@ -5,7 +5,7 @@ import { routes } from '@/config/routes';
 import { data } from '@/data/lefimall/feed/data';
 
 
-import { getColumns } from '@/app/shared-lefimall/feed/columns';
+import { getColumns } from '@/app/shared-corky/feed/columns';
 
 
 import TableLayout from '../table-layout';
@@ -16,7 +16,7 @@ import { PiDownloadSimpleBold } from 'react-icons/pi';
 
 import PageHeader from '@/app/shared/page-header';
 
-import SetupForm from '@/app/shared-lefimall/point/setup-form';
+import SetupForm from '@/app/shared-corky/point/setup-form';
 
 
 

@@ -2,7 +2,7 @@
 
 import { routes } from '@/config/routes';
 
-import InfoForm from '@/app/shared-lefimall/healthinfo/health-info-form';
+import InfoForm from '@/app/shared-corky/healthinfo/health-info-form';
 
 import PageHeader from '@/app/shared/page-header';
 import ProfileSettingsNav from '@/app/shared/account-settings/navigation';

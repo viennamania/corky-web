@@ -6,7 +6,7 @@ import { adminData } from '@/data/lefimall/user/admin-data';
 
 ///import { getColumns } from '@/app/shared/ecommerce/order/order-list/columns';
 
-import { getColumns } from '@/app/shared-lefimall/user/admin-columns';
+import { getColumns } from '@/app/shared-corky/user/admin-columns';
 
 import AdminTableWidget from '@/components/lefimall/admin-table-widget';
 

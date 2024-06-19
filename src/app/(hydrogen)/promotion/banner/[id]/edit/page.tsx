@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { data } from '@/data/lefimall/banner/data';
 
 
-import InfoForm from '@/app/shared-lefimall/banner/info-form';
+import InfoForm from '@/app/shared-corky/banner/info-form';
 
 
 

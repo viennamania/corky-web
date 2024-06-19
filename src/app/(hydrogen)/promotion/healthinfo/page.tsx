@@ -4,7 +4,7 @@ import { routes } from '@/config/routes';
 import { data } from '@/data/lefimall/healthinfo/data';
 
 
-import { getColumns } from '@/app/shared-lefimall/healthinfo/columns';
+import { getColumns } from '@/app/shared-corky/healthinfo/columns';
 
 import HealthinfoTableWidget from '@/components/lefimall/healthinfo-table-widget';
 
