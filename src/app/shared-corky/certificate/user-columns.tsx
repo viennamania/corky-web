@@ -20,6 +20,51 @@ import { Router } from 'next/router';
 
 import Image from 'next/image';
 
+/*
+        Nose (코): 빨간색
+Right Eye (오른쪽 눈): 보라색
+Left Eye (왼쪽 눈): 분홍색
+Right Ear (오른쪽 귀): 진한 분홍색
+Left Ear (왼쪽 귀): 진한 분홍색
+Right Shoulder (오른쪽 어깨): 주황색
+Left Shoulder (왼쪽 어깨): 연두색
+Right Elbow (오른쪽 팔꿈치): 노란색
+Left Elbow (왼쪽 팔꿈치): 연두색
+Right Wrist (오른쪽 손목): 연노란색
+Left Wrist (왼쪽 손목): 연두색
+Right Hip (오른쪽 엉덩이): 청록색
+Left Hip (왼쪽 엉덩이): 연두색
+Right Knee (오른쪽 무릎): 청록색
+Left Knee (왼쪽 무릎): 파란색
+Right Ankle (오른쪽 발목): 밝은 청록색
+Left Ankle (왼쪽 발목): 파란색
+
+
+width bar graph from flowing data
+
+Right Eye: 0.8
+Left Eye: 0.7
+Right Shoulder: 0.6
+Left Shoulder: 0.5
+Right Elbow: 0.4
+Left Elbow: 0.3
+Right Wrist: 0.2
+Left Wrist: 0.1
+Right Hip: 0.9
+Left Hip: 0.8
+Right Knee: 0.7
+Left Knee: 0.6
+Right Ankle: 0.5
+Left Ankle: 0.4
+
+*/
+// horizontal bar graph
+
+//import { BarChart, Bar, ResponsiveContainer } from 'recharts';
+
+import RatingProgressBar from '@/components/rating-progress-bar';
+
+
 
 function getStatusBadge(status: string) {
   switch (status.toLowerCase()) {
@@ -96,6 +141,7 @@ export const getColumnsUser = ({
   onClickShop,
 }: Columns) => [
 
+  /*
   {
     title: <HeaderCell title="등록번호" />,
     dataIndex: 'id',
@@ -122,10 +168,32 @@ export const getColumnsUser = ({
     width: 120,
     render: (value: Date) => <DateCell date={value} className="text-center"/>,
   },
+  */
+
+  {
+    title: 
+      <div className="flex flex-col items-center justify-center gap-2">
+        <HeaderCell title="등록번호" />
+        <HeaderCell title="등록일자" />
+      </div>
+    ,
+    dataIndex: 'id',
+    key: 'id',
+    width: 120,
+    render: (_: any, row: any) => (
+      <div className='flex flex-col items-center justify-center gap-2'>
+        <Text className="text-center text-xl font-bold">#{row.id}</Text>
+        <DateCell date={row.createdAt} className="text-center"/>
+      </div>
+      
+    ),
+  },
+
+  
 
 
   {
-    title: <HeaderCell title="등록저작물" />,
+    title: <HeaderCell title="저작물" />,
     dataIndex: 'name',
     key: 'name',
     width: 200,
@@ -140,6 +208,7 @@ export const getColumnsUser = ({
       >
       <div className="flex flex-col items-center justify-center gap-2">
         
+        {/*
         <Link
           //href={routes.product.details(row.id)}
           href={`/user/certificate/${row?.id}`}
@@ -150,6 +219,7 @@ export const getColumnsUser = ({
             <Text className="text-center">{row.name}</Text>
           
         </Link>
+        */}
 
         {/* row?.avatar is imaage or video */}
 
@@ -157,8 +227,8 @@ export const getColumnsUser = ({
           row?.avatar?.includes('.mp4') ?
           <video
             className="rounded-md"
-            width="150"
-            height="150"
+            width="250"
+            height="250"
             controls
           >
             <source src={row?.avatar} type="video/mp4" />
@@ -168,8 +238,8 @@ export const getColumnsUser = ({
           <Image
             src={row?.avatar || '/logo.png'}
             alt="Product Image"
-            width={150}
-            height={150}
+            width={250}
+            height={250}
             className="rounded-md"
           />
         }
@@ -181,6 +251,271 @@ export const getColumnsUser = ({
       
     ),
   },
+
+  {
+    title: <HeaderCell title="품질" />,
+    dataIndex: 'pose',
+    key: 'pose',
+    width: 200,
+    render: (_: any, row: any) => (
+      <div className="flex flex-col items-center justify-center gap-2">
+        <Image
+          src="/images/corky/openpose.jpeg"
+          alt="openpose"
+          width={250}
+          height={250}
+          className="rounded-md"
+        />
+
+        {/*
+        Nose (코): 빨간색
+Right Eye (오른쪽 눈): 보라색
+Left Eye (왼쪽 눈): 분홍색
+Right Ear (오른쪽 귀): 진한 분홍색
+Left Ear (왼쪽 귀): 진한 분홍색
+Right Shoulder (오른쪽 어깨): 주황색
+Left Shoulder (왼쪽 어깨): 연두색
+Right Elbow (오른쪽 팔꿈치): 노란색
+Left Elbow (왼쪽 팔꿈치): 연두색
+Right Wrist (오른쪽 손목): 연노란색
+Left Wrist (왼쪽 손목): 연두색
+Right Hip (오른쪽 엉덩이): 청록색
+Left Hip (왼쪽 엉덩이): 연두색
+Right Knee (오른쪽 무릎): 청록색
+Left Knee (왼쪽 무릎): 파란색
+Right Ankle (오른쪽 발목): 밝은 청록색
+Left Ankle (왼쪽 발목): 파란색
+
+
+width bar graph from flowing data
+
+Right Eye: 0.8
+Left Eye: 0.7
+Right Shoulder: 0.6
+Left Shoulder: 0.5
+Right Elbow: 0.4
+Left Elbow: 0.3
+Right Wrist: 0.2
+Left Wrist: 0.1
+Right Hip: 0.9
+Left Hip: 0.8
+Right Knee: 0.7
+Left Knee: 0.6
+Right Ankle: 0.5
+Left Ankle: 0.4
+
+
+        */}
+
+        <div className="flex flex-col items-start justify-center gap-2">
+
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+            <Text className="w-20">코</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-red-500'
+              //label={1}
+              ratingCount={0.8}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-purple-500 rounded-full"></div>
+            <Text className="w-20">오른쪽 눈</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-purple-500'
+              //label={1}
+              ratingCount={0.7}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-pink-500 rounded-full"></div>
+            <Text className="w-20">왼쪽 눈</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-pink-500'
+              //label={1}
+              ratingCount={0.6}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-pink-800 rounded-full"></div>
+            <Text className="w-20">오른쪽 귀</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-pink-800'
+              //label={1}
+              ratingCount={0.5}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
+            <Text className="w-20">왼쪽 귀</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-orange-500'
+              //label={1}
+              ratingCount={0.4}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-lime-500 rounded-full"></div>
+            <Text className="w-20">오른쪽 어깨</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-lime-500'
+              //label={1}
+              ratingCount={0.3}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>
+            <Text className="w-20">왼쪽 어깨</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-yellow-500'
+              //label={1}
+              ratingCount={0.2}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-yellow-300 rounded-full"></div>
+            <Text className="w-20">오른쪽 팔꿈치</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-yellow-300'
+              //label={1}
+              ratingCount={0.1}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-cyan-500 rounded-full"></div>
+            <Text className="w-20">왼쪽 팔꿈치</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-cyan-500'
+              //label={1}
+              ratingCount={0.9}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-cyan-300 rounded-full"></div>
+            <Text className="w-20">오른쪽 손목</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-cyan-300'
+              //label={1}
+              ratingCount={0.8}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+            <Text className="w-20">왼쪽 손목</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-blue-500'
+              //label={1}
+              ratingCount={0.7}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-blue-300 rounded-full"></div>
+            <Text className="w-20">오른쪽 엉덩이</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-blue-300'
+              //label={1}
+              ratingCount={0.6}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-teal-500 rounded-full"></div>
+            <Text className="w-20">왼쪽 엉덩이</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-teal-500'
+              //label={1}
+              ratingCount={0.5}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-teal-300 rounded-full"></div>
+            <Text className="w-20">오른쪽 무릎</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-teal-300'
+              //label={1}
+              ratingCount={0.4}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-indigo-500 rounded-full"></div>
+            <Text className="w-20">왼쪽 무릎</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-indigo-500'
+              //label={1}
+              ratingCount={0.3}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-indigo-300 rounded-full"></div>
+            <Text className="w-20">오른쪽 발목</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-indigo-300'
+              //label={1}
+              ratingCount={0.2}
+              totalReviews={1}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 bg-blue-300 rounded-full"></div>
+            <Text className="w-20">왼쪽 발목</Text>
+            <RatingProgressBar
+              // color
+              progressBarClassName='bg-blue-300'
+              //label={1}
+              ratingCount={0.1}
+              totalReviews={1}
+            />
+          </div>
+
+
+
+
+
+
+
+
+
+
+          
+         
+
+        </div>
+
+
+      </div>
+    ),
+  },
+
 
   /*
   {
@@ -274,6 +609,7 @@ export const getColumnsUser = ({
   },
   */
 
+  /*
   {
     title:
       <div className="flex flex-col items-center justify-center gap-2">
@@ -289,16 +625,17 @@ export const getColumnsUser = ({
     render: (_: any, row: any) => (
       <div className='flex flex-col items-center justify-center gap-2'>
         <Text className="text-center">{row?.stock}</Text>
-        {/* line */}
+     
         <div className="w-full h-1 bg-gray-200"></div>
         <Text className="text-center">{row?.sales}</Text>
-        {/* line */}
+
         <div className="w-full h-1 bg-gray-200"></div>
         <Text className="text-center">{row?.inquiry}</Text>
       </div>
     
     ),
   },
+  */
  
 
   {
