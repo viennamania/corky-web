@@ -75,13 +75,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     });
 
 
-    console.log("=====Account address: ", account.address);
-  
-
     walletAddress = account.address;
-
-
-
 
 
     const results = await insertOne(
