@@ -3,6 +3,7 @@ import { remark } from 'remark';
 import remarkMdx from 'remark-mdx';
 import { serialize } from 'next-mdx-remote/serialize';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { el } from '@faker-js/faker';
 
 export interface UserProps {
   /*
@@ -66,6 +67,72 @@ export const placeholderBio = `
 Tincidunt quam neque in cursus viverra orci, dapibus nec tristique. Nullam ut sit dolor consectetur urna, dui cras nec sed. Cursus risus congue arcu aenean posuere aliquam.
 
 Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris amet. Urna, sem pretium sit pretium urna, senectus vitae. Scelerisque fermentum, cursus felis dui suspendisse velit pharetra. Augue et duis cursus maecenas eget quam lectus. Accumsan vitae nascetur pharetra rhoncus praesent dictum risus suspendisse.`;
+
+
+
+
+
+// create user
+/*
+{
+    "email": "creath.park@gmail.com",
+    "password": "Abcd1234",
+    "isAgreed": true
+}
+*/
+
+export async function insertOne(data: any) {
+
+
+
+  const client = await clientPromise;
+  const collection = client.db('lefimall').collection('users');
+
+  // check same email, then return error
+
+  const checkUser = await collection.findOne<UserProps>(
+    { email: data.email },
+    { projection: { _id: 0, emailVerified: 0 } }
+  );
+
+  console.log('checkUser: ' + checkUser);
+
+
+  if (checkUser) {
+    return null;
+  }
+
+
+  // generate id 1000000 ~ 9999999
+
+  const id = Math.floor(Math.random() * 9000000) + 1000000;
+
+
+  return await collection.insertOne(
+
+    {
+      id: id,
+      email: data.email,
+      password: data.password,
+      name: data.name,
+      nickname: data.nickname,
+      avatar: data.avatar,
+      regType: data.regType,
+      mobile: data.mobile,
+
+      walletAddress: data.walletAddress,
+      walletPrivateKey: data.walletPrivateKey,
+
+      createdAt: new Date().toISOString(),
+    }
+  );
+
+  
+
+}
+
+
+
 
 
 
