@@ -182,7 +182,7 @@ export const getColumnsUser = ({
     width: 120,
     render: (_: any, row: any) => (
       <div className='flex flex-col items-center justify-center gap-2'>
-        <Text className="text-center text-xl font-bold">#{row.id}</Text>
+        <Text className="text-center text-base xl:text-xl font-bold">#{row.id}</Text>
         <DateCell date={row.createdAt} className="text-center"/>
       </div>
       
@@ -200,14 +200,19 @@ export const getColumnsUser = ({
     render: (_: any, row: any) => (
 
 
+      <div className=" w-36 xl:w-56 flex flex-col items-center justify-center gap-2">
+        
+
+
+      {/*
       <Tooltip
         size="sm"
         content={() => {return '등록번호: ' + row?.id}}
         placement="top"
         color="invert"
       >
-      <div className="flex flex-col items-center justify-center gap-2">
-        
+      */}
+
         {/*
         <Link
           //href={routes.product.details(row.id)}
@@ -244,10 +249,12 @@ export const getColumnsUser = ({
           />
         }
 
-   
+         {/*
+      </Tooltip>
+      */}
       
       </div>
-      </Tooltip>
+
       
     ),
   },

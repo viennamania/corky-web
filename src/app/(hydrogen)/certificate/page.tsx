@@ -310,6 +310,10 @@ export default function SearchTablePage() {
         className="min-h-[480px] [&_.widget-card-header]:items-center [&_.widget-card-header_h5]:font-medium"
 
         scroll={{ x: 500, }}
+
+
+
+        
       />
 
     </TableLayout>
