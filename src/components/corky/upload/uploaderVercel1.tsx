@@ -469,10 +469,15 @@ export default function Uploader1({ onSave }: { onSave: (url: string) => void })
               setDragActive(false)
 
               const file = e.dataTransfer.files && e.dataTransfer.files[0]
+
               if (file) {
+
                 if (file.size / 1024 / 1024 > 50) {
+                  
                   toast.error('File size too big (max 50MB)')
+
                 } else {
+
                   setFile(file)
                   const reader = new FileReader()
                   reader.onload = (e) => {
@@ -583,11 +588,18 @@ export default function Uploader1({ onSave }: { onSave: (url: string) => void })
 
 
         <div className="mt-0 flex rounded-md shadow-sm   ">
+
           <input
+
+            // image, video, audio
+
             id="image-upload"
             name="image"
             type="file"
-            accept="image/*"
+            
+            //accept="image/*"
+            accept="image/*, video/*, audio/*"
+
             className="sr-only"
             onChange={onChangePicture}
           />

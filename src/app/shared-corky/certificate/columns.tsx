@@ -276,7 +276,7 @@ export const getColumns = ({
     key: 'sales',
     width: 80,
     render: (value: string) => (
-      <Text className="text-center">정상판매</Text>
+      <Text className="text-center">등록완료</Text>
     ),
   },
 

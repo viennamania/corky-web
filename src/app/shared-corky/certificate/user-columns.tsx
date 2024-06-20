@@ -125,7 +125,7 @@ export const getColumnsUser = ({
 
 
   {
-    title: <HeaderCell title="등록이미지" />,
+    title: <HeaderCell title="등록저작물" />,
     dataIndex: 'name',
     key: 'name',
     width: 200,
@@ -151,13 +151,30 @@ export const getColumnsUser = ({
           
         </Link>
 
-        <Image
-          src={row?.avatar || '/images/undercontruction.gif'}
-          alt="Product Image"
-          width={150}
-          height={150}
-          className="rounded-md"
-        />
+        {/* row?.avatar is imaage or video */}
+
+        {
+          row?.avatar?.includes('.mp4') ?
+          <video
+            className="rounded-md"
+            width="150"
+            height="150"
+            controls
+          >
+            <source src={row?.avatar} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          :
+          <Image
+            src={row?.avatar || '/logo.png'}
+            alt="Product Image"
+            width={150}
+            height={150}
+            className="rounded-md"
+          />
+        }
+
+   
       
       </div>
       </Tooltip>
@@ -203,7 +220,7 @@ export const getColumnsUser = ({
         >  
           <TableAvatar
             src={row?.shop?.avatar || '/logo.png'}
-            name={row?.shop?.name || 'Merchant'}
+            name={row?.shop?.name || 'Corky'}
             //description={row.email}
           />
         </button>
@@ -290,10 +307,46 @@ export const getColumnsUser = ({
     key: 'sales',
     width: 80,
     render: (value: string) => (
-      <Text className="text-center">정상판매</Text>
+      <Text className="text-center">등록완료</Text>
     ),
   },
 
+  // NFT 발행
+  // certificate image (certificate.jpg)
+  // nft link to opensea site
+  // https://opensea.io/assets/matic/0x615cffda9789384089bda01f4d3b465d1f0cfdcd/13
+  {
+    title: <HeaderCell title="NFT 발행" />,
+    dataIndex: 'nft',
+    key: 'nft',
+    width: 80,
+    render: (_: any, row: any) => (
+      <div className="flex flex-col items-center justify-center gap-2">
+        <Link
+          href={`https://opensea.io/assets/matic/0x615cffda9789384089bda01f4d3b465d1f0cfdcd/13`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Button
+            size="sm"
+            variant="outline"
+            color="primary"
+          >
+            NFT
+          </Button>
+        </Link>
+        <Image
+          src="/images/corky/certificate.jpg"
+          alt="NFT 발행"
+          width={150}
+          height={150}
+          className="rounded-md"
+        />
+      </div>
+    ),
+  },
+
+ 
 
 
 

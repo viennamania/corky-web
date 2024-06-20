@@ -40,11 +40,13 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     order as string,
     q as string,
 
-    shopId as string,
+    //shopId as string,
   ) as any;
   
 
-  ///console.log('product/getAll results: ', results);
+  console.log('certificate / getAll results: ', results);
+
+  
 
   //console.log('product/getAll results: shop ', results?.shop);
 

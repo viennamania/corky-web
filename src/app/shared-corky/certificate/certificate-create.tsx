@@ -19,7 +19,7 @@ import {
   defaultValues,
   productSchema,
   ProductTypes,
-} from '@/utils/validators/lefimall/edit-product.schema';
+} from '@/utils/validators/corky/edit-certificate.schema';
 
 
 
@@ -70,6 +70,7 @@ import { Button } from '@/components/ui/button';
 import FormFooter from '@/components/corky/form-footer';
 
 import { useSession, signOut } from 'next-auth/react';
+import { set } from 'zod';
 
 
 
@@ -196,7 +197,12 @@ export default function CreateInfo() {
 
   const [avatar, setAvatar] = useState<string | null>(null);
 
+
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const save = async (
+    creator = '',
     description = '',
     name = '',
     companyName = '',
@@ -207,8 +213,10 @@ export default function CreateInfo() {
 
   ) => {
 
+    setIsSubmitting(true);
  
     const params = {
+      creator: userData?.name,
       name: name,
       companyName: companyName,
       
@@ -252,9 +260,11 @@ export default function CreateInfo() {
       //toast.success(<Text >변경되었습니다.</Text>);
     //}
 
-          setOpen(true);
-      modalData.description = 'Saved.';
+      setOpen(true);
+      modalData.description = '신청하였습니다.';
 
+
+    setIsSubmitting(false);
 
   }
 
@@ -277,6 +287,7 @@ export default function CreateInfo() {
     */
 
     save(
+      data.creator,
       data.description,
       data.name,
       data.companyName,
@@ -337,6 +348,53 @@ export default function CreateInfo() {
                 <div className=" grid divide-y divide-solid divide-gray-200 border rounded-lg ">
 
 
+                  {/* 창작자 */}
+                  <FormGroup
+                    title="창작자"
+                  >
+                    <Controller
+                      control={control}
+                      name="creator"
+                      render={({ field: { onChange, value } }) => (
+                        <Input
+                          size='lg'
+                          //label="Company Name"
+                          placeholder="창작자"
+                          //className="flex-grow "
+                          defaultValue={userData?.name}
+                          onChange={onChange}
+                          className='w-full'
+                        />
+                      )}
+
+                    />
+                  </FormGroup>
+
+                  {/* 저작권리자 */}
+
+                  <FormGroup
+                    title="저작권리자"
+                  >
+                    <Controller
+                      control={control}
+                      name="companyName"
+                      render={({ field: { onChange, value } }) => (
+                        <Input
+                          size='lg'
+                          //label="Company Name"
+                          placeholder="저작권리자"
+                          //className="flex-grow "
+                          defaultValue="Corky"
+                          onChange={onChange}
+                          className='w-full'
+                        />
+                      )}
+
+                    />
+                  </FormGroup>
+
+
+                  {/*
                   <FormGroup
                     title="등록번호"
                   >
@@ -359,9 +417,10 @@ export default function CreateInfo() {
                     />
 
                   </FormGroup>
+                  */}
 
                   <FormGroup
-                    title="제목"
+                    title="자작물 제목"
                   >
                     <Controller
                       control={control}
@@ -406,7 +465,7 @@ export default function CreateInfo() {
 
                   {/* 대표 이지미 */}
                   <FormGroup
-                    title="대표 이미지"
+                    title="저작물 이미지 / 동영상"
                   >
 
                       <Controller
@@ -424,6 +483,30 @@ export default function CreateInfo() {
                               }}
                             />
 
+                            {/* if avatar is video */}
+                            {avatar && avatar.includes('mp4') && (
+                              <video
+                                src={avatar}
+                                controls
+                                className="w-32 h-32 rounded-lg"
+                              />
+                            )}
+
+                            {/* if avatar is image */}
+                            {avatar && !avatar.includes('mp4') && (
+                              <div className="relative w-32 h-32 rounded-lg">
+                                <Image
+                                  src={avatar}
+                                  alt={value?.name || ''}
+                                  priority
+                                  width={200}
+                                  height={200}
+                                />
+                              </div>
+                            )}
+
+                            {/*
+
                             <Image
                               src={avatar || '/logo.png'}
                               alt={value?.name || ''}
@@ -431,6 +514,8 @@ export default function CreateInfo() {
                               width={200}
                               height={200}
                             />
+                              
+                              */}
 
                           </div>
                         )}
@@ -547,6 +632,7 @@ export default function CreateInfo() {
                   */}
 
                   {/* 옵션 */}
+                  {/*
                   <FormGroup
                     title="옵션"
                   >
@@ -558,8 +644,10 @@ export default function CreateInfo() {
                       ))}
                     </div>
                   </FormGroup>
+                  */}
           
                   {/* 추가상품 목록 */}
+                  {/*
                   <FormGroup
                     title="추가상품"
                   >
@@ -571,6 +659,7 @@ export default function CreateInfo() {
                       ))}
                     </div>
                   </FormGroup>
+                  */}
 
 
 
@@ -593,9 +682,9 @@ export default function CreateInfo() {
 
 
           <FormFooter
-            // isLoading={isLoading}
+            isLoading={isSubmitting}
             altBtnText="취소"
-            submitBtnText="저장"
+            submitBtnText="신청하기"
 
             handleSubmitBtn={() => {
               onSubmit(getValues());
