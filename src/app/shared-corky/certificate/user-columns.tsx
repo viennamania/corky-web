@@ -692,8 +692,9 @@ Left Ankle: 0.4
     width: 80,
     render: (_: any, row: any) => (
       <div className="flex flex-col items-center justify-center gap-2">
+        <Text className="text-center text-lg font-bold">#{row.tokenId}</Text>
         <Link
-          href={`https://opensea.io/assets/matic/0x615cffda9789384089bda01f4d3b465d1f0cfdcd/13`}
+          href={`https://opensea.io/assets/matic/0x615cffda9789384089bda01f4d3b465d1f0cfdcd/${row.tokenId}`}
           target="_blank"
           rel="noreferrer"
         >

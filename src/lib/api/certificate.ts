@@ -354,6 +354,76 @@ export async function getAllByEmail(
 
 
 
+
+
+export async function getAllByWalletAddress(
+  limit: number,
+  page: number,
+  sort: string,
+  order: string,
+  q: string,
+
+  walletAddress: string,
+): Promise<ProductProps[]> {
+
+  const client = await clientPromise;
+  const collection = client.db('lefimall').collection('certificates');
+
+  const query = q === null ? '' : q;
+
+
+
+  return await collection
+    .aggregate<ProductProps>([
+
+
+      // filter by shopId
+      {
+        $match: {
+          creatorWalletAddress: walletAddress
+        }
+      },
+      
+      // sort by sort param
+
+      {
+        $sort: {
+          [
+            sort === null ? 'createdAt' : sort
+          ]: parseInt(
+            order === null ? '-1' : order
+          )
+        }
+      },
+
+      // search by query param
+      {
+        $match: {
+          $or: [
+            { name: { $regex: query, $options: 'i' } },
+            { companyName: { $regex: query, $options: 'i' } },
+            { category: { $regex: query, $options: 'i' } },
+            { sku: { $regex: query, $options: 'i' } },
+          ]
+        }
+      },
+      
+      {
+        $limit: limit,
+        //////$skip: (page - 1) * limit, // skip the first n documents
+
+      },
+
+      
+      
+    ])
+    .toArray();
+
+  
+}
+
+
+
 export async function getAllByShopId(
   shopId: string,
   limit: number,

@@ -34,6 +34,7 @@ export function useTable<T extends AnyObject>(
   */
   const [userData, setUserData] = useState({
     id: "",
+    walletAddress: "",
     email: "",
     name: "",
     nickname: "",
@@ -148,7 +149,10 @@ export function useTable<T extends AnyObject>(
 
       ///const res = await fetch(`/api/corky/certificate/getAll?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_shopId=${shopId}`);
 
-      const res = await fetch(`/api/corky/certificate/getAllByEmail?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_email=${userData?.email}`);
+      ///const res = await fetch(`/api/corky/certificate/getAllByEmail?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_email=${userData?.email}`);
+
+      const res = await fetch(`/api/corky/certificate/getAllByWallet?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_walletAddress=${userData?.walletAddress}`);
+
 
       const posts  = await res.json() as any;
       

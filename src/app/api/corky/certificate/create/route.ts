@@ -28,6 +28,7 @@ import {
   getWalletBalance,
   
  } from "thirdweb/wallets";
+import { parse } from 'path';
 
 
 
@@ -123,7 +124,9 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   // BigInt to string
   console.log("Next Token ID to mint: ", nextTokenId.toString());
 
-  const tokenId = nextTokenId.toString();
+  
+
+  const tokenId = parseInt(nextTokenId.toString(), 10) -1;
 
 
   const results = await insertOne(
