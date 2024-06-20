@@ -250,24 +250,30 @@ export default function CreateInfo() {
     console.log('params', params);
 
 
-    const res = await fetch(`/api/corky/certificate/create`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(params),
-    });
+    try {
+      const res = await fetch(`/api/corky/certificate/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(params),
+      });
 
-    const json = await res.json() as any;
+      const json = await res.json() as any;
 
-    ////console.log('json========', json);
+      ////console.log('json========', json);
 
-    //if (json.success) {
-      //toast.success(<Text >변경되었습니다.</Text>);
-    //}
+      //if (json.success) {
+        //toast.success(<Text >변경되었습니다.</Text>);
+      //}
 
       setOpen(true);
       modalData.description = '신청하였습니다.';
+
+    } catch (error) {
+      console.error('error', error);
+      toast.error(<Text >Error</Text>);
+    }
 
 
     setIsSubmitting(false);

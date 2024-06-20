@@ -5,6 +5,32 @@ import { insertOne } from '@/lib/api/certificate';
 ///import { get } from 'lodash';
 
 
+import {
+  createThirdwebClient,
+  getContract,
+  sendAndConfirmTransaction,
+} from "thirdweb";
+
+//import { polygonAmoy } from "thirdweb/chains";
+import { polygon } from "thirdweb/chains";
+
+
+import {
+  mintTo,
+  totalSupply,
+  nextTokenIdToMint,
+} from "thirdweb/extensions/erc1155";
+
+
+import {
+  privateKeyToAccount,
+  smartWallet,
+  getWalletBalance,
+  
+ } from "thirdweb/wallets";
+
+
+
 /* ======================================
 
 ======================================= */
@@ -16,7 +42,110 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   
 
 
-  const results = await insertOne(data);
+  const chain = polygon;
+
+  const client = createThirdwebClient({
+    secretKey: process.env.THIRDWEB_SECRET_KEY || "",
+  });
+  
+  
+    
+  // smartwallet account
+  const personalAccount = privateKeyToAccount({
+    client,
+    privateKey: process.env.WALLET_PRIVATE_KEY || "",
+  }); // private key account
+  
+
+  // Configure the smart wallet
+  const wallet = smartWallet({
+    chain: chain,
+    factoryAddress: "0x9Bb60d360932171292Ad2b80839080fb6F5aBD97", // your own deployed account factory address
+    sponsorGas: true,
+  });
+  
+  // Connect the smart wallet
+  const account = await wallet.connect({
+    client: client,
+    personalAccount: personalAccount,
+  });
+
+
+  //console.log("=====Account address: ", account.address);
+
+
+  // erc1155 contract address
+  const nftContractAddress = "0x2682057d39ED5F9E1f296aeD5AE5f3ab6A8626d2";
+
+  const contract = getContract({
+    client,
+    chain: chain,
+    //address: nftDropAddress, // deploy a drop contract from thirdweb.com/explore
+    address: nftContractAddress, // deploy a drop contract from thirdweb.com/explore
+  });
+
+
+
+  const toAddress = data.creatorWalletAddress;
+
+  console.log("toAddress: ", toAddress);
+
+
+
+  const transactionMintTo = mintTo({
+    contract,
+    to: toAddress,
+    supply: BigInt(10000),
+    nft: {
+      name: "Corky Certificate",
+      description: "Corky Certificate NFT",
+      image: "https://corky.vercel.app/images/corky/certificate.jpg",
+    },
+  });
+
+  const sendData = await sendAndConfirmTransaction({
+    transaction: transactionMintTo,
+    account: account,
+  });
+
+
+
+  console.log("Minted successfully!");
+
+
+  console.log(`Transaction hash: ${sendData.transactionHash}`);
+
+  const nextTokenId = await nextTokenIdToMint({
+    contract: contract,
+  });
+
+  console.log("Next Token ID to mint: ", nextTokenId);
+  // BigInt to string
+  console.log("Next Token ID to mint: ", nextTokenId.toString());
+
+  const tokenId = nextTokenId.toString();
+
+
+  const results = await insertOne(
+    {
+      creatorWalletAddress: data.creatorWalletAddress,
+      contractAddress: nftContractAddress,
+      tokenId: tokenId,
+      category: data.category,
+      avatar: data.avatar,
+
+      sku: data.sku,
+      listPrice: data.listPrice,
+      price: data.price,
+      status: data.status,
+      rating: data.rating,
+      point: data.point,
+      stock: data.stock,
+      sales: data.sales,
+      inquiry: data.inquiry,
+    } as any
+  
+  );
 
   console.log('certificate / insertOne results: ' + results);
 

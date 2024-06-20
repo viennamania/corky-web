@@ -27,6 +27,11 @@ export interface ProductProps {
   */
 
   id: string,
+
+  creatorWalletAddress: string,
+  contractAddress: string,
+  tokenId: string,
+
   createdAt: Date,
   name: string,
   companyName: string,
