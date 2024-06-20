@@ -124,8 +124,14 @@ export default function Uploader1({ onSave }: { onSave: (url: string) => void })
     (event: ChangeEvent<HTMLInputElement>) => {
       const file = event.currentTarget.files && event.currentTarget.files[0]
       if (file) {
-        if (file.size / 1024 / 1024 > 50) {
-          toast.error('File size too big (max 50MB)')
+        
+        //if (file.size / 1024 / 1024 > 50) {
+        if (file.size / 1024 / 1024 > 200) {
+          
+          //toast.error('File size too big (max 50MB)')
+
+          toast.error('File size too big (max 200MB)')
+
         } else {
           setFile(file)
           const reader = new FileReader()
