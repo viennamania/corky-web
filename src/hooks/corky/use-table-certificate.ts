@@ -115,6 +115,7 @@ export function useTable<T extends AnyObject>(
   const [isLoading, setLoading] = useState(true);
 
     
+  console.log("userData?.shopId:", userData?.shopId);
 
 
   const fetchData = async (
@@ -125,6 +126,8 @@ export function useTable<T extends AnyObject>(
 
 
     setLoading(true);
+
+   
 
     if (userData?.shopId) {
 
@@ -143,7 +146,9 @@ export function useTable<T extends AnyObject>(
 
     } else {
 
-      const res = await fetch(`/api/corky/certificate/getAll?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_shopId=${shopId}`);
+      ///const res = await fetch(`/api/corky/certificate/getAll?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_shopId=${shopId}`);
+
+      const res = await fetch(`/api/corky/certificate/getAllByEmail?_limit=10&_page=1&_sort=createdAt&_order=-1&_q=${searchTerm}&_email=${userData?.email}`);
 
       const posts  = await res.json() as any;
       

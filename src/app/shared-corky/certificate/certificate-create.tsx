@@ -111,6 +111,8 @@ export default function CreateInfo() {
     nickname: "",
     avatar: "",
     shopId: "",
+
+    walletAddress: "",
   });
 
   const [loadingUserData, setLoadingUserData] = useState(true);
@@ -131,7 +133,7 @@ export default function CreateInfo() {
 
       const data = json as any;
 
-      //console.log('data ->', data);
+      console.log('data ->', data);
       
       if (data.data) {
         setUserData(data.data);
@@ -217,6 +219,10 @@ export default function CreateInfo() {
  
     const params = {
       creator: userData?.name,
+      creatorEmail: userData?.email,
+
+      creatorWalletAddress: userData?.walletAddress,
+
       name: name,
       companyName: companyName,
       
@@ -357,11 +363,34 @@ export default function CreateInfo() {
                       name="creator"
                       render={({ field: { onChange, value } }) => (
                         <Input
+                          disabled
                           size='lg'
                           //label="Company Name"
                           placeholder="창작자"
                           //className="flex-grow "
                           defaultValue={userData?.name}
+                          onChange={onChange}
+                          className='w-full'
+                        />
+                      )}
+
+                    />
+                  </FormGroup>
+
+                  <FormGroup
+                    title="창작자ID"
+                  >
+                    <Controller
+                      control={control}
+                      name="creator"
+                      render={({ field: { onChange, value } }) => (
+                        <Input
+                          disabled
+                          size='lg'
+                          //label="Company Name"
+                          placeholder="창작자"
+                          //className="flex-grow "
+                          defaultValue={userData?.walletAddress}
                           onChange={onChange}
                           className='w-full'
                         />
