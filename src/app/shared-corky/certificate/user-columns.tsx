@@ -170,6 +170,7 @@ export const getColumnsUser = ({
   },
   */
 
+  /*
   {
     title: 
       <div className="flex flex-col items-center justify-center gap-2">
@@ -188,20 +189,33 @@ export const getColumnsUser = ({
       
     ),
   },
-
+  */
   
 
 
   {
-    title: <HeaderCell title="저작물" />,
+    ////title: <HeaderCell title="저작물" />,
+
+    title: 
+      <div className="flex flex-col items-center justify-center gap-2">
+        <HeaderCell title="등록번호" />
+        <HeaderCell title="등록일자" />
+        <HeaderCell title="저작물" />
+      </div>
+    ,
+
     dataIndex: 'name',
     key: 'name',
     width: 200,
     render: (_: any, row: any) => (
 
 
-      <div className=" w-36 xl:w-56 flex flex-col items-center justify-center gap-2">
+      <div className=" w-36 xl:w-64 flex flex-col items-center justify-center gap-2">
         
+
+        <Text className="text-center text-base xl:text-xl font-bold">#{row.id}</Text>
+        <DateCell date={row.createdAt} className="text-center"/>
+
 
 
       {/*
@@ -235,6 +249,11 @@ export const getColumnsUser = ({
             width="250"
             height="250"
             controls
+
+            // full screen control
+
+
+
           >
             <source src={row?.avatar} type="video/mp4" />
             Your browser does not support the video tag.
@@ -260,19 +279,26 @@ export const getColumnsUser = ({
   },
 
   {
-    title: <HeaderCell title="품질" />,
-    dataIndex: 'pose',
-    key: 'pose',
-    width: 200,
-    render: (_: any, row: any) => (
-      <div className="flex flex-col items-center justify-center gap-2">
-        <Image
+    //title: <HeaderCell title="품질" />,
+
+    title:
+    <div className="flex flex-col items-center justify-center gap-2">
+      <HeaderCell title="품질평가" />
+      <Image
           src="/images/corky/openpose.jpeg"
           alt="openpose"
           width={250}
           height={250}
           className="rounded-md"
         />
+    </div>,
+
+    dataIndex: 'pose',
+    key: 'pose',
+    width: 200,
+    render: (_: any, row: any) => (
+      <div className="flex flex-col items-center justify-center gap-2">
+
 
         {/*
         Nose (코): 빨간색
@@ -543,7 +569,7 @@ Left Ankle: 0.4
     title: <HeaderCell title="저작권리자" />,
     dataIndex: 'shop',
     key: 'shop',
-    width: 100,
+    width: 120,
     render: (_: any, row: any) => (
 
       
