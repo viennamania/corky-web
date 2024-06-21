@@ -1,9 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 
-/////import { memberData } from '@/data/doingdoit/user/member-data';
-
-
-import { getUser, getAllUsers, getUserCount } from '@/lib/api/user';
+import { getUser } from '@/lib/api/user';
 
 ///import { get } from 'lodash';
 
@@ -20,8 +17,6 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   const results = await getUser(
     _id as string,
   );
-  
- 
 
   try {
     return NextResponse.json({ data: results }, { status: 200 });

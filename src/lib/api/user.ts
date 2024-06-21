@@ -144,18 +144,20 @@ export async function getUser(
 
   const client = await clientPromise;
   const collection = client.db('lefimall').collection('users');
+
+
+  // id is number
+
   const results = await collection.findOne<UserProps>(
-    { id },
+    { id: parseInt(id) },
     { projection: { _id: 0, emailVerified: 0 } }
   );
-  if (results) {
-    return {
-      ...results,
-      //bioMdx: await getMdxSource(results.bio || placeholderBio)
-    };
-  } else {
-    return null;
-  }
+
+
+  console.log('getUser results: ' + results);
+
+  return results;
+
 }
 
 
@@ -169,19 +171,10 @@ export async function getUserByEmail(
   const collection = client.db('lefimall').collection('users');
 
 
-  const results = await collection.findOne<UserProps>(
+  return await collection.findOne<UserProps>(
     { email },
     { projection: { _id: 0, emailVerified: 0 } }
   );
-
-  if (results) {
-    return {
-      ...results,
-      ///bioMdx: await getMdxSource(results.bio || placeholderBio)
-    };
-  }
-
-  return null;
 
 }
 

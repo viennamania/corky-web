@@ -362,7 +362,7 @@ export default function CreateInfo() {
 
                   {/* 창작자 */}
                   <FormGroup
-                    title="창작자"
+                    title="창작자 이름"
                   >
                     <Controller
                       control={control}
@@ -384,7 +384,7 @@ export default function CreateInfo() {
                   </FormGroup>
 
                   <FormGroup
-                    title="창작자ID"
+                    title="창작자 고유번호"
                   >
                     <Controller
                       control={control}
@@ -408,18 +408,19 @@ export default function CreateInfo() {
                   {/* 저작권리자 */}
 
                   <FormGroup
-                    title="저작권리자"
+                    title="저작권리자 고유번호"
                   >
                     <Controller
                       control={control}
                       name="companyName"
                       render={({ field: { onChange, value } }) => (
                         <Input
+                          disabled
                           size='lg'
                           //label="Company Name"
-                          placeholder="저작권리자"
+                          placeholder="저작권리자 고유번호"
                           //className="flex-grow "
-                          defaultValue="Corky"
+                          defaultValue="0xD9233AcE3EFB93dC47bB920E341049A8605548aE"
                           onChange={onChange}
                           className='w-full'
                         />
@@ -455,7 +456,7 @@ export default function CreateInfo() {
                   */}
 
                   <FormGroup
-                    title="자작물 제목"
+                    title="저작물 제목"
                   >
                     <Controller
                       control={control}
@@ -473,6 +474,8 @@ export default function CreateInfo() {
                       )}
 
                     />
+
+                    저작물 제목은 저작물의 이름을 의미합니다.
 
                   </FormGroup>
 

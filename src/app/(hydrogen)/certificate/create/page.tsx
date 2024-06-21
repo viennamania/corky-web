@@ -62,7 +62,7 @@ export default function Page() {
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
 
-
+        {/*
         <Button
 
           size="lg"
@@ -73,6 +73,10 @@ export default function Page() {
           <PiList className="me-2 h-5 w-5" aria-hidden="true" />
           목록
         </Button>
+        */}
+        <div className="flex flex-row items-center justify-end">
+          저작물은 저작권법에 의해 보호받는 창작물로, 저작권자의 허락 없이 사용할 수 없습니다.
+        </div>
 
       
 

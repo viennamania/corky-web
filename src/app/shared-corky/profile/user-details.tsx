@@ -236,7 +236,7 @@ export default function ProfileDetails({
 
       const data  = await res.json() as any;
 
-      console.log('data.ㅇㅁㅅㅁ ->', data.data);
+      console.log('data.data ->', data.data);
 
       setData(data.data);
 
