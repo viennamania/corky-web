@@ -160,6 +160,28 @@ export async function getUser(
 
 }
 
+export async function getUserWalletPrivateKeyByWalletAddress(
+  walletAddress: string,
+): Promise<string | null> {
+
+  const client = await clientPromise;
+  const collection = client.db('lefimall').collection('users');
+
+  const results = await collection.findOne<UserProps>(
+    { walletAddress },
+    { projection: { _id: 0, emailVerified: 0 } }
+  ) as any;
+
+  console.log('getUserWalletPrivateKeyByWalletAddress results: ' + results);
+
+  if (results) {
+    return results.walletPrivateKey;
+  } else {
+    return null;
+  }
+
+}
+
 
 export async function getUserByEmail(
   email: string,

@@ -2,6 +2,8 @@ import { NextResponse, NextRequest } from 'next/server';
 
 import { insertOne } from '@/lib/api/certificate';
 
+import { getUserWalletPrivateKeyByWalletAddress } from '@/lib/api/user';
+
 ///import { get } from 'lodash';
 
 
@@ -19,6 +21,11 @@ import {
   mintTo,
   totalSupply,
   nextTokenIdToMint,
+
+  safeTransferFrom,
+
+  tokenUri,
+
 } from "thirdweb/extensions/erc1155";
 
 
@@ -28,8 +35,13 @@ import {
   getWalletBalance,
   
  } from "thirdweb/wallets";
-import { parse } from 'path';
 
+
+import { parse } from 'path';
+import { Certificate } from 'crypto';
+
+
+import { upload } from "thirdweb/storage";
 
 
 /* ======================================
@@ -41,6 +53,19 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
   ///console.log(' product create  data: ' + data);
   
+
+  const walletPrivateKey = await getUserWalletPrivateKeyByWalletAddress(data.creatorWalletAddress);
+
+  console.log('walletPrivateKey: ' + walletPrivateKey);
+
+
+  if (walletPrivateKey === null) {
+    return NextResponse.json(
+      { success: false, message: 'walletPrivateKey is null' },
+      { status: 500 }
+    );
+  }
+
 
 
   const chain = polygon;
@@ -87,6 +112,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
 
 
+
   const toAddress = data.creatorWalletAddress;
 
   console.log("toAddress: ", toAddress);
@@ -94,7 +120,34 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   const imageUrl = data.avatar;
 
 
+  /*
+  {
+    "name":"asdf",
+    "description":"",
+    "image":"ipfs://QmQk2LB6HbhAM8MB3FWhryHz1Cc2pDvBmqnRsXf1adqip8/corky-logo.png",
+    "animation_url":"ipfs://QmQk2LB6HbhAM8MB3FWhryHz1Cc2pDvBmqnRsXf1adqip8/pose%20(16).mp4",
+    "external_url":"",
+    "background_color":"",
+    "supply":"10000",
+    "customImage":"",
+    "customAnimationUrl":""}
+  */
 
+
+  /*
+  const uris = await upload({
+    client,
+    files: [new File(["hello world"], "hello.txt")],
+  });
+  */
+
+  /*
+  const uris = await upload({
+    client,
+    files: [new File(["hello world"], "hello.txt")],
+  });
+  */
+  
   const transactionMintTo = mintTo({
     contract,
     to: toAddress,
@@ -102,8 +155,12 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     nft: {
       name: "Corky Certificate",
       description: "Corky Certificate NFT",
-      image: imageUrl,
 
+
+      image: "https://corky.vercel.app/images/corky/certificate.jpg",
+
+
+      animation_url: imageUrl,
 
     },
   });
@@ -113,6 +170,36 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     account: account,
   });
 
+  console.log("Minted successfully!");
+
+
+  console.log(`Transaction hash: ${sendData.transactionHash}`);
+
+  
+
+  //  get tokenUri
+  const certificateTokenUri = await tokenUri({
+    contract,
+    tokenId: BigInt(0),
+  });
+
+  console.log("certificateTokenUri: ", certificateTokenUri);
+
+  // ipfs key from certificateTokenUri
+
+  //const ipfsKey = certificateTokenUri.split("ipfs://")[1];
+
+
+  // ipfs://QmZXdoAZQUG6JNH2pqEzvcYHkKHDKvQvKf9gx7Q5ipjPGK/0
+// https://ipfs.io/ipfs/QmTUbjYKZdN6LByPBEnAsj6FvSA3E7kWJwhviooSf3GEpD/0
+
+
+
+
+
+
+  // transfer to 
+ 
 
 
   /*
@@ -139,12 +226,6 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
 
 
-  console.log("Minted successfully!");
-
-
-  console.log(`Transaction hash: ${sendData.transactionHash}`);
-
-
   const nextTokenId = await nextTokenIdToMint({
     contract: contract,
   });
@@ -156,7 +237,68 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   
 
   const tokenId = parseInt(nextTokenId.toString(), 10) -1;
+  
 
+
+
+
+
+
+  const corkyAddress = "0xD9233AcE3EFB93dC47bB920E341049A8605548aE";
+
+
+  // smartwallet account
+  const userAccount = privateKeyToAccount({
+    client,
+    privateKey: walletPrivateKey,
+  }); // private key account
+  
+  
+  // Connect the smart wallet
+  const userSmartaccount = await wallet.connect({
+    client: client,
+    personalAccount: userAccount,
+  });
+
+  /*
+  const transaction = safeTransferFrom({
+  contract,
+  from: ...,
+  to: ...,
+  tokenId: ...,
+  value: ...,
+  data: ...,
+  overrides: {
+    ...
+  }
+  });
+  */
+
+  const transactionTransferTo = safeTransferFrom({
+    contract,
+    from: toAddress,
+    to: corkyAddress,
+    tokenId: BigInt(tokenId),
+    value: BigInt(2000),
+    data: "0x",
+  });
+
+  const sendData2 = await sendAndConfirmTransaction({
+    transaction: transactionTransferTo,
+    account: userSmartaccount,
+  });
+
+  console.log("Transfered successfully!");
+
+  console.log(`Transaction hash: ${sendData2.transactionHash}`);
+
+
+
+
+
+  
+
+  
 
   const results = await insertOne(
     {
@@ -165,6 +307,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       tokenId: tokenId,
       category: data.category,
       avatar: data.avatar,
+
+      certificateTokenUri: certificateTokenUri,
 
       sku: data.sku,
       listPrice: data.listPrice,
@@ -180,7 +324,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   );
 
   console.log('certificate / insertOne results: ' + results);
-
+  
 
 
   try {

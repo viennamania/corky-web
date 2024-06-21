@@ -73,6 +73,9 @@ import { useSession, signOut } from 'next-auth/react';
 import { set } from 'zod';
 
 
+import { useRouter } from 'next/navigation';
+
+import { routes } from '@/config/routes';
 
 
 const SelectBox = dynamic(() => import('@/components/ui/select'), {
@@ -95,6 +98,7 @@ const QuillEditor = dynamic(() => import('@/components/ui/quill-editor'), {
 export default function CreateInfo() {
 
 
+  const { push } = useRouter();
 
 
   const { data: session, status } = useSession();
@@ -263,12 +267,17 @@ export default function CreateInfo() {
 
       ////console.log('json========', json);
 
-      //if (json.success) {
-        //toast.success(<Text >변경되었습니다.</Text>);
-      //}
+      if (json.success) {
+        toast.success(<Text >신청하였습니다.</Text>);
 
-      setOpen(true);
-      modalData.description = '신청하였습니다.';
+        push(routes.certificate.index);
+
+      } else {
+        toast.error(<Text >Error</Text>);
+      }
+
+      //setOpen(true);
+      //modalData.description = '신청하였습니다.';
 
     } catch (error) {
       console.error('error', error);
