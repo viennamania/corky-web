@@ -59,57 +59,8 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
   ///console.log("getAllUsers results=", results);
 
-  
-  const data = results.flatMap(({ users }) =>
-    //users.map((user) => ({ params: { username: user.username } }))
-
-    //users.map((user) => ({ user }))
-    users.map((user) => ({
-
-      id: user.id,
-      name: user.name,
-      nickname: user.nickname,
-      email: user.email,
-      avatar: user.avatar,
-      regType: user.regType,
-      mobile: user.mobile,
-      gender: user.gender,
-      weight: user.weight,
-      height: user.height,
-      birthDate: user.birthDate,
-      purpose: user.purpose,
-      marketingAgree: user.marketingAgree,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-      deletedAt: user.deletedAt,
-      loginedAt: user.loginedAt,
-      followers : user.followers,
-      emailVerified: user.emailVerified,
-
-
-    }))
-
-  );
-  
-
-  ////const result = arr1.flatMap((num) => (num === 2 ? [2, 2] : 1));
-
-  //const paths = results.flatMap(( users ) => ( users ));
-
-  //console.log(paths);
-  
-
-  /* time seleep */
-  /*
-  const sleep = (ms: number) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  await sleep(1000);
-  */
-
-
   try {
-    return NextResponse.json({ data: data }, { status: 200 });
+    return NextResponse.json({ data: results }, { status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json(`First Error: ${error}`, { status: 500 });
