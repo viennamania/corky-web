@@ -11,32 +11,17 @@ export function useTable<T extends AnyObject>(
   initialFilterState?: Partial<Record<string, any>>
 ) {
 
+  const [isLoading, setLoading] = useState(true);
+
+  
+
   /*
    * Table data
    */
   const [data, setData] = useState(initialData);
 
-  /*
-  * Dummy loading state.
-  */
-  const [isLoading, setLoading] = useState(true);
-
-  
-
   /* get total count */
   const [totalCount, setTotalCount] = useState(0);
-
-  const fetchTotalCount = async () => {
-    const res = await fetch(`/api/corky/user/getUserCount`);
-
-    const posts  = await res.json() as any;
-
-    console.log(posts.data);
-
-    setTotalCount(posts.data);
-
-  }
-
 
 
   const fetchData = async () => {
@@ -48,32 +33,14 @@ export function useTable<T extends AnyObject>(
 
 
     const posts  = await res.json() as any;
-
-    //console.log(posts.data);
-
-    /*
-    const data = posts.data.map((item: any) => {
-      return {
-        id: item.id,
-        title: item.title,
-        content: item.content,
-        tags: item.tags,
-        writer: item.writer,
-        createdAt: item.createdAt,
-        updatedAt: item.updatedAt,
-        viewCount: item.viewCount,
-        commentCount: item.commentCount,
-        likeCount: item.likeCount,
-        scrapCount: item.scrapCount,
-        feedbackYn: item.feedbackYn,
-        feedbackWriter: item.feedbackWriter,
-      }
-
-    } );
-    */
  
 
-    setData(posts.data);
+    console.log(posts.data);
+
+
+    setData(posts.data?.users);
+
+    setTotalCount(posts.data?.totalCount);
 
     setLoading(false);
 
@@ -355,11 +322,9 @@ export function useTable<T extends AnyObject>(
 
   useEffect(() => {
 
-    fetchTotalCount();
-
     fetchData();
   }
-  ,[ searchTerm  ]);
+  ,[ searchTerm, currentPage, sortConfig, filters]);
 
 
 

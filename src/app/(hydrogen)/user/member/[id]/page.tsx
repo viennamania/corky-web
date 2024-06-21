@@ -35,15 +35,15 @@ const pageHeader = {
   breadcrumb: [
     {
       href: "/",
-      name: 'Home',
+      name: '홈',
     },
     {
       href: routes.user.index,
-      name: 'User',
+      name: '회원 관리',
     },
     {
       href: routes.user.member,
-      name: 'User',
+      name: '회원 목록',
     },
     {
       name: '상세보기',
@@ -81,7 +81,7 @@ export default function ProfilePage({ params }: any) {
 
 
 
-
+          {/*
           <DeletePopover
             title={`Delete`}
             description={`Are you sure you want to delete?`}
@@ -91,14 +91,15 @@ export default function ProfilePage({ params }: any) {
               modalData.description = 'Deleted!';
             }}
           />
+          */}
 
           <button
             type="button"
-            className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+            className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-black hover:bg-gray-700 focus:outline-none"
             onClick={() => window.history.back()}
           >
             <PiList className="me-2 h-4 w-4" />
-            {'List'}
+            {'목록으로 돌아가기'}
           </button>
 
 

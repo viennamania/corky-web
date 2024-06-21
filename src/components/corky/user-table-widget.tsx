@@ -32,7 +32,7 @@ import { RadioGroup } from '@/components/ui/radio-group';
 import { Radio } from '@/components/ui/radio';
 
 
-import { useTable } from '@/hooks/lefimall/use-table-user';
+import { useTable } from '@/hooks/corky/use-table-user';
 
 
 type ColumnTypes = {
@@ -301,7 +301,7 @@ export default function UserTableWidget({
               </div>
 
 
-
+              {/*
               <div className='flex flex-wrap items-center justify-center gap-3'>
                 가입유형
 
@@ -369,6 +369,7 @@ export default function UserTableWidget({
                 </RadioGroup>
 
               </div>
+              */}
 
             </div> 
 

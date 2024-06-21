@@ -23,18 +23,18 @@ export const metadata = {
 };
 
 const pageHeader = {
-  title: 'User',
+  title: '회원',
   breadcrumb: [
     {
       href: "/",
-      name: 'Home',
+      name: '홈',
     },
     {
       href: routes.user.member,
-      name: 'User',
+      name: '회원 관리',
     },
     {
-      name: 'User',
+      name: '활성회원',
     },
   ],
 };

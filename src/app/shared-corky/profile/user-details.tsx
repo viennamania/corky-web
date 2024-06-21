@@ -326,9 +326,9 @@ export default function ProfileDetails({
 
 
               <FormGroup
-                title="회원번호"
+                title="고유번호"
               >
-                <Text> {data?.id} </Text>
+                <Text> {data?.walletAddress} </Text>
               </FormGroup>
 
               <FormGroup
@@ -357,6 +357,7 @@ export default function ProfileDetails({
               </FormGroup>
 
               {/* 비밀번호 변경 */}
+              {/*
               <FormGroup
                 title="비밀번호 변경"
               >
@@ -382,6 +383,7 @@ export default function ProfileDetails({
                   </Button>
                 </div>
               </FormGroup>
+              */}
 
               <FormGroup
                 title="이름"
@@ -389,11 +391,13 @@ export default function ProfileDetails({
                 <Text> {data?.name} </Text>
               </FormGroup>
 
+              {/*
               <FormGroup
                 title="닉네임"
               >
                 <Text> {data?.nickname} </Text>
               </FormGroup>
+              
 
               <FormGroup
                 title="성별"
@@ -418,6 +422,7 @@ export default function ProfileDetails({
                 )}
 
               </FormGroup>
+              */}
 
               <FormGroup
                 title="휴대폰"
@@ -444,7 +449,7 @@ export default function ProfileDetails({
               </FormGroup>
               */}
               
-
+              
               <FormGroup
                 title="마케팅 수신동의"
               >
@@ -461,6 +466,7 @@ export default function ProfileDetails({
                 </Text>
               </FormGroup>
 
+              {/*
               {data?.status == 'Pending' && (
                 
                 <FormGroup
@@ -514,11 +520,10 @@ export default function ProfileDetails({
                     />
                   </div>
                 </RadioGroup>
-
-             
-
+  
 
               </FormGroup>
+              */}
 
 
                     {/*

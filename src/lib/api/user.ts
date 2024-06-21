@@ -43,7 +43,7 @@ export interface UserProps {
 }
 
 export interface ResultProps {
-  _id: string;
+  totalCount: number;
   users: UserProps[];
 }
 
@@ -289,29 +289,55 @@ export async function getFirstUser(): Promise<UserProps | null> {
 export async function getAllUsers(
   limit: number,
   page: number,
-): Promise<ResultProps[]> {
+): Promise<ResultProps> {
+
 
   const client = await clientPromise;
   const collection = client.db('lefimall').collection('users');
 
-  /*
-  const results = await collection
-    .find<UserProps>(
-      {},
-      {
-        projection: { _id: 0, emailVerified: 0 },
-        limit: limit,
-        skip: (page - 1) * limit,
-        sort: { followers: -1 }
-      }
-    )
-    .toArray();
-  */
 
   console.log('limit: ' + limit);
   console.log('page: ' + page);
 
+  // walletAddress is not empty and not null
+
+  const users = await collection
+    .find<UserProps>(
+      {
+
+
+        walletAddress: { $exists: true, $ne: null },
+        walletPrivateKey: { $exists: true, $ne: null },
+        
+
+      },
+      {
+        limit: limit,
+        skip: (page - 1) * limit,
+      },
+      
+    )
+    .sort({ _id: -1 })
+    .toArray();
+
+
+  const totalCount = await collection.countDocuments(
+    {
+      walletAddress: { $exists: true, $ne: null },
+      walletPrivateKey: { $exists: true, $ne: null },
+    }
+  );
+
+  return {
+    totalCount,
+    users,
+  };
+
+
+
+
    
+  /*
   return await collection
     .aggregate<ResultProps>([
 
@@ -331,16 +357,7 @@ export async function getAllUsers(
         $limit: limit,
         /////$skip: (page - 1) * limit, // skip the first n documents
       },
-      
-      //{
-      //  $skip: (page - 1) * limit, // skip the first n documents
-      //},
-      
-      //{ $limit : 10 },
-      //{ $skip : 2 },
-      ///{ projection: { _id: 0, emailVerified: 0 } },
-
-
+ 
 
       {
         $group: {
@@ -387,6 +404,7 @@ export async function getAllUsers(
       
     ])
     .toArray();
+    */
 
   
 }

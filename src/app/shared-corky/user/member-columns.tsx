@@ -76,10 +76,10 @@ export const getColumns = ({
 }: Columns) => [
 
   {
-    title: <HeaderCell title="No" />,
-    dataIndex: 'id',
-    key: 'id',
-    width: 90,
+    title: <HeaderCell title="고유번호" />,
+    dataIndex: 'walletAddress',
+    key: 'walletAddress',
+    width: 200,
     render: (value: string) => <Text className='  text-center ' >{value}</Text>,
   },
 
@@ -106,6 +106,7 @@ export const getColumns = ({
     ),
   },
 
+  /*
   {
     title: <HeaderCell title="가입유형" />,
     dataIndex: 'regType',
@@ -115,6 +116,7 @@ export const getColumns = ({
       <Text className='  text-center '>{value}</Text>
     ),
   },
+  */
 
   {
     title: (
@@ -171,6 +173,7 @@ export const getColumns = ({
     ),
   },
 
+  /*
   {
     title: <HeaderCell title="닉네임" />,
     dataIndex: 'nickname',
@@ -180,9 +183,11 @@ export const getColumns = ({
       <Text className='  text-center '>{row.nickname}</Text>
     ),
   },
+  */
 
   // Gender (성별) icoin (남, 여) PiGenderMale, PiGenderFemale
 
+  /*
   {
     title: <HeaderCell title="성별" />,
     dataIndex: 'gender',
@@ -209,8 +214,9 @@ export const getColumns = ({
       )
     ),
   },
+  */
 
-
+  /*
   {
     title: <HeaderCell title="휴대폰" />,
     dataIndex: 'mobile',
@@ -220,6 +226,8 @@ export const getColumns = ({
       <Text className='  text-center '>{value}</Text>
     ),
   },
+  */
+ 
   {
     title: <HeaderCell title="최근로그인" />,
     dataIndex: 'loginedAt',
