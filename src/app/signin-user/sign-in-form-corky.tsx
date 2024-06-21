@@ -20,8 +20,8 @@ import { useMedia } from '@/hooks/use-media';
 
 
 const initialValues: LoginSchema = {
-  id: 'user1@gmail.com',
-  password: '1234',
+  id: '',
+  password: '',
   rememberMe: true,
 };
 
@@ -148,8 +148,8 @@ export default function SignInForm() {
 
 
       <div className='mt-10 flex flex-col mb-5 items-start justify-center '>
-        <p>user1: user1@gmail.com / 1234 </p>
-        <p>user2: user2@gmail.com / 1234 </p>
+        <p>user1: user3@gmail.com / Abcd1234 </p>
+        <p>user2: user4@gmail.com / Abcd1234 </p>
       </div>
 
 
