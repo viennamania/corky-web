@@ -115,10 +115,35 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
 
 
+  /*
+  const corkyAddress = "0xD9233AcE3EFB93dC47bB920E341049A8605548aE";
+
+  const transactionMintToCorky = mintTo({
+    contract,
+    to: corkyAddress,
+    supply: BigInt(2000),
+    nft: {
+      name: "Corky Certificate",
+      description: "Corky Certificate NFT",
+      image: imageUrl,
+
+
+    },
+  });
+
+  const sendDataCorky = await sendAndConfirmTransaction({
+    transaction: transactionMintToCorky,
+    account: account,
+  });
+  */
+
+
+
   console.log("Minted successfully!");
 
 
   console.log(`Transaction hash: ${sendData.transactionHash}`);
+
 
   const nextTokenId = await nextTokenIdToMint({
     contract: contract,
