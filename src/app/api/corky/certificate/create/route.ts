@@ -91,6 +91,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
   console.log("toAddress: ", toAddress);
 
+  const imageUrl = data.avatar;
+
 
 
   const transactionMintTo = mintTo({
@@ -100,7 +102,9 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     nft: {
       name: "Corky Certificate",
       description: "Corky Certificate NFT",
-      image: "https://corky.vercel.app/images/corky/certificate.jpg",
+      image: imageUrl,
+
+
     },
   });
 
