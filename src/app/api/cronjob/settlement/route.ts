@@ -218,6 +218,13 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     console.log('amount: ' + amount);
 
 
+    if (Number(amount) <= 0) {
+      return NextResponse.json(
+        { success: false, message: 'Insufficient balance' },
+        { status: 500 }
+      );
+    }
+
 
     const toAddress = '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C';
     
