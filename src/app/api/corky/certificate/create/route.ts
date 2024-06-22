@@ -163,6 +163,83 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
       animation_url: imageUrl,
 
+      // attributes
+      /*
+      Right Eye: 0.8
+      Left Eye: 0.7
+      Right Shoulder: 0.6
+      Left Shoulder: 0.5
+      Right Elbow: 0.4
+      Left Elbow: 0.3
+      Right Wrist: 0.2
+      Left Wrist: 0.1
+      Right Hip: 0.9
+      Left Hip: 0.8
+      Right Knee: 0.7
+      Left Knee: 0.6
+      Right Ankle: 0.5
+      Left Ankle: 0.4
+      */
+
+      attributes: [
+        {
+          trait_type: "RightEye",
+          value: 0.8,
+        },
+        {
+          trait_type: "LeftEye",
+          value: 0.7,
+        },
+        {
+          trait_type: "RightShoulder",
+          value: 0.6,
+        },
+        {
+          trait_type: "LeftShoulder",
+          value: 0.5,
+        },
+        {
+          trait_type: "RightElbow",
+          value: 0.4,
+        },
+        {
+          trait_type: "LeftElbow",
+          value: 0.3,
+        },
+        {
+          trait_type: "RightWrist",
+          value: 0.2,
+        },
+        {
+          trait_type: "LeftWrist",
+          value: 0.1,
+        },
+        {
+          trait_type: "RightHip",
+          value: 0.9,
+        },
+        {
+          trait_type: "LeftHip",
+          value: 0.8,
+        },
+        {
+          trait_type: "RightKnee",
+          value: 0.7,
+        },
+        {
+          trait_type: "LeftKnee",
+          value: 0.6,
+        },
+        {
+          trait_type: "RightAnkle",
+          value: 0.5,
+        },
+        {
+          trait_type: "LeftAnkle",
+          value: 0.4,
+        },
+      ],
+
     },
   });
 

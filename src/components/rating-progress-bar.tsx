@@ -16,11 +16,15 @@ export default function RatingProgressBar({
 }: RatingProgressProps) {
   return (
     <div className="flex items-center text-sm">
-      <div className="flex w-11 shrink-0 items-center space-x-1 font-semibold rtl:space-x-reverse">
+      
+      {/*
+      <div className="flex w-8 shrink-0 items-center space-x-1 font-semibold rtl:space-x-reverse">
         <span className="text-sm font-semibold text-gray-900">{label}</span>{' '}
         <PiStarFill className="w-4 fill-orange text-orange" />
       </div>
-      <div className="relative h-1 w-52 overflow-hidden rounded-md bg-primary-lighter">
+      */}
+
+      <div className="relative h-1 w-20 overflow-hidden rounded-md bg-primary-lighter">
         <div
           className={cn('absolute h-full rounded-md', progressBarClassName)}
           style={{

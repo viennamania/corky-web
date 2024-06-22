@@ -20,6 +20,7 @@ import { Router } from 'next/router';
 
 import Image from 'next/image';
 
+
 /*
         Nose (코): 빨간색
 Right Eye (오른쪽 눈): 보라색
@@ -206,11 +207,11 @@ export const getColumnsUser = ({
 
     dataIndex: 'name',
     key: 'name',
-    width: 200,
+    width: 120,
     render: (_: any, row: any) => (
 
 
-      <div className=" w-36 xl:w-64 flex flex-col items-center justify-center gap-2">
+      <div className=" w-28 xl:w-28 flex flex-col items-center justify-center gap-2">
         
 
         <Text className="text-center text-base xl:text-xl font-bold">#{row.id}</Text>
@@ -246,8 +247,8 @@ export const getColumnsUser = ({
           row?.avatar?.includes('.mp4') ?
           <video
             className="rounded-md"
-            width="250"
-            height="250"
+            width="200"
+            height="200"
             controls
 
             // full screen control
@@ -262,8 +263,8 @@ export const getColumnsUser = ({
           <Image
             src={row?.avatar || '/logo.png'}
             alt="Product Image"
-            width={250}
-            height={250}
+            width={200}
+            height={200}
             className="rounded-md"
           />
         }
@@ -278,24 +279,61 @@ export const getColumnsUser = ({
     ),
   },
 
+  // Homan Detection
+  // 성공 / 실패
+
+  {
+
+    title:
+    <div className="flex flex-col items-center justify-center gap-2">
+      <HeaderCell title="품질평가(사람검출, Human Detection)" />
+      <Image
+          src="/images/corky/human.png"
+          alt="human"
+          width={150}
+          height={150}
+          className="rounded-md"
+        />
+    </div>,
+
+    dataIndex: 'human',
+    key: 'human',
+    width : 80,
+    render: (_: any, row: any) => (
+      <div className="flex flex-col items-center justify-center gap-2">
+
+        <div className="flex items-center justify-center gap-2">
+          <RatingProgressBar
+            // color
+            progressBarClassName='bg-red-500'
+            //label={1}
+            ratingCount={0.8}
+            totalReviews={1}
+          />
+        </div>
+
+      </div>
+    ),
+  },
+
   {
     //title: <HeaderCell title="품질" />,
 
     title:
     <div className="flex flex-col items-center justify-center gap-2">
-      <HeaderCell title="품질평가" />
+      <HeaderCell title="품질평가(자세정보, Body Keypoint)" />
       <Image
           src="/images/corky/openpose.jpeg"
           alt="openpose"
-          width={250}
-          height={250}
+          width={150}
+          height={150}
           className="rounded-md"
         />
     </div>,
 
     dataIndex: 'pose',
     key: 'pose',
-    width: 200,
+    width: 150,
     render: (_: any, row: any) => (
       <div className="flex flex-col items-center justify-center gap-2">
 
@@ -368,6 +406,7 @@ Left Ankle: 0.4
             <div className="w-4 h-4 bg-pink-500 rounded-full"></div>
             <Text className="w-20">왼쪽 눈</Text>
             <RatingProgressBar
+
               // color
               progressBarClassName='bg-pink-500'
               //label={1}
@@ -550,6 +589,7 @@ Left Ankle: 0.4
   },
 
 
+
   /*
   {
     title: <HeaderCell title="Merchant" />,
@@ -564,6 +604,8 @@ Left Ankle: 0.4
     ),
   },
   */
+
+  /*
 
   {
     title: <HeaderCell title="저작권리자" />,
@@ -599,6 +641,7 @@ Left Ankle: 0.4
 
     ),
   },
+  */
 
   /*
   {
@@ -688,14 +731,35 @@ Left Ankle: 0.4
     title: <HeaderCell title="NFT 발행" />,
     dataIndex: 'nft',
     key: 'nft',
-    width: 80,
+    width: 180,
     render: (_: any, row: any) => (
       <div className="flex flex-col items-center justify-center gap-2">
 
-        <Text className="text-center text-xs font-bold">
-          {row.certificateTokenUri}
-        </Text>
 
+        {/*https://polygonscan.com/token/0x2682057d39ed5f9e1f296aed5ae5f3ab6a8626d2*/}
+
+        <Text className="text-center text-sm">Contract:</Text>
+        <Link
+          href={`https://polygonscan.com/token/0x2682057d39ed5f9e1f296aed5ae5f3ab6a8626d2`}
+          className="text-center text-sm font-bold">0x2682057d39ed5f9e1f296aed5ae5f3ab6a8626d2
+        </Link>
+
+
+
+        <Text className="text-center text-sm">Content Identifier (CID):</Text>
+        <Link
+          href={`https://ipfs.io/ipfs/${row.certificateTokenUri?.split("ipfs://")[1]}`}
+          className="text-center text-xs font-bold">
+          
+          {
+            // convert form "ipfs://QmfCbYP53GexnhgagrJq8NZtFPEMnFMWiXLNxpbnAaG8Lc/0"
+            // to "QmfCbYP53GexnhgagrJq8NZtFPEMnFMWiXLNxpbnAaG8Lc"
+
+            row.certificateTokenUri?.split("ipfs://")[1]
+
+            //row.certificateTokenUri
+          }
+        </Link>
 
         <Text className="text-center text-lg font-bold">#{row.tokenId}</Text>
         <Link
@@ -722,6 +786,22 @@ Left Ankle: 0.4
     ),
   },
 
+ 
+
+   /* STO */
+   {
+    title: <HeaderCell title="STO Total Supply" />,
+    dataIndex: 'sto',
+    key: 'sto',
+    width: 80,
+    render: (_: string, row: any) => (
+      <div className='flex flex-col items-center justify-center gap-2'>
+
+        <Text className="text-center text-xl font-bold">10,000</Text>
+
+      </div>
+    ),
+  },
  
 
 
