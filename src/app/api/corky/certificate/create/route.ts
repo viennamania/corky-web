@@ -183,6 +183,16 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
       attributes: [
         {
+          trait_type: "DancerCreatorName",
+          value: "박승현",
+        },
+        {
+          trait_type: "DancerCreatorIdentity",
+          value: data.creatorWalletAddress,
+        },
+
+        
+        {
           trait_type: "RightEye",
           value: 0.8,
         },
@@ -238,6 +248,71 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
           trait_type: "LeftAnkle",
           value: 0.4,
         },
+        
+
+
+
+        /*
+        {
+          trait_type: "RightEye",
+          value: 1.0,
+        },
+        {
+          trait_type: "LeftEye",
+          value: 1.0,
+        },
+        {
+          trait_type: "RightShoulder",
+          value: 1.0,
+        },
+        {
+          trait_type: "LeftShoulder",
+          value: 1.0,
+        },
+        {
+          trait_type: "RightElbow",
+          value: 1.0,
+        },
+        {
+          trait_type: "LeftElbow",
+          value: 1.0,
+        },
+        {
+          trait_type: "RightWrist",
+          value: 1.0,
+        },
+        {
+          trait_type: "LeftWrist",
+          value: 1.0,
+        },
+        {
+          trait_type: "RightHip",
+          value: 1.0,
+        },
+        {
+          trait_type: "LeftHip",
+          value: 1.0,
+        },
+        {
+          trait_type: "RightKnee",
+          value: 1.0,
+        },
+        {
+          trait_type: "LeftKnee",
+          value: 1.0,
+        },
+        {
+          trait_type: "RightAnkle",
+          value: 1.0,
+        },
+        {
+          trait_type: "LeftAnkle",
+          value: 1.0,
+        },
+        */
+
+
+
       ],
 
     },

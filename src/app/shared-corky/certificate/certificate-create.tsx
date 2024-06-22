@@ -512,7 +512,7 @@ export default function CreateInfo() {
 
                   {/* 대표 이지미 */}
                   <FormGroup
-                    title="저작물 이미지 / 동영상"
+                    title="저작물 동영상"
                   >
 
                       <Controller
@@ -535,13 +535,13 @@ export default function CreateInfo() {
                               <video
                                 src={avatar}
                                 controls
-                                className="w-32 h-32 rounded-lg"
+                                className=" w-56 rounded-lg"
                               />
                             )}
 
                             {/* if avatar is image */}
                             {avatar && !avatar.includes('mp4') && (
-                              <div className="relative w-32 h-32 rounded-lg">
+                              <div className="relative w-56 rounded-lg">
                                 <Image
                                   src={avatar}
                                   alt={value?.name || ''}
