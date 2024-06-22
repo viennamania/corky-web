@@ -600,7 +600,7 @@ Left Ankle: 0.4
     ),
   },
 
-
+  /*
   {
     title: 
       <div className="flex flex-col items-center justify-center gap-2">
@@ -617,7 +617,6 @@ Left Ankle: 0.4
           Number(row?.listPrice).toFixed(0)
         } 원
         </Text>
-        {/* line */}
         <div className="w-full h-1 bg-gray-200"></div>
         <Text className="text-center">{
           Number(row?.price).toFixed(0)
@@ -627,7 +626,7 @@ Left Ankle: 0.4
       
     ),
   },
-
+  */
  
 
   /*

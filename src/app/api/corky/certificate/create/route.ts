@@ -19,6 +19,7 @@ import { polygon } from "thirdweb/chains";
 
 import {
   mintTo,
+  mintAdditionalSupplyTo,
   totalSupply,
   nextTokenIdToMint,
 
@@ -151,7 +152,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   const transactionMintTo = mintTo({
     contract,
     to: toAddress,
-    supply: BigInt(10000),
+    supply: BigInt(8000),
     nft: {
       name: "Corky Certificate",
       description: "Corky Certificate NFT",
@@ -177,13 +178,6 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
   
 
-  //  get tokenUri
-  const certificateTokenUri = await tokenUri({
-    contract,
-    tokenId: BigInt(0),
-  });
-
-  console.log("certificateTokenUri: ", certificateTokenUri);
 
   // ipfs key from certificateTokenUri
 
@@ -225,7 +219,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   */
 
 
-
+  
   const nextTokenId = await nextTokenIdToMint({
     contract: contract,
   });
@@ -236,8 +230,18 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
   
 
-  const tokenId = parseInt(nextTokenId.toString(), 10) -1;
+  const tokenId = parseInt(nextTokenId.toString(), 10) - 1;
   
+
+  //  get tokenUri
+  const certificateTokenUri = await tokenUri({
+    contract,
+    tokenId: BigInt(tokenId),
+  });
+
+  console.log("certificateTokenUri: ", certificateTokenUri);
+
+
 
 
 
@@ -247,6 +251,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   const corkyAddress = "0xD9233AcE3EFB93dC47bB920E341049A8605548aE";
 
 
+  /*
   // smartwallet account
   const userAccount = privateKeyToAccount({
     client,
@@ -260,19 +265,6 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     personalAccount: userAccount,
   });
 
-  /*
-  const transaction = safeTransferFrom({
-  contract,
-  from: ...,
-  to: ...,
-  tokenId: ...,
-  value: ...,
-  data: ...,
-  overrides: {
-    ...
-  }
-  });
-  */
 
   const transactionTransferTo = safeTransferFrom({
     contract,
@@ -291,7 +283,23 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   console.log("Transfered successfully!");
 
   console.log(`Transaction hash: ${sendData2.transactionHash}`);
+  */
 
+  const transactionMintAdditionalSupplyTo = mintAdditionalSupplyTo({
+    contract,
+    to: corkyAddress,
+    tokenId: BigInt(tokenId),
+    supply: BigInt(2000),
+  });
+
+  const sendData3 = await sendAndConfirmTransaction({
+    transaction: transactionMintAdditionalSupplyTo,
+    account: account,
+  });
+
+  console.log("Minted additional supply successfully!");
+
+  console.log(`Transaction hash: ${sendData3.transactionHash}`);
 
 
 
