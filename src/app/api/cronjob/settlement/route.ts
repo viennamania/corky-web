@@ -65,6 +65,8 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   // USDT Token (USDT)
   const tokenContractAddressUSDT = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F';
 
+  
+
   const contract = getContract({
     client,
     chain: chain,
@@ -100,9 +102,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     const walletPrivateKey = user.walletPrivateKey;
 
 
-    try {
-
-      ////////////const walletPrivateKey = '0xf5d693167c71e030b75f19f0745eaf138f53780c26a3c7768586ea197b5ea826';
+    ////////////const walletPrivateKey = '0xf5d693167c71e030b75f19f0745eaf138f53780c26a3c7768586ea197b5ea826';
 
 
 
@@ -151,97 +151,94 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
       console.log('amount: ' + amount);
 
 
-      if (Number(amount) <= 0) {
-        return NextResponse.json(
-          { success: false, message: 'Insufficient balance' },
-          { status: 500 }
-        );
+      if (parseFloat(amount) >= 1.0) {
+
+        try {
+
+          const toAddress = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971'; // 0.1 USDT to this address
+          
+
+          // get 10% of amount
+
+          const sendAmountTo = parseFloat(amount) * 0.1;
+
+          const transactionSendTo = transfer({
+            contract,
+            to: toAddress,
+            ///amount: amount,
+
+            amount: sendAmountTo,
+          });
+        
+
+          const sendData = await sendAndConfirmTransaction({
+            transaction: transactionSendTo,
+            account: account,
+          });
+
+
+
+
+          console.log("Minted successfully!");
+
+
+          console.log(`Transaction hash: ${sendData.transactionHash}`);
+        
+          
+
+
+          ///const tx = await sendAndConfirmTransaction({
+
+
+          // 0xAeB385c91131Efd90d60b85D143Dd0467e161a7d is store wallet address
+
+          const toAddressStore = '0xAeB385c91131Efd90d60b85D143Dd0467e161a7d'; // 0.9 USDT to this address
+
+
+          const sendAmountToStore = parseFloat(amount) * 0.9;
+
+          const transactionSendToStore = transfer({
+            contract,
+            to: toAddressStore,
+            amount: sendAmountToStore,
+          });
+
+          const sendDataStore = await sendAndConfirmTransaction({
+            transaction: transactionSendToStore,
+            account: account,
+          });
+
+          console.log("Minted successfully!");
+
+          console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
+
+
+
+
+          /*
+          return NextResponse.json(
+            { success: true, message: 'GET Request Success' },
+            { status: 200 }
+          );
+          */
+          
+
+
+
+
+        } catch (error) {
+          console.log(error);
+
+          /*
+          return NextResponse.json(
+            `First Error: ${error}`,
+            { status: 500 }
+          );
+          */
+        }
+
+
       }
-
-
-      const toAddress = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971'; // 0.1 USDT to this address
-      
-
-      // get 10% of amount
-
-      const sendAmountTo = parseFloat(amount) * 0.1;
-
-      const transactionSendTo = transfer({
-        contract,
-        to: toAddress,
-        ///amount: amount,
-
-        amount: sendAmountTo,
-      });
-    
-
-      const sendData = await sendAndConfirmTransaction({
-        transaction: transactionSendTo,
-        account: account,
-      });
-
-
-
-
-      console.log("Minted successfully!");
-
-
-      console.log(`Transaction hash: ${sendData.transactionHash}`);
-    
-      
-
-
-      ///const tx = await sendAndConfirmTransaction({
-
-
-      // 0xAeB385c91131Efd90d60b85D143Dd0467e161a7d is store wallet address
-
-      const toAddressStore = '0xAeB385c91131Efd90d60b85D143Dd0467e161a7d'; // 0.9 USDT to this address
-
-
-      const sendAmountToStore = parseFloat(amount) * 0.9;
-
-      const transactionSendToStore = transfer({
-        contract,
-        to: toAddressStore,
-        amount: sendAmountToStore,
-      });
-
-      const sendDataStore = await sendAndConfirmTransaction({
-        transaction: transactionSendToStore,
-        account: account,
-      });
-
-      console.log("Minted successfully!");
-
-      console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
-
-
-
-
-      /*
-      return NextResponse.json(
-        { success: true, message: 'GET Request Success' },
-        { status: 200 }
-      );
-      */
-      
-
-
-
-
-    } catch (error) {
-      console.log(error);
-
-      /*
-      return NextResponse.json(
-        `First Error: ${error}`,
-        { status: 500 }
-      );
-      */
-    }
-
-
 
 
   } );
