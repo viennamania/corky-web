@@ -7,7 +7,7 @@ import {
 
 ///import { get } from 'lodash';
 
-import { ethers } from "ethers";
+import { ethers, N } from "ethers";
 
 
 import {
@@ -226,13 +226,15 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     }
 
 
-    const toAddress = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971';
+    const toAddress = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971'; // 0.1 USDT to this address
     
 
     const transactionSendTo = transfer({
       contract,
       to: toAddress,
-      amount: amount,
+      ///amount: amount,
+
+      amount: Number(amount) * 0.1,
     });
   
 
@@ -253,6 +255,28 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
 
     ///const tx = await sendAndConfirmTransaction({
+
+
+    // 0xAeB385c91131Efd90d60b85D143Dd0467e161a7d is store wallet address
+
+    const toAddressStore = '0xAeB385c91131Efd90d60b85D143Dd0467e161a7d'; // 0.9 USDT to this address
+
+    const transactionSendToStore = transfer({
+      contract,
+      to: toAddressStore,
+      amount: Number(amount) * 0.9,
+    });
+
+    const sendDataStore = await sendAndConfirmTransaction({
+      transaction: transactionSendToStore,
+      account: account,
+    });
+
+    console.log("Minted successfully!");
+
+    console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
+
+
 
 
 
