@@ -51,6 +51,8 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
   const results = await getUserByEmail(userid) as any;
 
+  console.log('results: ' + JSON.stringify(results));
+
   // if exists, then return the user
   if (results) {
 
@@ -62,6 +64,10 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     */
 
     const walletAddress = results.walletAddress;
+
+
+    console.log('walletAddress: ' + walletAddress);
+
 
     return NextResponse.json(
       { success: true, message: 'GET Request Success', data: walletAddress },

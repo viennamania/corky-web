@@ -83,6 +83,7 @@ Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris 
 
 export async function insertOne(data: any) {
 
+  console.log('insertOne data: ' + data);
 
 
   const client = await clientPromise;
