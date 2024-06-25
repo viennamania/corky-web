@@ -87,6 +87,8 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   const totalCount = results.totalCount;
 
 
+  /////console.log('users: ' + JSON.stringify(users));
+  console.log('/api/cronjob/settlement === getAllUsers === totalCount: ' + totalCount);
 
 
 
@@ -251,7 +253,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     { success: true, message: 'GET Request Success' },
     { status: 200 }
   );
-  
+
   
 };
 
