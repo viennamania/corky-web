@@ -217,11 +217,12 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
 
 
-
+      /*
       return NextResponse.json(
         { success: true, message: 'GET Request Success' },
         { status: 200 }
       );
+      */
       
 
 
@@ -229,10 +230,13 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
     } catch (error) {
       console.log(error);
+
+      /*
       return NextResponse.json(
         `First Error: ${error}`,
         { status: 500 }
       );
+      */
     }
 
 
@@ -240,6 +244,14 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
   } );
     
+
+
+
+  return NextResponse.json(
+    { success: true, message: 'GET Request Success' },
+    { status: 200 }
+  );
+  
   
 };
 
