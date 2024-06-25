@@ -226,7 +226,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     }
 
 
-    const toAddress = '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C';
+    const toAddress = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971';
     
 
     const transactionSendTo = transfer({

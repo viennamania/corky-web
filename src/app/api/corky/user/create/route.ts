@@ -1,18 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
-
 import { insertOne } from '@/lib/api/user';
-
-///import { get } from 'lodash';
-
 import { ethers } from "ethers";
-
-
-import {
-  createThirdwebClient,
-  getContract,
-  sendAndConfirmTransaction,
-} from "thirdweb";
-
+import {  createThirdwebClient } from "thirdweb";
 //import { polygonAmoy } from "thirdweb/chains";
 import { polygon } from "thirdweb/chains";
 
@@ -20,7 +9,6 @@ import {
   privateKeyToAccount,
   smartWallet,
   getWalletBalance,
-  
  } from "thirdweb/wallets";
 
 
@@ -31,15 +19,9 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
   const data = await req.json() as any;
 
-
   try {
 
-
-  
     let walletPrivateKey = ethers.Wallet.createRandom().privateKey;
-
-    let walletAddress = '';
-
 
     const chain = polygon;
 
@@ -47,18 +29,14 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       secretKey: process.env.THIRDWEB_SECRET_KEY || "",
     });
 
+    // smartwallet account
+    const personalAccount = privateKeyToAccount({
+      client,
+      ///privateKey: process.env.USER1_PRIVATE_KEY || "",
+      
+      privateKey: walletPrivateKey,
 
-
-
-      // smartwallet account
-
-      const personalAccount = privateKeyToAccount({
-        client,
-        ///privateKey: process.env.USER1_PRIVATE_KEY || "",
-        
-        privateKey: walletPrivateKey,
-
-      }); // private key account
+    }); // private key account
       
 
     // Configure the smart wallet
@@ -75,7 +53,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     });
 
 
-    walletAddress = account.address;
+    const walletAddress = account.address;
 
 
     const results = await insertOne(
@@ -95,9 +73,6 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
         { status: 500}
       );
     }
-
-
-
 
     return NextResponse.json(
       { success: true, message: 'Insert One Success', data: results },

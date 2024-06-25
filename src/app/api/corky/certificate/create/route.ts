@@ -18,6 +18,13 @@ import { polygon } from "thirdweb/chains";
 
 
 import {
+  privateKeyToAccount,
+  smartWallet,
+  getWalletBalance,
+  
+ } from "thirdweb/wallets";
+
+ import {
   mintTo,
   mintAdditionalSupplyTo,
   totalSupply,
@@ -29,13 +36,6 @@ import {
 
 } from "thirdweb/extensions/erc1155";
 
-
-import {
-  privateKeyToAccount,
-  smartWallet,
-  getWalletBalance,
-  
- } from "thirdweb/wallets";
 
 
 import { parse } from 'path';
