@@ -36,6 +36,7 @@ import {
 } from "thirdweb/extensions/erc20";
 import { getAll } from '@/lib/api/shop';
 import { u } from 'uploadthing/dist/types-e8f81bbc';
+import { parse } from 'path';
 
 /*
 import {
@@ -148,7 +149,6 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
       
       const amount = balance.displayValue;
 
-      console.log('amount: ' + amount);
 
 
       if (parseFloat(amount) > 0.0) {
@@ -165,60 +165,70 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
           const toAddressStore = '0xAeB385c91131Efd90d60b85D143Dd0467e161a7d'; // 0.9 USDT to this address
 
-          const sendAmountToStore = parseFloat(amount) * 0.9;
+          const sendAmountToStore = Math.floor(parseFloat(amount) * 0.9 * 10) / 10;
 
 
           const toAddressFee = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971'; // 0.1 USDT to this address
           
           // get 10% of amount
 
-          const sendAmountTo = parseFloat(amount) - sendAmountToStore;
+          const sendAmountToFee = Math.floor( (parseFloat(amount) - sendAmountToStore) * 10) / 10;
+
+
+          console.log('amount: ' + amount, 'sendAmountToStore: ' + sendAmountToStore, 'sendAmountToFee: ' + sendAmountToFee);
+
+
+          if (sendAmountToStore > 0.0) {
+
+            const transactionSendToStore = transfer({
+              contract,
+              to: toAddressStore,
+              amount: sendAmountToStore,
+            });
+
+            const sendDataStore = await sendAndConfirmTransaction({
+              transaction: transactionSendToStore,
+              account: account,
+            });
+
+            console.log("Minted successfully!");
+
+            console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
 
 
 
 
-          const transactionSendToStore = transfer({
-            contract,
-            to: toAddressStore,
-            amount: sendAmountToStore,
-          });
+            if (sendAmountToFee > 0.0) {
 
-          const sendDataStore = await sendAndConfirmTransaction({
-            transaction: transactionSendToStore,
-            account: account,
-          });
-
-          console.log("Minted successfully!");
-
-          console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
-
-
-
-
-
-          const transactionSendTo = transfer({
-            contract,
-            to: toAddressFee,
-            ///amount: amount,
-
-            amount: sendAmountTo,
-          });
-        
-
-          const sendData = await sendAndConfirmTransaction({
-            transaction: transactionSendTo,
-            account: account,
-          });
+              const transactionSendTo = transfer({
+                contract,
+                to: toAddressFee,
+                amount: sendAmountToFee,
+              });
+            
+  
+              const sendData = await sendAndConfirmTransaction({
+                transaction: transactionSendTo,
+                account: account,
+              });
+  
+  
+  
+  
+              console.log("Minted successfully!");
+  
+  
+              console.log(`Transaction hash: ${sendData.transactionHash}`);
+            
+              
+            }
 
 
 
+          }
 
-          console.log("Minted successfully!");
 
 
-          console.log(`Transaction hash: ${sendData.transactionHash}`);
-        
-          
 
 
 
