@@ -4,12 +4,7 @@
         {
             "path": "/api/cronjob/settlement",
             "schedule": "* * * * *"
-        },
-        {
-            "path": "/api/cronjob/settlement2",
-            "schedule": "* * * * *"
         }
-
 
     ]
 }
