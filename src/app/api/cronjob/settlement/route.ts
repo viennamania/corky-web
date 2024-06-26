@@ -32,7 +32,11 @@ import {
   mintTo,
   totalSupply,
   transfer,
+  
   getBalance,
+
+  balanceOf,
+
 } from "thirdweb/extensions/erc20";
 import { getAll } from '@/lib/api/shop';
 import { u } from 'uploadthing/dist/types-e8f81bbc';
@@ -127,7 +131,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
       const walletAddress = account.address;
 
-      console.log('walletAddress: ' + walletAddress);
+      ///console.log('walletAddress: ' + walletAddress);
 
       /*
       const balance = await getWalletBalance({
@@ -140,14 +144,33 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
       //const balance = await contract.balanceOf(walletAddress);
 
-
+      
       const balance = await getBalance({
         contract,
         address: walletAddress,
       });
+      const amount = Number(balance.displayValue).toFixed(2);
 
+      const symbol = balance.symbol;
+
+      console.log('walletAddress: ' + walletAddress + ' amount: ' + amount, 'symbol: ' + symbol);
       
-      const amount = balance.displayValue;
+      /*
+      {Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
+                  {tokenBalance?.symbol}
+      */
+
+      /*
+      const balance = await balanceOf({
+        contract,
+        address: walletAddress,
+      });
+
+      // bitInt to string
+      const amount = balance.toString();
+      */
+      
+      
 
 
 
@@ -175,7 +198,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
           const sendAmountToFee = Math.floor( (parseFloat(amount) - sendAmountToStore) * 10) / 10;
 
 
-          console.log('amount: ' + amount, 'sendAmountToStore: ' + sendAmountToStore, 'sendAmountToFee: ' + sendAmountToFee);
+          console.log('walletAddress: ' + walletAddress + ' amount: ' + amount, 'sendAmountToStore: ' + sendAmountToStore, 'sendAmountToFee: ' + sendAmountToFee);
 
 
           if (sendAmountToStore > 0.0) {
@@ -244,7 +267,8 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
 
         } catch (error) {
-          console.log(error);
+
+          console.log("error=====>" + error);
 
           /*
           return NextResponse.json(
