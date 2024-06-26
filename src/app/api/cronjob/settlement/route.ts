@@ -49,14 +49,24 @@ import {
 */
 
 
+/*
+import {
 
+  useContract,
+  useContractRead,
 
+} from '@thirdweb-dev/react';
+
+*/
 
 
 /* ======================================
 
 ======================================= */
 export const GET = async (req: NextRequest, res: NextResponse) => {
+
+
+
 
 
   const chain = polygon;
@@ -77,6 +87,30 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     chain: chain,
     address: tokenContractAddressUSDT, // erc20 contract from thirdweb.com/explore
   });
+
+
+
+  ///const contractERC20 = useContract(tokenContractAddressUSDT);
+  
+  //const { data: nft } = useNFT(contractAAA, tokenId);
+
+
+  //const contractERC20 = useContract(tokenContractAddressUSDT) as any;
+
+  /*
+  const { data, isLoading, error } = useContractRead(
+    contractERC20,
+    "getBalance",
+  );
+  */
+
+
+
+  //const balanceAAA = await contractERC20.balanceOf('0x7e888D4Db56817C4Bd46F23057fFE4314371Bb3a');
+
+
+  //console.log('balanceAAA: ' + balanceAAA);
+
 
 
 
@@ -102,6 +136,8 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   // async function
 
   users.map(async (user: any) => {
+
+
 
 
     const walletPrivateKey = user.walletPrivateKey;
@@ -141,147 +177,118 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
       */
 
 
+      if (walletAddress === '0x7e888D4Db56817C4Bd46F23057fFE4314371Bb3a') {
 
-      //const balance = await contract.balanceOf(walletAddress);
+        //const balance = await contract.balanceOf(walletAddress);
 
-      
-      const balance = await getBalance({
-        contract,
-        address: walletAddress,
-      });
-      const amount = Number(balance.displayValue).toFixed(2);
-
-      const symbol = balance.symbol;
-
-      console.log('walletAddress: ' + walletAddress + ' amount: ' + amount, 'symbol: ' + symbol);
-      
-      /*
-      {Number(tokenBalance?.displayValue).toFixed(2)}</b>{' '}
-                  {tokenBalance?.symbol}
-      */
-
-      /*
-      const balance = await balanceOf({
-        contract,
-        address: walletAddress,
-      });
-
-      // bitInt to string
-      const amount = balance.toString();
-      */
-      
-      
-
-
-
-      if (parseFloat(amount) > 0.0) {
-
-        try {
-
-
-
-
-          ///const tx = await sendAndConfirmTransaction({
-
-
-          // 0xAeB385c91131Efd90d60b85D143Dd0467e161a7d is store wallet address
-
-          const toAddressStore = '0xAeB385c91131Efd90d60b85D143Dd0467e161a7d'; // 0.9 USDT to this address
-
-          //const sendAmountToStore = Math.floor(parseFloat(amount) * 0.9 * 10) / 10;
-
-          const sendAmountToStore = parseFloat(amount);
-
-
-
-
-          const toAddressFee = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971'; // 0.1 USDT to this address
+          /*
+          const balance = await getBalance({
+            contract,
+            address: walletAddress,
+          });
           
-          // get 10% of amount
+          ///const amount = Number(balance.displayValue).toFixed(2);
 
-          const sendAmountToFee = Math.floor( (parseFloat(amount) - sendAmountToStore) * 10) / 10;
-
-
-          console.log('walletAddress: ' + walletAddress + ' amount: ' + amount, 'sendAmountToStore: ' + sendAmountToStore, 'sendAmountToFee: ' + sendAmountToFee);
+          const amount = balance.displayValue;
 
 
-          if (sendAmountToStore > 0.0) {
 
-            const transactionSendToStore = transfer({
-              contract,
-              to: toAddressStore,
-              amount: sendAmountToStore,
-            });
+          const symbol = balance.symbol;
 
-            const sendDataStore = await sendAndConfirmTransaction({
-              transaction: transactionSendToStore,
-              account: account,
-            });
+          console.log('walletAddress: ' + walletAddress + ' amount: ' + amount, 'symbol: ' + symbol);
+          */
 
-            console.log("Minted successfully!");
+          const amount = "1";
+      
 
-            console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
+
+
+        if (parseFloat(amount) > 0.0) {
+
+          try {
+
+
+
+
+            ///const tx = await sendAndConfirmTransaction({
+
+
+            // 0xAeB385c91131Efd90d60b85D143Dd0467e161a7d is store wallet address
+
+            const toAddressStore = '0xAeB385c91131Efd90d60b85D143Dd0467e161a7d'; // 0.9 USDT to this address
+
+            //const sendAmountToStore = Math.floor(parseFloat(amount) * 0.9 * 10) / 10;
+
+            const sendAmountToStore = parseFloat(amount);
+
+
+
+
+            const toAddressFee = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971'; // 0.1 USDT to this address
+            
+            // get 10% of amount
+
+            const sendAmountToFee = Math.floor( (parseFloat(amount) - sendAmountToStore) * 10) / 10;
+
+
+            console.log('walletAddress: ' + walletAddress + ' amount: ' + amount, 'sendAmountToStore: ' + sendAmountToStore, 'sendAmountToFee: ' + sendAmountToFee);
+
+
+            
+            if (sendAmountToStore > 0.0) {
+
+              const transactionSendToStore = transfer({
+                contract,
+                to: toAddressStore,
+                amount: sendAmountToStore,
+              });
+
+              const sendDataStore = await sendAndConfirmTransaction({
+                transaction: transactionSendToStore,
+                account: account,
+              });
+
+              console.log("Minted successfully!");
+
+              console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
+
+
+
+            }
+              
+
+            
+
+
 
 
 
 
             /*
-            if (sendAmountToFee > 0.0) {
-
-              const transactionSendTo = transfer({
-                contract,
-                to: toAddressFee,
-                amount: sendAmountToFee,
-              });
-            
-  
-              const sendData = await sendAndConfirmTransaction({
-                transaction: transactionSendTo,
-                account: account,
-              });
-  
-  
-  
-  
-              console.log("Minted successfully!");
-  
-  
-              console.log(`Transaction hash: ${sendData.transactionHash}`);
-            
-              
-            }
+            return NextResponse.json(
+              { success: true, message: 'GET Request Success' },
+              { status: 200 }
+            );
             */
+            
 
 
 
+
+          } catch (error) {
+
+            console.log("walletAddress: " + walletAddress + " error=====>" + error);
+
+            ///console.log("error=====>" + error);
+
+            /*
+            return NextResponse.json(
+              `First Error: ${error}`,
+              { status: 500 }
+            );
+            */
           }
 
-
-
-
-
-
-          /*
-          return NextResponse.json(
-            { success: true, message: 'GET Request Success' },
-            { status: 200 }
-          );
-          */
-          
-
-
-
-
-        } catch (error) {
-
-          console.log("error=====>" + error);
-
-          /*
-          return NextResponse.json(
-            `First Error: ${error}`,
-            { status: 500 }
-          );
-          */
         }
 
 
