@@ -188,7 +188,11 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
           const toAddressStore = '0xAeB385c91131Efd90d60b85D143Dd0467e161a7d'; // 0.9 USDT to this address
 
-          const sendAmountToStore = Math.floor(parseFloat(amount) * 0.9 * 10) / 10;
+          //const sendAmountToStore = Math.floor(parseFloat(amount) * 0.9 * 10) / 10;
+
+          const sendAmountToStore = parseFloat(amount);
+
+
 
 
           const toAddressFee = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971'; // 0.1 USDT to this address
@@ -221,6 +225,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
 
 
+            /*
             if (sendAmountToFee > 0.0) {
 
               const transactionSendTo = transfer({
@@ -245,6 +250,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
             
               
             }
+            */
 
 
 
