@@ -244,23 +244,24 @@ const processSongpa = async (
 
         // 0xAeB385c91131Efd90d60b85D143Dd0467e161a7d is store wallet address
 
-        const toAddressStore = '0xAeB385c91131Efd90d60b85D143Dd0467e161a7d'; // 0.9 USDT to this address
+        const toAddressStore = '0xAeB385c91131Efd90d60b85D143Dd0467e161a7d';
 
         // 0.99 USDT to this address
 
-        const sendAmountToStore = parseFloat(amount) * 0.99;
+        const sendAmountToStore = parseInt(Number(parseFloat(amount) * 0.99 * 1000000.0).toFixed(0)) / 1000000.0;
 
 
 
 
-        ////const toAddressFee = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971'; // 0.1 USDT to this address
+        const toAddressFee = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971';
+
         
-        // get 10% of amount
+        // get 1% of amount
 
-        ///const sendAmountToFee = Math.floor( (parseFloat(amount) - sendAmountToStore) * 10) / 10;
+        const sendAmountToFee = parseInt(Number(Math.floor( (parseFloat(amount) - sendAmountToStore) * 1000000.0 )).toFixed(0)) / 1000000.0;
 
 
-        console.log('walletAddress: ' + walletAddress + ' amount: ' + amount, 'sendAmountToStore: ' + sendAmountToStore );
+        console.log('walletAddress: ' + walletAddress + ' amount: ' + amount, 'sendAmountToStore: ' + sendAmountToStore, 'sendAmountToFee: ' + sendAmountToFee);
 
 
         
@@ -280,6 +281,29 @@ const processSongpa = async (
           console.log("Sent successfully!");
 
           console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
+
+
+
+          // 10 seconds sleep
+
+          await new Promise(resolve => setTimeout(resolve, 10000));
+
+
+
+          const transactionSendToFee = transfer({
+            contract,
+            to: toAddressFee,
+            amount: sendAmountToFee,
+          });
+
+          const sendDataFee = await sendAndConfirmTransaction({
+            transaction: transactionSendToFee,
+            account: account,
+          });
+
+          console.log("Sent successfully!");
+
+          console.log(`Transaction hash: ${sendDataFee.transactionHash}`);
 
 
 

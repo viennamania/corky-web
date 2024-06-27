@@ -105,7 +105,7 @@ export default function Dashboard() {
 
   //  eache 10 seconds
   // call api /api/cronjob/settlement
-
+  /*
   useEffect(() => {
     
     const interval = setInterval(() => {
@@ -120,6 +120,7 @@ export default function Dashboard() {
 
     return () => clearInterval(interval);
   } , []);
+   */
 
   
 
