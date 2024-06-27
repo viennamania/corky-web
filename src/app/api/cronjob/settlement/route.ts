@@ -246,9 +246,9 @@ const processSongpa = async (
 
         const toAddressStore = '0xAeB385c91131Efd90d60b85D143Dd0467e161a7d'; // 0.9 USDT to this address
 
-        //const sendAmountToStore = Math.floor(parseFloat(amount) * 0.9 * 10) / 10;
+        // 0.99 USDT to this address
 
-        const sendAmountToStore = parseFloat(amount);
+        const sendAmountToStore = parseFloat(amount) * 0.99;
 
 
 

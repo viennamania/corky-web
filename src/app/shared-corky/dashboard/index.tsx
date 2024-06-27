@@ -98,8 +98,30 @@ function SectionBlock({
 
 
 
+
+
+
 export default function Dashboard() {
 
+  //  eache 10 seconds
+  // call api /api/cronjob/settlement
+
+  useEffect(() => {
+    
+    const interval = setInterval(() => {
+      console.log('This will run every 10 seconds!');
+
+      // call api /api/cronjob/settlement
+      fetch('/api/cronjob/settlement')
+        .then(response => response.json())
+        .then(data => console.log(data));
+
+    }, 10000);
+
+    return () => clearInterval(interval);
+  } , []);
+
+  
 
 
   const { data: session } = useSession();
