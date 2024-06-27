@@ -59,6 +59,18 @@ import {
 
 */
 
+/*
+import { Network, Alchemy } from 'alchemy-sdk';
+
+
+
+
+const settings = {
+  apiKey: process.env.ALCHEMY_API_KEY,
+  network: Network.MATIC_MAINNET, // Replace with your network.
+};
+*/
+
 
 
 const chain = polygon;
@@ -81,9 +93,15 @@ const contract = getContract({
 });
 
 
+
+
+
+
 // sync function
 
-const processSongpa = async (walletPrivateKey: string) => {
+const processSongpa = async (
+  walletPrivateKey: string
+) => {
 
 
   // balance of wallet
@@ -106,24 +124,109 @@ const processSongpa = async (walletPrivateKey: string) => {
 
   const walletAddress = account.address;
 
-  ///console.log('walletAddress: ' + walletAddress);
+  console.log('walletAddress: ' + walletAddress);
 
-  
+
+
+
+  /*
   const balance = await getBalance({
     contract,
     address: walletAddress,
   });
   
 
-  /*
-  return {
-    walletAddress: walletAddress,
-    balance: balance.displayValue,
-    symbol: balance.symbol,
-  };
+  const amount = balance.displayValue;
   */
 
+
+  //The below token contract address corresponds to USDT
+  //const tokenContractAddresses = ["0xdAC17F958D2ee523a2206206994597C13D831ec7"];
+
+  //try {
+
+
+  const tokenContractAddresses = [tokenContractAddressUSDT];
+  
+
+
+
+  
+         // call the method to return the token balances for this address
+         // random number
+         const resuestId =  Math.floor(Math.random() * 1000);
+
+         // eth
+         ///const data = await fetch(`https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`, {
+         // polygon
+         // https://polygon-mainnet.g.alchemy.com/v2/your-api-key
+ 
+         // https://polygon-mainnet.alchemyapi.io/v2/your-api-key
+ 
+         const data = await fetch(`https://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`, {
+ 
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json',
+             },
+             body: JSON.stringify({
+                 jsonrpc: '2.0',
+                 method: 'alchemy_getTokenBalances',
+                 params: [walletAddress, [tokenContractAddressUSDT]],
+                 id: resuestId,
+             }),
+         });
+ 
+         const response = await data.json() as any;
+ 
+         ///console.log(response);
+         /*
+         {
+             jsonrpc: '2.0',
+             id: '1',
+             result: {
+                 address: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045',
+                 tokenBalances: [ [Object] ]
+             }
+         }
+ 
+         $wei = hexdec($result['tokenBalances']['0']['tokenBalance']);
+ 
+         $balance = $wei / pow(10, 18);
+ 
+ 
+         */
+ 
+ 
+         const balanceBigNumber = parseInt(response.result.tokenBalances[0].tokenBalance);
+ 
+         ///console.log('balanceBigNumber: ' + balanceBigNumber);
+ 
+         const balance = balanceBigNumber / Math.pow(10, 6);
+ 
+         console.log('walletAddress: ' + walletAddress + ' balance: ' + balance);
+
+    
+
+
+
+  const amount = balance + '';
+  
+
+  /*
+  const balance = await getBalance({
+    contract,
+    address: walletAddress,
+  });
+
   const amount = balance.displayValue;
+  */
+  
+
+
+
+  console.log("parseFloat amount", parseFloat(amount));
+
 
 
 
@@ -220,8 +323,7 @@ const processSongpa = async (walletPrivateKey: string) => {
 
     return {
       walletAddress: walletAddress,
-      balance: balance.displayValue,
-      symbol: balance.symbol,
+      amount: amount,
     };
 
 }
@@ -237,8 +339,9 @@ const processSongpa = async (walletPrivateKey: string) => {
 /* ======================================
 
 ======================================= */
-export const GET = async (req: NextRequest, res: NextResponse) => {
 
+
+export const GET = async (req: NextRequest, res: NextResponse) => {
 
 
 
@@ -264,7 +367,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
 
 
-
+  /*
   users.map(async (user: any) => {
 
 
@@ -278,22 +381,59 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     ///console.log('data: ' + JSON.stringify(data));
 
     const walletAddress = data.walletAddress;
-    const balance = data.balance;
-    const symbol = data.symbol;
 
-    console.log('walletAddress: ' + walletAddress + ' balance: ' + balance, 'symbol: ' + symbol);
-  
+
 
 
   } );
+   */
+
+
+
+
+  try {
+
+
+    for (let i = 0; i < users.length; i++) {
+
+      const user = users[i];
+
+      const walletPrivateKey = user.walletPrivateKey;
+
+      //console.log('walletPrivateKey: ' + walletPrivateKey);
+
+      
+      const data = await processSongpa(
+        walletPrivateKey
+      );
+      
+
+      ///console.log('data: ' + JSON.stringify(data));
+
+      //const walletAddress = data.walletAddress;
+
+      //console.log('walletAddress: ' + walletAddress);
+      
+
+
+    }
+
+  } catch (error) {
+      
+      console.log("error=====>" + error);
+  
+  }
     
 
+  console.log('users.length: ' + users.length);
 
 
+  
   return NextResponse.json(
     { success: true, message: 'GET Request Success' },
     { status: 200 }
   );
+  
 
   
 };
