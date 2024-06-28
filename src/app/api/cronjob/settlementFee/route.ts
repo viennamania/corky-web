@@ -171,6 +171,7 @@ const processSongpa = async (
   const sendAmountToFee = feeAmount;
 
 
+    let transactionHash = '';
 
 
 
@@ -198,11 +199,11 @@ const processSongpa = async (
           console.log("Sent successfully!");
 
           console.log(`Transaction hash: ${sendDataFee.transactionHash}`);
+
+
+          transactionHash = sendDataFee.transactionHash;
         
 
-          updateSettlementAmountOfFee(walletAddress, "0");
-
-          errorMessages.push(`Transaction hash: ${sendDataFee.transactionHash}`);
 
 
 
@@ -217,7 +218,11 @@ const processSongpa = async (
 
       }
 
-  
+
+      updateSettlementAmountOfFee(walletAddress, "0");
+
+      errorMessages.push(`Transaction hash: ${transactionHash}`);
+
 
 
     return {
