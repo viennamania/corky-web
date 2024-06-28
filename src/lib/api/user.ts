@@ -615,23 +615,25 @@ export async function getAllUsersForSettlementOfStore(
 
 
 
-// update users set walletCollection = 'Y' and walletCollectionAmount = 324.43 where walletAddress = '0x1234'
-export async function updateUserWalletCollectionAmount(
+// update settlementAmountOfFee for User collection
+export async function updateSettlementAmountOfFee(
   walletAddress: string,
-  walletCollectionAmount: number
+  settlementAmountOfFee: string,
 ) {
-  const client = await clientPromise;
-  const collection = client.db('lefimall').collection('users');
-  return await collection.updateOne(
-    { walletAddress },
-    { $set: {
-        walletCollecition: 'Y',
-        walletCollectionAmount,
+  
+    const client = await clientPromise;
+    const collection = client.db('lefimall').collection('users');
+  
+    return await collection.updateOne(
+      { walletAddress },
+      {
+        $set: {
+          settlementAmountOfFee,
+        }
       }
-    }
-  );
-}
-
+    );
+  
+  }
 
 // check walletCollection ('Y' or 'N') for User collection
 // if 

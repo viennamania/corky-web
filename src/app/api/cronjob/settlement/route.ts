@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from 'next/server';
 
 import {
   getAllUsersForSettlementOfStore,
+  updateSettlementAmountOfFee,
   getUserByEmail,
   insertOne
 } from '@/lib/api/user';
@@ -267,6 +268,8 @@ const processSongpa = async (
         
         if (sendAmountToStore > 0.0) {
 
+          try {
+
           const transactionSendToStore = transfer({
             contract,
             to: toAddressStore,
@@ -282,10 +285,19 @@ const processSongpa = async (
 
           console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
 
+          updateSettlementAmountOfFee(walletAddress, String(sendAmountToFee));
+
+
+        } catch (error) {
+            
+          console.log("walletAddress: " + walletAddress + " error=====>" + error);
+
+        }
+
 
 
           // 10 seconds sleep
-
+          /*
           await new Promise(resolve => setTimeout(resolve, 10000));
 
 
@@ -304,7 +316,7 @@ const processSongpa = async (
           console.log("Sent successfully!");
 
           console.log(`Transaction hash: ${sendDataFee.transactionHash}`);
-
+          */
 
 
         }
