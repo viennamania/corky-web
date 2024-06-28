@@ -105,6 +105,8 @@ const processSongpa = async (
 ) => {
 
 
+  let errorMessages = [];
+
   // balance of wallet
 
   const personalAccount = privateKeyToAccount({
@@ -144,10 +146,10 @@ const processSongpa = async (
   //The below token contract address corresponds to USDT
   //const tokenContractAddresses = ["0xdAC17F958D2ee523a2206206994597C13D831ec7"];
 
-  //try {
+  try {
 
 
-  const tokenContractAddresses = [tokenContractAddressUSDT];
+    const tokenContractAddresses = [tokenContractAddressUSDT];
   
 
 
@@ -211,22 +213,22 @@ const processSongpa = async (
 
 
 
-  const amount = balance + '';
+    const amount = balance + '';
   
 
-  /*
-  const balance = await getBalance({
-    contract,
-    address: walletAddress,
-  });
+    /*
+    const balance = await getBalance({
+      contract,
+      address: walletAddress,
+    });
 
-  const amount = balance.displayValue;
-  */
-  
+    const amount = balance.displayValue;
+    */
+    
 
 
 
-  console.log("parseFloat amount", parseFloat(amount));
+    console.log("parseFloat amount", parseFloat(amount));
 
 
 
@@ -235,7 +237,7 @@ const processSongpa = async (
 
     if (parseFloat(amount) > 0.0) {
 
-      try {
+      
 
 
 
@@ -270,33 +272,35 @@ const processSongpa = async (
 
           try {
 
-          const transactionSendToStore = transfer({
-            contract,
-            to: toAddressStore,
-            amount: sendAmountToStore,
-          });
+            const transactionSendToStore = transfer({
+              contract,
+              to: toAddressStore,
+              amount: sendAmountToStore,
+            });
 
-          const sendDataStore = await sendAndConfirmTransaction({
-            transaction: transactionSendToStore,
-            account: account,
-          });
+            const sendDataStore = await sendAndConfirmTransaction({
+              transaction: transactionSendToStore,
+              account: account,
+            });
 
-          console.log("Sent successfully!");
+            console.log("Sent successfully!");
 
-          console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
+            console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
 
-          updateSettlementAmountOfFee(walletAddress, String(sendAmountToFee));
-
-
-
-          
+            updateSettlementAmountOfFee(walletAddress, String(sendAmountToFee));
 
 
-        } catch (error) {
-            
-          console.log("walletAddress: " + walletAddress + " error=====>" + error);
 
-        }
+
+
+
+          } catch (error) {
+              
+            console.log("walletAddress: " + walletAddress + " error=====>" + error);
+
+            errorMessages.push(error);
+
+          }
 
 
 
@@ -341,30 +345,22 @@ const processSongpa = async (
         */
         
 
-
-
-
-      } catch (error) {
-
-        console.log("walletAddress: " + walletAddress + " error=====>" + error);
-
-        ///console.log("error=====>" + error);
-
-        /*
-        return NextResponse.json(
-          `First Error: ${error}`,
-          { status: 500 }
-        );
-        */
-      }
-
     }
 
+  } catch (error) {
+      
+      console.log("error=====>" + error);
 
-    return {
-      walletAddress: walletAddress,
-      amount: amount,
-    };
+      errorMessages.push(error);
+
+  }
+
+
+  return {
+    walletAddress: walletAddress,
+    errorMessages: errorMessages,
+    
+  };
 
 }
 
