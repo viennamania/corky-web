@@ -373,7 +373,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   const limit = 100;
   const page = 1;
 
-  const results = await getAllUsers(limit, page) as any;
+  const results = await getAllUsersForSettlementOfStore(limit, page) as any;
 
   //console.log('results: ' + JSON.stringify(results));
   //{"totalCount":1,"users":[{"_id":"61f7b1b1b3b3b0001f000001","name":"John Doe","email":"aaa"}]}
@@ -383,7 +383,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
 
   /////console.log('users: ' + JSON.stringify(users));
-  console.log('/api/cronjob/settlement === getAllUsers === totalCount: ' + totalCount);
+  console.log('/api/cronjob/settlement === getAllUsers === count: ' + users.length);
 
 
 
