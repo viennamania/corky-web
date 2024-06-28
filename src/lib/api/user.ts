@@ -125,6 +125,8 @@ export async function insertOne(data: any) {
       walletPrivateKey: data.walletPrivateKey,
 
       createdAt: new Date().toISOString(),
+
+      settlementAmountOfFee: "0",
     }
   );
 
