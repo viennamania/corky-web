@@ -86,18 +86,6 @@ const tokenContractAddressUSDT = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F';
 
 
 
-const client = createThirdwebClient({
-  secretKey: process.env.THIRDWEB_SECRET_KEY || "",
-});
-
-
-const contract = getContract({
-  client,
-  chain: chain,
-  address: tokenContractAddressUSDT, // erc20 contract from thirdweb.com/explore
-});
-
-
 
 
 
@@ -108,6 +96,22 @@ const processSongpa = async (
   walletPrivateKey: string,
   feeAmount: string,
 ) => {
+
+  let errorMessages = [];
+
+
+
+
+  const client = createThirdwebClient({
+    secretKey: process.env.THIRDWEB_SECRET_KEY || "",
+  });
+  
+  
+  const contract = getContract({
+    client,
+    chain: chain,
+    address: tokenContractAddressUSDT, // erc20 contract from thirdweb.com/explore
+  });
 
 
   // balance of wallet
@@ -194,6 +198,7 @@ const processSongpa = async (
 
           updateSettlementAmountOfFee(walletAddress, "0");
 
+          errorMessages.push(`Transaction hash: ${sendDataFee.transactionHash}`);
 
 
 
@@ -203,12 +208,9 @@ const processSongpa = async (
 
         ///console.log("error=====>" + error);
 
-        /*
-        return NextResponse.json(
-          `First Error: ${error}`,
-          { status: 500 }
-        );
-        */
+
+        errorMessages.push(error);
+
       }
 
   
@@ -216,6 +218,7 @@ const processSongpa = async (
 
     return {
       walletAddress: walletAddress,
+      errorMessages: errorMessages,
       
     };
 
@@ -236,7 +239,7 @@ const processSongpa = async (
 
 export const GET = async (req: NextRequest, res: NextResponse) => {
 
-
+  const resultsData = [] as any;
 
 
   const limit = 100;
@@ -291,6 +294,8 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
       const user = users[i];
 
+      //users.map(async (user: any) => {
+
       const walletPrivateKey = user.walletPrivateKey;
       const settlementAmountOfFee = user.settlementAmountOfFee;
 
@@ -310,8 +315,14 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
       //console.log('walletAddress: ' + walletAddress);
       
 
+      resultsData.push({
+        walletAddress: data.walletAddress,
+        errorMessages: data.errorMessages,
+      });
 
     }
+
+    //} );
 
   } catch (error) {
       
@@ -324,8 +335,11 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
 
   
+
+
+  
   return NextResponse.json(
-    { success: true, message: 'GET Request Success' },
+    { success: true, message: 'GET Request Success', 'resultsData': resultsData },
     { status: 200 }
   );
   

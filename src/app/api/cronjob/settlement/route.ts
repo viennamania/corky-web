@@ -81,7 +81,7 @@ const chain = polygon;
 const tokenContractAddressUSDT = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F';
 
 
-
+/*
 const client = createThirdwebClient({
   secretKey: process.env.THIRDWEB_SECRET_KEY || "",
 });
@@ -93,7 +93,7 @@ const contract = getContract({
   address: tokenContractAddressUSDT, // erc20 contract from thirdweb.com/explore
 });
 
-
+*/
 
 
 
@@ -105,7 +105,26 @@ const processSongpa = async (
 ) => {
 
 
+
+
+
   let errorMessages = [];
+
+
+
+  const client = createThirdwebClient({
+    secretKey: process.env.THIRDWEB_SECRET_KEY || "",
+  });
+  
+  
+  const contract = getContract({
+    client,
+    chain: chain,
+    address: tokenContractAddressUSDT, // erc20 contract from thirdweb.com/explore
+  });
+  
+
+
 
   // balance of wallet
 
@@ -127,7 +146,7 @@ const processSongpa = async (
 
   const walletAddress = account.address;
 
-  console.log('walletAddress: ' + walletAddress);
+  ///console.log('walletAddress: ' + walletAddress);
 
 
 
@@ -145,6 +164,13 @@ const processSongpa = async (
 
   //The below token contract address corresponds to USDT
   //const tokenContractAddresses = ["0xdAC17F958D2ee523a2206206994597C13D831ec7"];
+
+
+
+
+  let sendAmountToFee = 0.0;
+
+
 
   try {
 
@@ -203,7 +229,7 @@ const processSongpa = async (
  
          const balanceBigNumber = parseInt(response.result.tokenBalances[0].tokenBalance);
  
-         ///console.log('balanceBigNumber: ' + balanceBigNumber);
+         console.log('balanceBigNumber: ' + balanceBigNumber);
  
          const balance = balanceBigNumber / Math.pow(10, 6);
  
@@ -213,7 +239,20 @@ const processSongpa = async (
 
 
 
-    const amount = balance + '';
+    let amount = balance + '';
+
+
+
+    // test
+    /*
+    if (walletAddress == '0x22864AAfeb375b3f8F8E449Ef493F1E76d24d987') {
+      amount = "1";
+
+    }
+    */
+
+
+
   
 
     /*
@@ -228,7 +267,7 @@ const processSongpa = async (
 
 
 
-    console.log("parseFloat amount", parseFloat(amount));
+    ///console.log("parseFloat amount", parseFloat(amount));
 
 
 
@@ -259,9 +298,12 @@ const processSongpa = async (
         const toAddressFee = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971';
 
         
-        // get 1% of amount
+        // get 99% of amount
 
-        const sendAmountToFee = parseInt(Number(Math.floor( (parseFloat(amount) - sendAmountToStore) * 1000000.0 )).toFixed(0)) / 1000000.0;
+        sendAmountToFee = parseInt(Number(Math.floor( (parseFloat(amount) - sendAmountToStore) * 1000000.0 )).toFixed(0)) / 1000000.0;
+
+
+
 
 
         console.log('walletAddress: ' + walletAddress + ' amount: ' + amount, 'sendAmountToStore: ' + sendAmountToStore, 'sendAmountToFee: ' + sendAmountToFee);
@@ -270,8 +312,14 @@ const processSongpa = async (
         
         if (sendAmountToStore > 0.0) {
 
+
+        
+
+
+
           try {
 
+            
             const transactionSendToStore = transfer({
               contract,
               to: toAddressStore,
@@ -286,11 +334,12 @@ const processSongpa = async (
             console.log("Sent successfully!");
 
             console.log(`Transaction hash: ${sendDataStore.transactionHash}`);
+            
 
-            updateSettlementAmountOfFee(walletAddress, String(sendAmountToFee));
+            
 
 
-
+ 
 
 
 
@@ -299,33 +348,9 @@ const processSongpa = async (
             console.log("walletAddress: " + walletAddress + " error=====>" + error);
 
             errorMessages.push(error);
+          
 
           }
-
-
-
-          // 10 seconds sleep
-          /*
-          await new Promise(resolve => setTimeout(resolve, 10000));
-
-
-
-          const transactionSendToFee = transfer({
-            contract,
-            to: toAddressFee,
-            amount: sendAmountToFee,
-          });
-
-          const sendDataFee = await sendAndConfirmTransaction({
-            transaction: transactionSendToFee,
-            account: account,
-          });
-
-          console.log("Sent successfully!");
-
-          console.log(`Transaction hash: ${sendDataFee.transactionHash}`);
-          */
-
 
         }
           
@@ -354,6 +379,16 @@ const processSongpa = async (
       errorMessages.push(error);
 
   }
+
+
+  const result = updateSettlementAmountOfFee(walletAddress, String(sendAmountToFee));
+
+
+  console.log('result: ' + JSON.stringify(result));
+
+
+
+
 
 
   return {
@@ -427,37 +462,43 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
 
 
-  try {
+
+  let resultsData = [] as any;
 
 
-    for (let i = 0; i < users.length; i++) {
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
 
-      const user = users[i];
+  //users.map(async (user: any) => {
 
-      const walletPrivateKey = user.walletPrivateKey;
+    
 
-      //console.log('walletPrivateKey: ' + walletPrivateKey);
+    const walletPrivateKey = user.walletPrivateKey;
 
-      
-      const data = await processSongpa(
-        walletPrivateKey
-      );
-      
+    //console.log('walletPrivateKey: ' + walletPrivateKey);
 
-      ///console.log('data: ' + JSON.stringify(data));
+    
+    const data = await processSongpa(
+      walletPrivateKey
+    );
+    
 
-      //const walletAddress = data.walletAddress;
+    resultsData.push({
+      walletAddress: data.walletAddress,
+      errorMessages: data.errorMessages,
+    });
+    
 
-      //console.log('walletAddress: ' + walletAddress);
-      
+    ///console.log('data: ' + JSON.stringify(data));
+
+    //const walletAddress = data.walletAddress;
+
+    //console.log('walletAddress: ' + walletAddress);
+    
 
 
-    }
+  //} );
 
-  } catch (error) {
-      
-      console.log("error=====>" + error);
-  
   }
     
 
@@ -466,7 +507,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
   
   return NextResponse.json(
-    { success: true, message: 'GET Request Success' },
+    { success: true, message: 'GET Request Success', 'resultsData': resultsData },
     { status: 200 }
   );
   

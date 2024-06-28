@@ -622,18 +622,20 @@ export async function updateSettlementAmountOfFee(
   walletAddress: string,
   settlementAmountOfFee: string,
 ) {
+
+  console.log('updateSettlementAmountOfFee walletAddress: ' + walletAddress + ' settlementAmountOfFee: ' + settlementAmountOfFee);
   
-    const client = await clientPromise;
-    const collection = client.db('lefimall').collection('users');
-  
-    return await collection.updateOne(
-      { walletAddress },
-      {
-        $set: {
-          settlementAmountOfFee,
-        }
+  const client = await clientPromise;
+  const collection = client.db('lefimall').collection('users');
+
+  return await collection.updateOne(
+    { walletAddress },
+    {
+      $set: {
+        settlementAmountOfFee,
       }
-    );
+    }
+  );
   
   }
 
@@ -666,7 +668,7 @@ export async function getAllUsersForSettlementOfFee(
 
         settlementAmountOfFee: {
           $exists: true,
-          $gt: "0"
+          $ne: "0"
         }, 
 
       },
