@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
 
 import {
-  getAllUsers,
+  getAllUsersForSettlementOfStore,
   getUserByEmail,
   insertOne
 } from '@/lib/api/user';

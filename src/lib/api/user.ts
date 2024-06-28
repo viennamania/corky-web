@@ -549,3 +549,89 @@ export async function checkUser(id: string, password: string): Promise<UserProps
   }
 }
 
+
+
+
+
+
+
+
+
+export async function getAllUsersForSettlementOfStore(
+  limit: number,
+  page: number,
+): Promise<ResultProps> {
+
+
+  const client = await clientPromise;
+  const collection = client.db('lefimall').collection('users');
+
+
+  console.log('limit: ' + limit);
+  console.log('page: ' + page);
+
+  // walletAddress is not empty and not null
+
+  const users = await collection
+    .find<UserProps>(
+      {
+
+
+        walletAddress: { $exists: true, $ne: null },
+        walletPrivateKey: { $exists: true, $ne: null },
+
+        // when settlementAmountOfFee is exist, check settlementAmountOfFee is 0
+
+        settlementAmountOfFee: {
+          $exists: true,
+          $eq: "0"
+        }, 
+
+      },
+      {
+        limit: limit,
+        skip: (page - 1) * limit,
+      },
+      
+    )
+    .sort({ _id: -1 })
+    .toArray();
+
+
+  const totalCount = await collection.countDocuments(
+    {
+      walletAddress: { $exists: true, $ne: null },
+      walletPrivateKey: { $exists: true, $ne: null },
+    }
+  );
+
+  return {
+    totalCount,
+    users,
+  };
+
+}
+
+
+
+
+// update users set walletCollection = 'Y' and walletCollectionAmount = 324.43 where walletAddress = '0x1234'
+export async function updateUserWalletCollectionAmount(
+  walletAddress: string,
+  walletCollectionAmount: number
+) {
+  const client = await clientPromise;
+  const collection = client.db('lefimall').collection('users');
+  return await collection.updateOne(
+    { walletAddress },
+    { $set: {
+        walletCollecition: 'Y',
+        walletCollectionAmount,
+      }
+    }
+  );
+}
+
+
+// check walletCollection ('Y' or 'N') for User collection
+// if 
