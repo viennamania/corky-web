@@ -637,5 +637,59 @@ export async function updateSettlementAmountOfFee(
   
   }
 
-// check walletCollection ('Y' or 'N') for User collection
-// if 
+// getAllUsersForSettlementOfFee
+
+export async function getAllUsersForSettlementOfFee(
+  limit: number,
+  page: number,
+): Promise<ResultProps> {
+
+
+  const client = await clientPromise;
+  const collection = client.db('lefimall').collection('users');
+
+
+  console.log('limit: ' + limit);
+  console.log('page: ' + page);
+
+  // walletAddress is not empty and not null
+
+  const users = await collection
+    .find<UserProps>(
+      {
+
+
+        walletAddress: { $exists: true, $ne: null },
+        walletPrivateKey: { $exists: true, $ne: null },
+
+        // when settlementAmountOfFee is exist, check convert settlementAmountOfFee to float number and check settlementAmountOfFee is greater than 0
+
+        settlementAmountOfFee: {
+          $exists: true,
+          $gt: "0"
+        }, 
+
+      },
+      {
+        limit: limit,
+        skip: (page - 1) * limit,
+      },
+      
+    )
+    .sort({ _id: -1 })
+    .toArray();
+
+
+  const totalCount = await collection.countDocuments(
+    {
+      walletAddress: { $exists: true, $ne: null },
+      walletPrivateKey: { $exists: true, $ne: null },
+    }
+  );
+
+  return {
+    totalCount,
+    users,
+  };
+
+}
