@@ -1,4 +1,7 @@
-import { NextResponse, NextRequest } from 'next/server';
+//import { NextResponse, NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
+ 
+
 
 import {
   getAllUsersForSettlementOfStore,
@@ -412,7 +415,11 @@ const processSongpa = async (
 ======================================= */
 
 
-export const GET = async (req: NextRequest, res: NextResponse) => {
+//export const GET = async (req: NextRequest, res: NextResponse) => {
+
+//export function GET(request: NextRequest) {
+export async function GET(request: NextRequest) {
+
 
 
 
@@ -505,11 +512,13 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   console.log('users.length: ' + users.length);
 
 
-  
+  /*
   return NextResponse.json(
     { success: true, message: 'GET Request Success', 'resultsData': resultsData },
     { status: 200 }
   );
+  */
+  return Response.json({ success: true });
   
 
   
