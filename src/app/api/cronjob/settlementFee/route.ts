@@ -216,7 +216,7 @@ const processSongpa = async (
 
     return {
       walletAddress: walletAddress,
-      amount: amount,
+      
     };
 
 }
