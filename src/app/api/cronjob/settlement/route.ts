@@ -1,6 +1,8 @@
 //import { NextResponse, NextRequest } from 'next/server';
+
 import type { NextRequest } from 'next/server';
  
+//import type { NextApiRequest, NextApiResponse } from 'next';
 
 
 import {
@@ -291,7 +293,7 @@ const processSongpa = async (
 
         const toAddressStore = '0xAeB385c91131Efd90d60b85D143Dd0467e161a7d';
 
-        // 0.99 USDT to this address
+        // 99% USDT to this address
 
         const sendAmountToStore = parseInt(Number(parseFloat(amount) * 0.99 * 1000000.0).toFixed(0)) / 1000000.0;
 
@@ -301,9 +303,9 @@ const processSongpa = async (
         const toAddressFee = '0xcF8EE13900ECb474e8Ce89E7868C7Fd1ae930971';
 
         
-        // get 99% of amount
+        // get remaining amount
 
-        sendAmountToFee = parseInt(Number(Math.floor( (parseFloat(amount) - sendAmountToStore) * 1000000.0 )).toFixed(0)) / 1000000.0;
+        sendAmountToFee = parseFloat(amount) - sendAmountToStore;
 
 
 
@@ -418,10 +420,15 @@ const processSongpa = async (
 //export const GET = async (req: NextRequest, res: NextResponse) => {
 
 //export function GET(request: NextRequest) {
+
 export async function GET(request: NextRequest) {
 
-
-
+/*
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse,
+) {
+*/
 
 
   const limit = 100;
@@ -518,9 +525,18 @@ export async function GET(request: NextRequest) {
     { status: 200 }
   );
   */
-  return Response.json({ success: true });
-  
 
+
+  return Response.json({ success: true });
+
+  /*
+  res.status(200).json({
+    success: true,
+    message: 'GET Request Success',
+    resultsData: resultsData
+  });
+  
+  */
   
 };
 

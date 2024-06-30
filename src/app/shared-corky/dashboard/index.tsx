@@ -105,22 +105,56 @@ export default function Dashboard() {
 
   //  eache 10 seconds
   // call api /api/cronjob/settlement
-  /*
+  
+
+  const [loadingSettlement, setLoadingSettlement] = useState(false); 
+  const [loadingSettlementFee, setLoadingSettlementFee] = useState(false);
+
+
   useEffect(() => {
     
     const interval = setInterval(() => {
-      console.log('This will run every 10 seconds!');
+
+      setLoadingSettlement(true);
+
+      console.log('This will run every 20 seconds!');
 
       // call api /api/cronjob/settlement
-      fetch('/api/cronjob/settlement')
+      const result = fetch('/api/cronjob/settlement')
         .then(response => response.json())
         .then(data => console.log(data));
 
-    }, 10000);
+      console.log('result ->', result);
+
+      setLoadingSettlement(false);
+
+    }, 20000);
 
     return () => clearInterval(interval);
   } , []);
-   */
+   
+
+  useEffect(() => {
+    
+    const interval = setInterval(() => {
+
+      setLoadingSettlementFee(true);
+
+      console.log('This will run every 20 seconds!');
+
+      // call api /api/cronjob/settlement
+      const result = fetch('/api/cronjob/settlementFee')
+        .then(response => response.json())
+        .then(data => console.log(data));
+
+      console.log('result ->', result);
+
+      setLoadingSettlementFee(false);
+
+    }, 20000);
+
+    return () => clearInterval(interval);
+  } , []);
 
   
 
@@ -353,6 +387,28 @@ export default function Dashboard() {
         /images/home-banner.png
       */}
 
+      {/* loadingSettlement */}
+      {/* loadingSettlementFee */}
+
+      <div className="mt-10 flex flex-col items-center justify-center gap-5">
+
+      
+
+        {loadingSettlement && (
+          <div className=" h-96 w-full flex flex-row items-center justify-center gap-2">
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900"></div>
+            <div>Loading Settlement...</div>
+          </div>
+        )}
+
+        {loadingSettlementFee && (
+          <div className=" h-96 w-full flex flex-row items-center justify-center gap-2">
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900"></div>
+            <div>Loading Settlement Fee...</div>
+          </div>
+        )}
+
+      </div>
       
 
 

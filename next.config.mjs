@@ -62,6 +62,8 @@ const nextConfig = {
     ],
   },
   reactStrictMode: false,
+
+  staticPageGenerationTimeout: 1000,
 };
 
 export default nextConfig;
