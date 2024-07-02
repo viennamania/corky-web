@@ -59,7 +59,7 @@ export default function PaymentFormPage() {
   return (
     <div className=" w-96 min-h-screen bg-gradient-to-r from-[#136A8A] to-[#267871]
       flex flex-col items-center justify-start gap-3 p-2 border-2 border-white rounded-xl">
-      <h1>Payent Form</h1>
+      <h1>Payment Form</h1>
 
 
       <div className="flex flex-col gap-2">
