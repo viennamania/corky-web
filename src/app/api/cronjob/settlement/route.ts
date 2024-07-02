@@ -21,6 +21,10 @@ import {
   createThirdwebClient,
   getContract,
   sendAndConfirmTransaction,
+  
+  sendBatchTransaction,
+
+
 } from "thirdweb";
 
 //import { polygonAmoy } from "thirdweb/chains";
@@ -188,7 +192,7 @@ const processSongpa = async (
   
          // call the method to return the token balances for this address
          // random number
-         const resuestId =  Math.floor(Math.random() * 1000);
+         const requestId =  Math.floor(Math.random() * 1000);
 
          // eth
          ///const data = await fetch(`https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`, {
@@ -207,7 +211,7 @@ const processSongpa = async (
                  jsonrpc: '2.0',
                  method: 'alchemy_getTokenBalances',
                  params: [walletAddress, [tokenContractAddressUSDT]],
-                 id: resuestId,
+                 id: requestId,
              }),
          });
  
