@@ -78,14 +78,18 @@ export default function PaymentFormPage() {
 
         <div className='grid grid-cols-2 gap-2'>
 
+          {/*
           <div className="flex flex-col gap-2">
             <label className="text-white">Store Code</label>
             <input type="text" value={storecode} readOnly />
           </div>
+          */}
 
           <div className="flex flex-col gap-2">
             <label className="text-white">Member ID</label>
-            <input type="text" value={memberid} readOnly />
+            <input
+              className='bg-gray-200 p-2 rounded-md text-xs'
+              type="text" value={memberid} readOnly />
           </div>
         
         </div>
@@ -94,7 +98,9 @@ export default function PaymentFormPage() {
 
           <div className="flex flex-col gap-2">
             <label className="text-white">Wallet Address</label>
-            <input type="text" value={walletAddress} readOnly />
+            <input
+              className='bg-gray-200 p-2 rounded-md text-xs'
+              type="text" value={walletAddress} readOnly />
           </div>
 
         </div>
