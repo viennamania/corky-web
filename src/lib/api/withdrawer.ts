@@ -21,6 +21,7 @@ export interface UserProps {
   name: string,
   nickname: string,
   userid: string,
+  email: string,
   avatar: string,
   regType: string,
   mobile: string,
