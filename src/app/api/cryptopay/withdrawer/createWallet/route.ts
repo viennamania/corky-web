@@ -69,13 +69,52 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     console.log('walletAddress: ' + walletAddress);
 
 
+
+    // USDT Token (USDT)
+    const tokenContractAddressUSDT = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F';
+
+
+
+    const requestId =  Math.floor(Math.random() * 1000);
+
+    const data = await fetch(`https://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`, {
+
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            jsonrpc: '2.0',
+            method: 'alchemy_getTokenBalances',
+            params: [walletAddress, [tokenContractAddressUSDT]],
+            id: requestId,
+        }),
+    });
+
+    const response = await data.json() as any;
+
+    const balanceBigNumber = parseInt(response.result.tokenBalances[0].tokenBalance);
+
+    console.log('balanceBigNumber: ' + balanceBigNumber);
+
+    const balance = balanceBigNumber / Math.pow(10, 6);
+
+    console.log('walletAddress: ' + walletAddress + ' balance: ' + balance);
+
+
+
+
+
+
+
+
     return NextResponse.json(
       {
         success: true,
         message: 'GET Request Success',
         data: {
           walletAddress: walletAddress,
-          balance: 53332,
+          balance: balance,
         }
       },
       { status: 200 }
@@ -161,7 +200,17 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     */
 
     return NextResponse.json(
-      { success: true, message: 'Insert One Success', data: walletAddress },
+
+      {
+        success: true,
+        message: 'GET Request Success',
+        data: {
+          walletAddress: walletAddress,
+          balance: 0,
+        }
+      },
+
+
       { status: 200 }
     );
 
