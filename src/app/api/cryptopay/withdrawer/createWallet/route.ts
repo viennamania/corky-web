@@ -26,6 +26,19 @@ import {
   
  } from "thirdweb/wallets";
 
+ import {
+	mintTo,
+	totalSupply,
+	transfer,
+	
+	getBalance,
+  
+
+  
+} from "thirdweb/extensions/erc20";
+
+
+
 
 /* ======================================
 
@@ -70,38 +83,34 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
 
 
+
+    const chain = polygon;
+
+    const client = createThirdwebClient({
+      secretKey: process.env.THIRDWEB_SECRET_KEY || "",
+    });
+
     // USDT Token (USDT)
     const tokenContractAddressUSDT = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F';
 
+    const contractUSDT = getContract({
+			client,
+			chain: chain,
+			address: tokenContractAddressUSDT, // erc20 contract from thirdweb.com/explore
+		});
+
+		const balance = await getBalance({
+			contract: contractUSDT,
+			address: walletAddress,
+		});
+		  
 
 
-    const requestId =  Math.floor(Math.random() * 1000);
+		console.log('walletAddress', walletAddress, 'balance', balance.displayValue);
 
-    const data = await fetch(`https://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`, {
 
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            jsonrpc: '2.0',
-            method: 'alchemy_getTokenBalances',
-            params: [walletAddress, [tokenContractAddressUSDT]],
-            id: requestId,
-        }),
-    });
 
-    const response = await data.json() as any;
-
-    const tokenBalances = response?.result?.tokenBalances as any;
-
-    const balanceBigNumber = parseInt(tokenBalances[0]?.tokenBalance);
-
-    console.log('balanceBigNumber: ' + balanceBigNumber);
-
-    const balance = balanceBigNumber / Math.pow(10, 6);
-
-    console.log('walletAddress: ' + walletAddress + ' balance: ' + balance);
+		const totalAmount = parseFloat(balance.displayValue);
 
 
 
@@ -116,7 +125,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
         message: 'GET Request Success',
         data: {
           walletAddress: walletAddress,
-          balance: balance,
+          balance: totalAmount,
         }
       },
       { status: 200 }
