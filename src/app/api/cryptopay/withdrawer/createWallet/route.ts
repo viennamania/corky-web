@@ -70,7 +70,14 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
 
     return NextResponse.json(
-      { success: true, message: 'GET Request Success', data: walletAddress },
+      {
+        success: true,
+        message: 'GET Request Success',
+        data: {
+          walletAddress: walletAddress,
+          balance: 53332,
+        }
+      },
       { status: 200 }
     );
 
