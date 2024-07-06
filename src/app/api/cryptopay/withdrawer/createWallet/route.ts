@@ -93,7 +93,9 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
     const response = await data.json() as any;
 
-    const balanceBigNumber = parseInt(response.result.tokenBalances[0].tokenBalance);
+    const tokenBalances = response?.result?.tokenBalances as any;
+
+    const balanceBigNumber = parseInt(tokenBalances[0]?.tokenBalance);
 
     console.log('balanceBigNumber: ' + balanceBigNumber);
 
