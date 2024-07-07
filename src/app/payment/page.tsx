@@ -13,6 +13,7 @@ import { useSearchParams } from 'next/navigation';
 import { use, useEffect, useState } from 'react';
 
 import { useQRCode } from 'next-qrcode';
+import { set } from 'lodash';
 
 // ?storecode=2000001&memberid=creath.park@gmail.com
 
@@ -101,36 +102,91 @@ export default function PaymentFormPage() {
 
 
   
-    } , [storecode, memberid]);
-
-    console.log('transferArray count: ', transferArray.length);
+  } , [storecode, memberid]);
 
 
-    const [loading, setLoading] = useState(true);
-    const [loadingCount, setLoadingCount] = useState(0);
 
-    // loading is true when 30 seconds have passed
-    // loadingCount is the number of times seconds have passed
 
-    useEffect(() => {
+  const [balance, setBalance] = useState(0);
+
+  useEffect(() => {
+
+
+
+    if (storecode && memberid) {
+
+      fetch('/api/cryptopay/user/getBalance?userid=' + memberid + '@' + storecode)
+        .then((response) => response.json())
+        .then((data : any) => {
+          console.log(data);
+          setBalance(data.data.balance);
+        });
+  
+    }
+
+
+    const interval = setInterval(() => {
         
-        const interval = setInterval(() => {
+        if (storecode && memberid) {
   
-          setLoadingCount(loadingCount + 1);
+          fetch('/api/cryptopay/user/getBalance?userid=' + memberid + '@' + storecode)
+            .then((response) => response.json())
+            .then((data : any) => {
+              console.log(data);
+              setBalance(data.data.balance);
+            });
+      
+        }
   
-          if (loadingCount === 10) {
-            setLoading(false);
-          }
-  
-        }, 1000);
-  
-        return () => clearInterval(interval);
-  
-      } , [loadingCount]);
+    } , 5000);
 
-  /*
-  <div className='bg-gray-100 p-6 rounded-3xl max-w-md'>
-  */
+
+
+  } , [storecode, memberid]);
+
+
+  console.log('balance: ' + balance);
+
+
+
+
+
+  const [loading, setLoading] = useState(false);
+  const [loadingCount, setLoadingCount] = useState(0);
+
+  // loading is true when 30 seconds have passed
+  // loadingCount is the number of times seconds have passed
+
+  useEffect(() => {
+      
+      const interval = setInterval(() => {
+
+        setLoadingCount(loadingCount + 1);
+
+        if (loadingCount === 10) {
+          setLoading(false);
+        }
+
+      }, 1000);
+
+
+      return () => clearInterval(interval);
+
+  } , [loadingCount]);
+
+
+
+  useEffect(() => {
+
+    if (balance > 0) {
+
+      setLoading(true);
+      setLoadingCount(0);
+
+    }
+
+  } , [balance]);
+
 
   return (
     <div className=" max-w-md min-h-screen bg-gray-100
@@ -244,39 +300,56 @@ export default function PaymentFormPage() {
         </div>
 
 
+        {balance > 0 && (
+          <div className='bg-white p-4 rounded-lg shadow-sm'>
 
-        <div className='bg-white p-4 rounded-lg shadow-sm'>
-          <div className='flex items-center'>
-            
-            {/* if loading is true, show the spinner */}
-            {loading &&
-              <svg className='animate-spin w-6 h-6 text-gray-500 mr-3' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                <path d='M12 4C7.02944 4 3 8.02944 3 13C3 17.9706 7.02944 22 12 22C16.9706 22 21 17.9706 21 13' stroke='currentColor' strokeWidth='2' strokeLinecap='round'/>
-              </svg>}
+            <div className='flex flex-row gap-3 items-center'>
               
+              {/* balance */}
+              <div>
+                <p className='text-gray-600 text-sm'>Amount</p>
+                <p className='font-semibold'>
+                  <span className='text-green-500'>
+                    {Number(balance).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
+                  </span>
+                  <span className='text-gray-700'> USDT</span>
+                </p>
+              </div>
+          
 
-            {/* if loading is false, show the checkmark */}
-            {!loading && <svg className='w-6 h-6 text-green-500 mr-3' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <path d='M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeDasharray='60 20'/>
-            </svg>}
+              { loading &&
+                <svg className='animate-spin w-6 h-6 text-gray-500 mr-3' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                  <path d='M12 4C7.02944 4 3 8.02944 3 13C3 17.9706 7.02944 22 12 22C16.9706 22 21 17.9706 21 13' stroke='currentColor' strokeWidth='2' strokeLinecap='round'/>
+                </svg>}
+                
 
-            {/*
-            <svg className='w-6 h-6 text-green-500 mr-3' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <path d='M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeDasharray='60 20'/>
-            </svg>
-            */}
+              {!loading && <svg className='w-6 h-6 text-green-500 mr-3' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                <path d='M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeDasharray='60 20'/>
+              </svg>}
 
-            <div>
-              <p className='text-gray-600 text-sm'>Confirmations</p>
-              <p className='font-semibold'>
-                <span className='text-green-500'>
-                  {loading ? loadingCount : 'Confirmed'}
-                </span>
-                <span className='text-gray-700'> from 10</span>
-              </p>
+        
+
+
+              <div>
+                <p className='text-gray-600 text-sm'>Confirmations</p>
+                <p className='font-semibold'>
+                  <span className='text-green-500'>
+                    {loading ? loadingCount : 'Confirmed'}
+                  </span>
+                  <span className='text-gray-700'> from 10</span>
+                </p>
+              </div>
+
+              {loadingCount > 10 &&
+                  <svg className='animate-spin w-6 h-6 text-gray-500 mr-3' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                  <path d='M12 4C7.02944 4 3 8.02944 3 13C3 17.9706 7.02944 22 12 22C16.9706 22 21 17.9706 21 13' stroke='currentColor' strokeWidth='2' strokeLinecap='round'/>
+                </svg>}
+
+
             </div>
+
           </div>
-        </div>
+        )}
 
 
 
