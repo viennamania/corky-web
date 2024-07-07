@@ -143,11 +143,45 @@ export default function PaymentFormPage() {
 
 
 
+  /*
+  <div className='bg-gray-100 p-6 rounded-3xl max-w-md'>
+  */
 
   return (
-    <div className=" w-96 min-h-screen bg-gradient-to-r from-[#136A8A] to-[#267871]
-      flex flex-col items-center justify-start gap-3 p-2 border-2 border-white rounded-xl">
+    <div className=" max-w-md min-h-screen bg-gray-100
+      flex flex-col items-center justify-start gap-3 p-2 border-2 border-white rounded-3xl">
       <h1>Payment Form</h1>
+
+
+
+      <div className="bg-orange-100 rounded-lg p-4 max-w-md">
+        <div className="flex items-start space-x-3">
+          <div className="bg-orange-400 rounded-full p-1">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold text-gray-900">This is a static wallet</h2>
+            <p className="mt-1 text-sm text-gray-700">You can pay this bill as many times as you want, for different amounts.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className='bg-gray-100 p-4 rounded-lg max-w-md'>
+        <h2 className='text-xl font-bold mb-2'>Cryptocurrency transfer</h2>
+        <div className='flex justify-between items-center'>
+          <div>
+            <p className='text-sm text-gray-600'>Currency</p>
+            <p className='font-semibold'>USDT</p>
+          </div>
+          <div className='text-right'>
+            <p className='text-sm text-gray-600'>Network</p>
+            <p className='font-semibold'>Polygon</p>
+          </div>
+        </div>
+      </div>
+
 
 
       <div className="flex flex-col gap-2">
@@ -164,7 +198,7 @@ export default function PaymentFormPage() {
         <input type="text" value={walletAddress} readOnly />
         */}
 
-        <div className='grid grid-cols-2 gap-2'>
+        <div className='grid grid-cols-2 gap-2 w-96'>
 
           {/*
           <div className="flex flex-col gap-2">
@@ -174,7 +208,7 @@ export default function PaymentFormPage() {
           */}
 
           <div className="flex flex-col gap-2">
-            <label className="text-white">Member ID</label>
+            <label className="text-xl font-bold">Member ID</label>
             <input
               className='bg-gray-200 p-2 rounded-md text-xs'
               type="text" value={memberid} readOnly />
@@ -182,12 +216,13 @@ export default function PaymentFormPage() {
         
         </div>
 
-        <div className='grid grid-cols-1 gap-2'>
+        <div className='grid grid-cols-1 gap-2 mt-5'>
 
           <div className="flex flex-col gap-2">
-            <label className="text-white">Wallet Address</label>
+            {/* mkae ' to escape character */}
+            <label className="text-xl font-bold">Recipient&apos;s Wallet Address</label>
             <input
-              className='bg-gray-200 p-2 rounded-md text-xs'
+              className='bg-gray-200 p-2 rounded-md text-xs '
               type="text" value={walletAddress} readOnly />
           </div>
 
