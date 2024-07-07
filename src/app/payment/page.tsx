@@ -103,45 +103,30 @@ export default function PaymentFormPage() {
   
     } , [storecode, memberid]);
 
-
-
-
-
-    console.log('transferArray: ', transferArray);
-    /*
-    {
-    "member_id": "creath.park@gmail.com",
-    "store_code": "2000002",
-    "dealer_seq": "100000001",
-    "txid": "0x9269159f51c387cba385e4226c41f5c28346d5f82d357dff5d0069f2917ee194",
-    "regist_date": "2024-07-05 00:49:53",
-    "eth_bill": "8.3",
-    "txid_time": "1720140593",
-    "category": "receive",
-    "eth_fee": "0.083",
-    "eth_dealer": "11111",
-    "eth_finish": "8.217",
-    "eth_php": "10.00",
-    "eth_php_user": "1381",
-    "eth_php_finish": "11462.3",
-    "other_address": "0x",
-    "balance_yn": "Y",
-    "ins_date": "2024-07-05 00:49:53",
-    "coin_type": "USDT",
-    "fee_amount": null,
-    "dealer_balance_yn": "Y",
-    "block_number": "14478428",
-    "confirmations": "100",
-    "before_eth_php": null,
-    "before_eth_php_user": null,
-    "before_eth_php_finish": null,
-    "etc": null
-    }
-    */
-
     console.log('transferArray count: ', transferArray.length);
 
 
+    const [loading, setLoading] = useState(true);
+    const [loadingCount, setLoadingCount] = useState(0);
+
+    // loading is true when 30 seconds have passed
+    // loadingCount is the number of times seconds have passed
+
+    useEffect(() => {
+        
+        const interval = setInterval(() => {
+  
+          setLoadingCount(loadingCount + 1);
+  
+          if (loadingCount === 10) {
+            setLoading(false);
+          }
+  
+        }, 1000);
+  
+        return () => clearInterval(interval);
+  
+      } , [loadingCount]);
 
   /*
   <div className='bg-gray-100 p-6 rounded-3xl max-w-md'>
@@ -230,8 +215,10 @@ export default function PaymentFormPage() {
 
         {/* qr code */}
 
-        <div className="flex flex-col gap-2">
-          <label className="text-white">QR Code</label>
+        <div className="flex flex-col gap-2 mt-5">
+          {/* 
+          <label className="text-black">QR Code</label>
+          */}
 
           {walletAddress &&
 
@@ -257,31 +244,70 @@ export default function PaymentFormPage() {
         </div>
 
 
+
+        <div className='bg-white p-4 rounded-lg shadow-sm'>
+          <div className='flex items-center'>
+            
+            {/* if loading is true, show the spinner */}
+            {loading &&
+              <svg className='animate-spin w-6 h-6 text-gray-500 mr-3' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                <path d='M12 4C7.02944 4 3 8.02944 3 13C3 17.9706 7.02944 22 12 22C16.9706 22 21 17.9706 21 13' stroke='currentColor' strokeWidth='2' strokeLinecap='round'/>
+              </svg>}
+              
+
+            {/* if loading is false, show the checkmark */}
+            {!loading && <svg className='w-6 h-6 text-green-500 mr-3' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+              <path d='M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeDasharray='60 20'/>
+            </svg>}
+
+            {/*
+            <svg className='w-6 h-6 text-green-500 mr-3' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+              <path d='M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeDasharray='60 20'/>
+            </svg>
+            */}
+
+            <div>
+              <p className='text-gray-600 text-sm'>Confirmations</p>
+              <p className='font-semibold'>
+                <span className='text-green-500'>
+                  {loading ? loadingCount : 'Confirmed'}
+                </span>
+                <span className='text-gray-700'> from 10</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
         {/* transfer history */}
         <div className="flex flex-col gap-2">
           {transferArray.length > 0 &&
-            <table className="table-auto">
+            <table className="table-auto mt-5">
               <thead>
                 <tr>
                   <th className="border border-white">Date</th>
                   <th className="border border-white">Amount</th>
-                  <th className="border border-white">Fee</th>
-                  <th className="border border-white">Finish</th>
-                  <th className="border border-white">PHP</th>
-                  <th className="border border-white">PHP Finish</th>
-                  <th className="border border-white">Coin Type</th>
+                  <th className="border border-white">KRW</th>
                 </tr>
               </thead>
               <tbody>
                 {transferArray.map((transfer : any, index : number) => (
                   <tr key={index}>
-                    <td className="border border-white">{transfer.regist_date}</td>
-                    <td className="border border-white">{transfer.eth_bill}</td>
-                    <td className="border border-white">{transfer.eth_fee}</td>
-                    <td className="border border-white">{transfer.eth_finish}</td>
-                    <td className="border border-white">{transfer.eth_php}</td>
-                    <td className="border border-white">{transfer.eth_php_finish}</td>
-                    <td className="border border-white">{transfer.coin_type}</td>
+                    <td className="border border-white text-left">{transfer.regist_date}</td>
+                    <td className="border border-white text-right">
+                      {
+                        Number(transfer.eth_bill).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                      }
+                    </td>
+                    <td className="border border-white text-right">
+                      {
+                        Number(transfer.eth_php_finish).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                      }
+                    </td>
                   </tr>
                 ))}
               </tbody>
