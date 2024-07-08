@@ -327,13 +327,32 @@ export default function PaymentFormPage() {
         </div>
 
 
+        {balance === 0 && (
+          <div className='bg-white p-4 rounded-lg shadow-sm'>
+            <div className='flex flex-row gap-3 items-center'>
+              <div>
+                <p className='text-gray-600 text-sm'>Amount</p>
+                <p className='font-semibold'>0.00 USDT</p>
+              </div>
+              <div className='flex flex-col gap-1'>
+                <span className='text-gray-600 text-sm'>Confirmations</span>
+                <p className='font-semibold'>
+                  0 from 10
+                </p>
+                
+              </div>
+            </div>
+          </div>
+        )}
+
+
         {balance > 0 && (
           <div className='bg-white p-4 rounded-lg shadow-sm'>
 
-            <div className='flex flex-row gap-3 items-center'>
+            <div className='flex flex-row gap-5 items-center'>
               
               {/* balance */}
-              <div>
+              <div className='flex flex-col gap-1'>
                 <p className='text-gray-600 text-sm'>Amount</p>
                 <p className='font-semibold'>
                   <span className='text-green-500'>
@@ -357,14 +376,18 @@ export default function PaymentFormPage() {
         
 
 
-              <div>
+              <div className='flex flex-col gap-1'>
                 <p className='text-gray-600 text-sm'>Confirmations</p>
+
                 <p className='font-semibold'>
                   <span className='text-green-500'>
                     {loading ? loadingCount : 'Confirmed'}
                   </span>
-                  <span className='text-gray-700'> from 10</span>
+                  {loading && (
+                    <span className='text-gray-700'> from 10</span>
+                  )}
                 </p>
+
               </div>
 
               {loadingCount > 10 &&
