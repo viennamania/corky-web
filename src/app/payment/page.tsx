@@ -257,6 +257,17 @@ export default function PaymentFormPage() {
             <input
               className='bg-gray-200 p-2 rounded-md text-xs'
               type="text" value={memberid} readOnly />
+
+            {/* storecode logo image is /logo-2000001.png */}
+            {/* new window to open the store */}
+            {/* logo_2000001.png : https://vienna-mania.vercel.app/ */}
+            {/* logo_2000002.png : https://gopoker.vercel.app/*/}
+
+            <a href={'https://vienna-mania.vercel.app/'} target='_blank' className='ml-5' >
+              <img src={'/logo-' + storecode + '.png'} className='w-8 h-8' />
+            </a>
+
+
           </div>
         
         </div>
@@ -388,7 +399,7 @@ export default function PaymentFormPage() {
 
                 {/* first row is bold and large and colored */}
 
-                {transferArray.map((transfer : any, index : number) => (
+                {transferArray?.map((transfer : any, index : number) => (
 
 
                   
