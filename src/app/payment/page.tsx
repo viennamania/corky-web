@@ -15,6 +15,10 @@ import { use, useEffect, useState } from 'react';
 import { useQRCode } from 'next-qrcode';
 import { set } from 'lodash';
 
+import toast from 'react-hot-toast';
+
+
+
 // ?storecode=2000001&memberid=creath.park@gmail.com
 
 //export const metadata = {
@@ -239,7 +243,7 @@ export default function PaymentFormPage() {
         <input type="text" value={walletAddress} readOnly />
         */}
 
-        <div className='grid grid-cols-2 gap-2 w-96'>
+        <div className='grid grid-cols-1 gap-2 w-96'>
 
           {/*
           <div className="flex flex-col gap-2">
@@ -248,7 +252,7 @@ export default function PaymentFormPage() {
           </div>
           */}
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-row gap-2">
             <label className="text-xl font-bold">Member ID</label>
             <input
               className='bg-gray-200 p-2 rounded-md text-xs'
@@ -262,9 +266,21 @@ export default function PaymentFormPage() {
           <div className="flex flex-col gap-2">
             {/* mkae ' to escape character */}
             <label className="text-xl font-bold">Recipient&apos;s Wallet Address</label>
-            <input
-              className='bg-gray-200 p-2 rounded-md text-xs '
-              type="text" value={walletAddress} readOnly />
+            <div className='flex flex-row gap-2'>
+              <input
+                className='bg-gray-200 p-2 rounded-md text-xs w-80 '
+                type="text" value={walletAddress} readOnly />
+              <button
+                className='bg-green-500 text-white p-2 rounded-md'
+                onClick={() => {
+                  navigator.clipboard.writeText(walletAddress);
+                  toast.success('Copied to clipboard');
+                  
+                }}>
+                Copy
+              </button>
+            </div>
+            
           </div>
 
         </div>
@@ -362,26 +378,64 @@ export default function PaymentFormPage() {
             <table className="table-auto mt-5">
               <thead>
                 <tr>
-                  <th className="border border-white">Date</th>
-                  <th className="border border-white">Amount</th>
+                  <th className="border border-white ">Date (UTC)</th>
+                  <th className="border border-white">Amount (USDT)</th>
+                  <th className="border border-white">Rate</th>
                   <th className="border border-white">KRW</th>
                 </tr>
               </thead>
               <tbody>
+
+                {/* first row is bold and large and colored */}
+
                 {transferArray.map((transfer : any, index : number) => (
+
+
+                  
+                  index === 0 ? (
+                    <tr key={index}>
+                      <td className="border border-white text-left bg-gray-200 p-2">{transfer.regist_date}</td>
+                      <td className="border border-white text-right font-bold text-lg bg-gray-200 p-2">
+                        {
+                          Number(transfer.eth_bill).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                        }
+                      </td>
+                      <td className="border border-white text-right font-bold bg-gray-200 p-2">
+                        {
+                          Number(transfer.eth_php_user).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                        }
+                      </td>
+                      <td className="border border-white text-right font-bold text-lg bg-gray-200 p-2">
+                        {
+                          Number(transfer.eth_php_finish).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                        }
+                      </td>
+                    </tr>
+                     
+                  ) : (
+
                   <tr key={index}>
-                    <td className="border border-white text-left">{transfer.regist_date}</td>
-                    <td className="border border-white text-right">
+                    <td className="border border-white text-left p-2">{transfer.regist_date}</td>
+                    <td className="border border-white text-right p-2">
                       {
                         Number(transfer.eth_bill).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                       }
                     </td>
-                    <td className="border border-white text-right">
+                    <td className="border border-white text-right p-2">
                       {
-                        Number(transfer.eth_php_finish).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                        Number(transfer.eth_php_user).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                      }
+                    </td>
+                    <td className="border border-white text-right p-2">
+                      {
+                        Number(transfer.eth_php_finish).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                       }
                     </td>
                   </tr>
+
+                  ) 
+
+
                 ))}
               </tbody>
             </table>
