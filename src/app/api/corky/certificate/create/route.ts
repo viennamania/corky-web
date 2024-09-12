@@ -13,7 +13,6 @@ import {
   sendAndConfirmTransaction,
 } from "thirdweb";
 
-//import { polygonAmoy } from "thirdweb/chains";
 import { polygon } from "thirdweb/chains";
 
 
