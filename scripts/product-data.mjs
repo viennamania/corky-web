@@ -28,7 +28,7 @@ const setup = async () => {
     console.log('Connected to database');
 
     const hasData = await client
-      .db('lefimall')
+      .db('gobyte')
       .collection('products')
       .countDocuments();
 
@@ -152,7 +152,7 @@ const setup = async () => {
 
 
     const insert = await client
-      .db('lefimall')
+      .db('gobyte')
       .collection('products')
       .insertMany(records);
 
