@@ -520,7 +520,6 @@ export default async function handler(
     //console.log('walletAddress: ' + walletAddress);
     
 
-
   //} );
 
   }
