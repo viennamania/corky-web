@@ -87,7 +87,7 @@ export async function insertOne(data: any) {
 
 
   const client = await clientPromise;
-  const collection = client.db('vienna').collection('users');
+  const collection = client.db('gobyte').collection('users');
 
   // check same email, then return error
 
