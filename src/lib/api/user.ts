@@ -103,6 +103,7 @@ export async function insertOne(data: any) {
     return null;
   }
 
+  
 
   // generate id 1000000 ~ 9999999
 
