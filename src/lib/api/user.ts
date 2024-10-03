@@ -183,6 +183,9 @@ export async function getUserWalletPrivateKeyByWalletAddress(
 }
 
 
+
+
+
 export async function getUserByEmail(
   email: string,
 ): Promise<UserProps | null> {
@@ -190,7 +193,7 @@ export async function getUserByEmail(
   console.log('getUser email: ' + email);
 
   const client = await clientPromise;
-  const collection = client.db('vienna').collection('users');
+  const collection = client.db('gobyte').collection('users');
 
 
   return await collection.findOne<UserProps>(
@@ -199,6 +202,9 @@ export async function getUserByEmail(
   );
 
 }
+
+
+
 
 
 export async function checkUserByEmail(
